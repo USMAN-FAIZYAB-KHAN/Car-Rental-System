@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'car_rental_system.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test_db',
+        'NAME': 'testdb',
         'USER': 'root',
         'PASSWORD': '12345678',
         'HOST': 'localhost',
