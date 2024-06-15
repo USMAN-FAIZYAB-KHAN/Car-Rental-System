@@ -14,8 +14,8 @@ def contact(request):
     print(request.path)
     return render(request, 'contact.html')
 
-# def logIn(request):
-#     return render(request, 'Login.html')
+def login(request):
+    return render(request, 'login.html')
 
 # def signUp(request):
 #     return render(request, 'Signup.html')

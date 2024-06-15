@@ -278,7 +278,8 @@ i{
 }
 
 
-#password{
+#password,
+#confirmPassword{
     width: 337px;
     padding-left: 10px;
     margin-top: 20px;
@@ -356,4 +357,15 @@ i{
     width: 80%;
     border-bottom: 1px solid black;
     margin-bottom: 15px;
+}
+
+.active{
+    display: flex;
+    flex-direction: column;
+}
+.nonactive{
+    display: none;
+}
+.nonactive{
+    display: none;
 }
