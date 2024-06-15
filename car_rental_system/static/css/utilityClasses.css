@@ -1,0 +1,96 @@
+
+
+/* ==================== utility Classes =================== */
+
+.container {
+    max-width: 90%;
+    margin: 4rem auto;
+}
+
+h1 {
+    font-size: var(--largest--font-size);
+    color: var(--font--white--color);
+    line-height: 50px;
+    font-weight: var(--weight--normal);
+}
+
+h2 {
+    font-size: var(--large--font-size);
+    color: var(--font--black--color);
+    font-weight: var(--weight--bolder);
+}
+h3{
+    color: var(--font--white--color);
+    font-size: var(--middle--font-size);
+}
+h4 {
+    font-size: var(--small--font-size);
+    color: var(--font--white--color);
+    font-weight: var(--weight--semibold);
+    line-height: 50px;
+}
+
+p {
+    font-size: var(--smallest--font-size);
+    color: var(--font--black--color);
+    line-height: 25px;
+}
+
+a {
+    color: var(--font--white--color);
+    font-size: var(--smallest--font-size);
+    text-decoration: none;
+}
+
+button {
+    font-weight: var(--weight--bold);
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+i {
+    font-size: var(--primary--size);
+    color: var(--font--white--color);
+    width: 5.4rem;
+    height: 5.4rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    background-color: var(--button--primary--bg--color);
+    transition: all 0.3s ease-in-out;
+}
+
+ul {
+    list-style: none;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.secondary__btn {
+    display: inline-block;
+    padding: 1.5rem 3rem;
+    border-radius: 5px; 
+    background-color: var(--button--primary--bg--color);
+}
+
+.primary__btn {
+    background-color: var(--button--secondary--bg--color);
+    display: inline-block;
+    padding: 1.5rem 3rem;
+    border-radius: 5px;
+}
+
+.styling__content {
+    display: inline-block;
+    color: var(--font--primary--color);
+}
+
+.underline__style {
+    display: block;
+    width: 7%;
+    height: 5px;
+    background-color: var(--font--primary--color);
+    margin: 1rem auto;
+    transform: skewX(-50deg);
+}
