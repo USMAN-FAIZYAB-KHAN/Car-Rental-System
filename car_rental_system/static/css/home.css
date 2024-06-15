@@ -340,3 +340,51 @@
     display: block;
 }
 
+.marquee__about__car{
+    padding: 40px 0 40px 0;
+    position: relative;
+    background-color: rgb(15, 15, 15);
+    z-index: var(--normal--z-index);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee {
+    display: inline-block;
+    white-space: nowrap;
+    position: relative; 
+}
+  
+.marquee__inner {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+}
+
+.marquee__about__car .marquee__txt{
+    font-size: 64px;
+    line-height: 64px;
+    letter-spacing: -2px;
+    font-weight: var(--weight--bold) ;
+    color: var(--font--secondary--color);
+}
+
+.marquee__about__car .marquee__dot{
+    width: 100px;
+    max-height: 10px;
+    margin: 0 50px;
+    padding: 2px;
+    display: inline-block;
+    transform: translateY(-15px);
+    background: var(--font--primary--color);
+}
+
+/* Define the animation */
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%); /* Adjust for spacing */
+    }
+}
