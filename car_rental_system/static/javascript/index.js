@@ -16,28 +16,38 @@ const moveSelector = (target) => {
   movingSelector.style.left = `${left}px`;
   movingSelector.style.height = `${height}px`;
   movingSelector.style.width = `${width}px`;
+
 };
 
-navLinks.forEach((navLink) => {
+const horiLink = ()=> navLinks.forEach((navLink) => {
+
+  // if (navLink.classList.contains('active')){
+  //   console.log(navLink)
+  //   moveSelector(navLink)
+  //   window.location  = navLink.children[0].href
+  // }
   navLink.addEventListener("click", (e) => {
     e.preventDefault();
     let target = e.currentTarget;
+    
 
     navLinks.forEach((link) => {
       link.classList.remove("active");
     });
-
+    
     target.classList.add("active");
     moveSelector(target);
+    e.preventDefault()
   });
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-  const activeLink = document.querySelector(".nav__link.active");
-  if (activeLink) {
-    moveSelector(activeLink);
-  }
-});
+horiLink()
+// window.addEventListener("DOMContentLoaded", () => {
+//   const activeLink = document.querySelector(".nav__link.active");
+//   if (activeLink) {
+//     moveSelector(activeLink);
+//   }
+// });
 
 const arrows = document.querySelectorAll(".questionArrow");
 
