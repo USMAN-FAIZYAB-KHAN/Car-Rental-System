@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
+
     {% load static %}
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!--------------------------------------- Fontawesome Link -------------------------------------->
-    
+
     <script
       src="https://kit.fontawesome.com/de9e1561cd.js"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
 
     <!--------------------------------------- CSS Styling Link -------------------------------------->
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/utilityClasses.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
+    {% block cssLink %} {% endblock %}
 
-    {% block cssLink %}
-    <link rel="stylesheet" href="../static/css/home.css" />
-    {% endblock %}
-    
-    
     <!--------------------------------------- Title --------------------------------------->
-    
+
     <title>{% block title %}{% endblock %}</title>
-  
+
     <!--------------------------------------- Javascript Link -------------------------------------->
-  
+
     <script src="../static/javascript/navbar.js" defer></script>
-    {% block javascript %}{% endblock %}
+    {% block javascript %} {% endblock %}
   </head>
 
   <body>
@@ -38,11 +37,9 @@
       <!-------- Navbar -------->
       <nav class="navbar">
         <div class="logo">
-          <a href="{% url 'home' %}"
-            ><img
+          <a href="{% url 'home' %}"><img
               src="{% static './images/assets/logo-light.png' %}"
-              alt="Car Rental"
-          /></a>
+              alt="Car Rental" /></a>
         </div>
 
         <ul class="nav__items">
@@ -50,25 +47,25 @@
             <div class="left"></div>
             <div class="right"></div>
           </div>
-          <li class="nav__link {% if request.path == '/' %} active {% endif %}">
-            <a href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="nav__link">
-            <a href="#">Cars</a>
-          </li>
-          <li
-            class="nav__link {% if request.path == 'about' %} active {% endif %}"
-          >
-            <a href="{% url 'about' %}">About</a>
-          </li>
-          <li class="nav__link">
-            <a href="#">Blog</a>
-          </li>
-          <li
-            class="nav__link {% if request.path == 'contact' %} active {% endif %}"
-          >
-            <a href="{% url 'contact' %}">Contact</a>
-          </li>
+          <!-- <li> -->
+          <a href="{% url 'home' %}"
+            class="nav__link {% if request.path == '/' %} active {% endif %}">Home</a>
+          <!-- </li> -->
+          <!-- <li > -->
+          <a href="#" class="nav__link">Cars</a>
+          <!-- </li> -->
+          <!-- <li -->
+
+          
+          <a href="{% url 'about' %}" class="nav__link {% if request.path == '/about' %} active {% endif %}">About</a>
+          <!-- </li> -->
+          <!-- <li > -->
+          <a href="#" class="nav__link">Blog</a>
+          <!-- </li> -->
+          <!-- <li> -->
+          <a href="{% url 'contact' %}"
+            class="nav__link {% if request.path == '/contact' %} active {% endif %}">Contact</a>
+          <!-- </li> -->
         </ul>
 
         <div class="account__btns">
@@ -94,7 +91,8 @@
       <div class="container footer__container">
         <div class="footer__about">
           <div class="footer__rental">
-            <img src="{% static './images/assets/logo-light.png' %}" alt="Rentaly" />
+            <img src="{% static './images/assets/logo-light.png' %}"
+              alt="Rentaly" />
             <h3>About Rentaly</h3>
           </div>
           <p>
@@ -119,25 +117,25 @@
           </div>
           <div class="footer__contact__content">
             <i class="fa-regular fa-envelope"></i>
-            <p><a href="">contact@example.com</a></p>
+            <p><a href>contact@example.com</a></p>
           </div>
         </div>
         <div class="footer__quick__link">
           <h3>Quick Links</h3>
-          <p><a href="">About</a></p>
-          <p><a href="">Blog</a></p>
-          <p><a href="">Careers</a></p>
-          <p><a href="">News</a></p>
-          <p><a href="">Partners</a></p>
+          <p><a href>About</a></p>
+          <p><a href>Blog</a></p>
+          <p><a href>Careers</a></p>
+          <p><a href>News</a></p>
+          <p><a href>Partners</a></p>
         </div>
         <div class="footer__social">
           <h3>Social Network</h3>
           <div class="footer__social__links">
-            <a href=""><i class="fa-brands fa-x-twitter"></i></a>
-            <a href=""><i class="fa-brands fa-facebook-f"></i></a>
-            <a href=""><i class="fa-brands fa-linkedin"></i></a>
-            <a href=""><i class="fa-brands fa-pinterest-p"></i></a>
-            <a href=""><i class="fa-solid fa-rss"></i></a>
+            <a href><i class="fa-brands fa-x-twitter"></i></a>
+            <a href><i class="fa-brands fa-facebook-f"></i></a>
+            <a href><i class="fa-brands fa-linkedin"></i></a>
+            <a href><i class="fa-brands fa-pinterest-p"></i></a>
+            <a href><i class="fa-solid fa-rss"></i></a>
           </div>
         </div>
       </div>
@@ -145,7 +143,6 @@
         copyright &copy; 2024 | All right reserved | Car Rental Designer
       </p>
     </div>
-    
-    
+
   </body>
 </html>
