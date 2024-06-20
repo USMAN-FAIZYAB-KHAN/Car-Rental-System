@@ -16,6 +16,11 @@ const moveSelector = (target) => {
   movingSelector.style.height = `${height}px`;
   movingSelector.style.width = `${width}px`;
 
+  setTimeout(() => {
+    window.location = target.children[0].href;
+  }, 300);
+
+
 };
 
 navLinks.forEach((navLink) => {
@@ -32,9 +37,4 @@ navLinks.forEach((navLink) => {
   });
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-  const activeLink = document.querySelector(".nav__link.active");
-  if (activeLink) {
-    moveSelector(activeLink);
-  }
-});
+

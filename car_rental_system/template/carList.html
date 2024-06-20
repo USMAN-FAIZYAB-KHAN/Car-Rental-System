@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+<!--------------------------------------- CSS Styling Link -------------------------------------->
+
+{% block csslink %} <link rel="stylesheet" href="../static/css/home.css" /> {% endblock %}
+
+
+<!--------------------------------------- Title --------------------------------------->
+
+{% block title %}{% endblock %}
+
+
+
+{% block body %}
+<style>
+    .banner {
+        height: 40vh;
+        background-image: url("../static/images/assets/1.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+
+<div class="banner">
+    <div class="banner-content">
+        <h2>Car Inventory</h2>
+    </div>
+</div>
+
+<div class="car-container">
+    <div class="left"></div>
+    <div class="right"></div>
+</div>
+
+
+{% endblock %}
+
+ <!--------------------------------------- Javascript Link -------------------------------------->
+
+{% block javascript %} {% endblock %}
