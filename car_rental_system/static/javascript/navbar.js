@@ -11,30 +11,24 @@ const moveSelector = (target) => {
   let height = rect.height;
   let width = rect.width;
 
-  movingSelector.style.top = `${top}px`;
-  movingSelector.style.left = `${left}px`;
-  movingSelector.style.height = `${height}px`;
-  movingSelector.style.width = `${width}px`;
+  // setTimeout(()=>{
+    movingSelector.style.top = `${top}px`;
+    movingSelector.style.left = `${left}px`;
+    movingSelector.style.height = `${height}px`;
+    movingSelector.style.width = `${width}px`;
 
-  setTimeout(() => {
-    window.location = target.children[0].href;
-  }, 300);
-
-
+  // },300)
 };
 
-navLinks.forEach((navLink) => {
-  navLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    let target = e.currentTarget;
-
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-    });
-
-    target.classList.add("active");
-    moveSelector(target);
+document.addEventListener('DOMContentLoaded',()=>{
+  navLinks.forEach((navLink) => {
+    if (navLink.classList.contains('active')) {
+      moveSelector(navLink);
+    }
   });
 });
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 7951faaa05637f19d0734570cc3fa97e21137b5e

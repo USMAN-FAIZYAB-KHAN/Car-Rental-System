@@ -1,8 +1,4 @@
-
-
-
 const arrows = document.querySelectorAll(".questionArrow");
-
 const removeEvent = ()=>{
 
     arrows.forEach((item) => {
@@ -34,8 +30,6 @@ arrows.forEach((arrow) => {
         }
     });
 });
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
   let orderCompleted = document.querySelector('#order');
