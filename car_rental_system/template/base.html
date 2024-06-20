@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    
+    {% load static %}
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -24,7 +27,6 @@
   </head>
 
   <body>
-    {% load static %}
 
     <div class="main__home">
 
@@ -65,8 +67,16 @@
         </ul>
 
         <div class="account__btns">
-          <button><a href="{% url 'login' %}" class="secondary__btn">Login</a></button>
-          <button><a href="#" class="secondary__btn">SigUp</a></button>
+          <button>
+            <span class="top extra_top"></span>
+            <a href="{% url 'login' %}" class="secondary__btn">Login</a>
+            <span class="bottom"></span>
+          </button>
+          <button>
+            <span class="top extra_top"></span>
+            <a href="#" class="secondary__btn">SigUp</a>
+            <span class="bottom"></span>
+          </button>
         </div>
       </nav>
     </div>

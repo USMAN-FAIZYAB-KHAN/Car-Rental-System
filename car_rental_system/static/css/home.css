@@ -141,18 +141,18 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-bottom:6rem ;
+    margin-bottom:6rem;
 }
 
 .about__car__rental__content h2{
     color: var(--font--white--color);
-    width: 48%;
+    width: 47%;
 }
 .about__car__rental__content p{
-    width: 46%;
+    width: 50%;
     text-align: justify;
     color: var(--font--gray--color);
-    padding: 1rem;
+    padding: 2rem;
 }
 
 .about__company{
@@ -164,8 +164,8 @@
 
 .about__vehicle{
     width: 23%;
-    background-color: rgba(255, 255, 255, .1);
-    opacity: 0.9;
+    background-color: rgba(255, 255, 255, .2);
+    /* opacity: 0.9; */
     z-index: 1;
     text-align: center;
     padding: 3rem 5rem;
@@ -173,7 +173,7 @@
 }
 
 .about__vehicle .number{
-    color: var(--font--primary--color);
+    color: var(--font--secondary--color);
     z-index: var(--second--normal--z-index);
 }
 
@@ -217,7 +217,7 @@
 }
 
 
-/* ==================== Latest Car Feature =================== */
+/* ==================== Car Feature =================== */
 
 .latest__feature__home {
     min-height: 100vh;
@@ -245,6 +245,7 @@
     object-fit: cover;
     border-radius: 15px;
     z-index: var(--smallest--z-index);
+    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.4);
 }
 
 .latest__feature__image .date__container{
@@ -382,9 +383,10 @@
 /* Define the animation */
 @keyframes marquee {
     0% {
-        transform: translateX(0%);
+        transform: translateX(2%);
     }
     100% {
-        transform: translateX(-100%); /* Adjust for spacing */
+        transform: translateX(-100%);
+         /* Adjust for spacing */
     }
 }

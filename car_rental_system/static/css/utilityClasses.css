@@ -37,12 +37,13 @@ p {
 }
 
 a {
-    color: var(--font--white--color);
+    color: var(--font--gray--color);
     font-size: var(--smallest--font-size);
     text-decoration: none;
 }
 
 button {
+    position: relative;
     font-weight: var(--weight--bold);
     background-color: transparent;
     outline: none;
@@ -72,6 +73,8 @@ ul {
     padding: 1.5rem 3rem;
     border-radius: 5px; 
     background-color: var(--button--primary--bg--color);
+    color: var(--font--white--color);
+    /* overflow: hidden; */
 }
 
 .primary__btn {
@@ -79,6 +82,72 @@ ul {
     display: inline-block;
     padding: 1.5rem 3rem;
     border-radius: 5px;
+    color: var(--font--white--color);
+    transition: all 0.5s ease-in-out;
+}
+
+.primary__btn::before,
+.secondary__btn::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    height: 1%;
+    width: 0%;
+    background: #fff;
+    transition: all 0.5s ease-in-out;
+}
+
+.primary__btn::after,
+.secondary__btn::after{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    content: '';
+    height: 1%;
+    width: 0%;
+    background: #fff;
+    transition: all 0.5s ease-in-out;
+}
+
+.primary__btn:hover,
+.secondary__btn:hover{
+    border-radius: 0%;
+}
+
+.primary__btn:hover::after,
+.primary__btn:hover::before,
+.secondary__btn:hover::before,
+.secondary__btn:hover::after{
+    width: 100%;
+}
+
+.top{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0%;
+    width: 0.5%;
+    background-color: var(--font--white--color);
+    transition: all 0.5s ease-in-out;
+}
+
+
+.bottom{
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 0%;
+    width: 0.5%;
+    background-color: var(--font--white--color);
+    transition: all 0.5s ease-in-out;
+}
+
+button:hover .top,
+button:hover .bottom{
+    height: 100%;
 }
 
 .styling__content {
