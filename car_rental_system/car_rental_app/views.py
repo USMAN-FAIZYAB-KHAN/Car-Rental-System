@@ -17,5 +17,8 @@ def contact(request):
 def login(request):
     return render(request, 'login.html')
 
+def carList(request):
+    return render(request, 'carList.html')
+
 # def signUp(request):
 #     return render(request, 'Signup.html')
