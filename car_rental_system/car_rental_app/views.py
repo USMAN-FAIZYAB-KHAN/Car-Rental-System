@@ -20,5 +20,8 @@ def login(request):
 def carList(request):
     return render(request, 'carList.html')
 
+def carDetail(request):
+    return render(request, 'carDetail.html')
+
 # def signUp(request):
 #     return render(request, 'Signup.html')

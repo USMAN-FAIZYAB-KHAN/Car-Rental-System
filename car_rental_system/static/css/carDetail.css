@@ -1,0 +1,130 @@
+.car-details {
+    display: flex;
+    margin: 20px 0;
+}
+
+.car-images {
+    flex: 1;
+    text-align: center;
+}
+
+.car-info {
+    flex: 1;
+    padding: 20px;
+}
+
+.reviews {
+    flex: 1;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.main-img {
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    margin: auto;
+    display: block;
+}    
+
+.indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.line {
+    height: 5px;
+    width: 50px;
+    margin: 0 5px;
+    background-color: #32CD32; /* Green color */
+    display: inline-block;
+    cursor: pointer;
+}
+
+.active {
+    background-color: #228B22; /* Darker green for active */
+}
+
+.thumbnails {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.thumbnails img {
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.specifications {
+    text-align: left;
+}
+
+.daily-rate {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.daily-rate h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.daily-rate p {
+    margin: 10px 0 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.review-list {
+    width: 100%;
+}
+
+.review {
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.review-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.review-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-form label {
+    margin: 10px 0 5px;
+}
+
+.review-form input,
+.review-form textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.review-form button {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
