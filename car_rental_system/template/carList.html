@@ -1,48 +1,280 @@
-{% extends 'base.html' %}
-
-{% load static %}
+{% extends 'base.html' %} {% load static %}
 
 <!--------------------------------------- CSS Styling Link -------------------------------------->
 
-{% block csslink %} <link rel="stylesheet" href="../static/css/home.css" /> {% endblock %}
-
+{% block cssLink %}
+<link rel="stylesheet" href="../static/css/carList.css" /> {% endblock %}
 
 <!--------------------------------------- Title --------------------------------------->
 
-{% block title %}{% endblock %}
-
-
-
-{% block body %}
-<style>
-    .banner {
-        height: 40vh;
-        background-image: url("../static/images/assets/1.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-</style>
-
+{% block title %}{% endblock %} {% block body %}
 
 <div class="banner">
-    <div class="banner-content">
-        <h2>Car Inventory</h2>
-    </div>
+  <h2 class="banner-heading">Cars</h2>
 </div>
 
 <div class="car-container">
-    <div class="left"></div>
-    <div class="right"></div>
-</div>
+  <div class="left"></div>
+  
+  <div class="right">
+    
+    <div class="car-card">
+      <div class="car-image">
+        <img src="../static/images/assets/1.jpg" alt="Car" />
+      </div>
 
+      <div class="car-details">
+        <h3 class="car-name">Car Name</h3>
+
+        <div class="car-info">
+          <table>
+            <tr>
+              <th>Model</th>
+              <td>2021</td>
+            </tr>
+            <tr>
+              <th>Color</th>
+              <td>Black</td>
+            </tr>
+            <tr>
+              <th>Price</th>
+              <td>$100/day</td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <th>Seats</th>
+              <td>4</td>
+            </tr>
+            <tr>
+              <th>Transmission</th>
+              <td>Automatic</td>
+            </tr>
+            <tr>
+              <th>Engine</th>
+              <td>2.0L</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="car-rent">
+        <p>Daily rate from</p>
+        <h2 class="price">$100</h2>
+        <button>
+          <span class="top"></span>
+          <a href="#" class="secondary__btn">Rent Now</a>
+          <span class="bottom"></span>
+        </button>
+      </div>
+    </div>
+    <div class="car-card">
+      <div class="car-image">
+        <img src="../static/images/assets/1.jpg" alt="Car" />
+      </div>
+
+      <div class="car-details">
+        <h3 class="car-name">Car Name</h3>
+
+        <div class="car-info">
+          <table>
+            <tr>
+              <th>Model</th>
+              <td>2021</td>
+            </tr>
+            <tr>
+              <th>Color</th>
+              <td>Black</td>
+            </tr>
+            <tr>
+              <th>Price</th>
+              <td>$100/day</td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <th>Seats</th>
+              <td>4</td>
+            </tr>
+            <tr>
+              <th>Transmission</th>
+              <td>Automatic</td>
+            </tr>
+            <tr>
+              <th>Engine</th>
+              <td>2.0L</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="car-rent">
+        <p>Daily rate from</p>
+        <h class="price">$100</h>
+        <button>
+          <span class="top"></span>
+          <a href="#" class="secondary__btn">Rent Now</a>
+          <span class="bottom"></span>
+        </button>
+      </div>
+    </div>
+    <div class="car-card">
+      <div class="car-image">
+        <img src="../static/images/assets/1.jpg" alt="Car" />
+      </div>
+
+      <div class="car-details">
+        <h3 class="car-name">Car Name</h3>
+
+        <div class="car-info">
+          <table>
+            <tr>
+              <th>Model</th>
+              <td>2021</td>
+            </tr>
+            <tr>
+              <th>Color</th>
+              <td>Black</td>
+            </tr>
+            <tr>
+              <th>Price</th>
+              <td>$100/day</td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <th>Seats</th>
+              <td>4</td>
+            </tr>
+            <tr>
+              <th>Transmission</th>
+              <td>Automatic</td>
+            </tr>
+            <tr>
+              <th>Engine</th>
+              <td>2.0L</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="car-rent">
+        <p>Daily rate from</p>
+        <h2 class="price">$100</h2>
+        <button>
+          <span class="top"></span>
+          <a href="#" class="secondary__btn">Rent Now</a>
+          <span class="bottom"></span>
+        </button>
+      </div>
+    </div>
+    <div class="car-card">
+      <div class="car-image">
+        <img src="../static/images/assets/1.jpg" alt="Car" />
+      </div>
+
+      <div class="car-details">
+        <h3 class="car-name">Car Name</h3>
+
+        <div class="car-info">
+          <table>
+            <tr>
+              <th>Model</th>
+              <td>2021</td>
+            </tr>
+            <tr>
+              <th>Color</th>
+              <td>Black</td>
+            </tr>
+            <tr>
+              <th>Price</th>
+              <td>$100/day</td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <th>Seats</th>
+              <td>4</td>
+            </tr>
+            <tr>
+              <th>Transmission</th>
+              <td>Automatic</td>
+            </tr>
+            <tr>
+              <th>Engine</th>
+              <td>2.0L</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="car-rent">
+        <p>Daily rate from</p>
+        <h2 class="price">$100</h2>
+        <button>
+          <span class="top"></span>
+          <a href="#" class="secondary__btn">Rent Now</a>
+          <span class="bottom"></span>
+        </button>
+      </div>
+    </div>
+    <div class="car-card">
+      <div class="car-image">
+        <img src="../static/images/assets/1.jpg" alt="Car" />
+      </div>
+
+      <div class="car-details">
+        <h3 class="car-name">Car Name</h3>
+
+        <div class="car-info">
+          <table>
+            <tr>
+              <th>Model</th>
+              <td>2021</td>
+            </tr>
+            <tr>
+              <th>Color</th>
+              <td>Black</td>
+            </tr>
+            <tr>
+              <th>Price</th>
+              <td>$100/day</td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <th>Seats</th>
+              <td>4</td>
+            </tr>
+            <tr>
+              <th>Transmission</th>
+              <td>Automatic</td>
+            </tr>
+            <tr>
+              <th>Engine</th>
+              <td>2.0L</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="car-rent">
+        <p>Daily rate from</p>
+        <h2 class="price">$100</h2>
+        <button>
+          <span class="top"></span>
+          <a href="#" class="secondary__btn">Rent Now</a>
+          <span class="bottom"></span>
+        </button>
+      </div>
+    </div>
+  
+
+</div>
+</div>
 
 {% endblock %}
 
- <!--------------------------------------- Javascript Link -------------------------------------->
+<!--------------------------------------- Javascript Link -------------------------------------->
 
 {% block javascript %} {% endblock %}

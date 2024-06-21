@@ -1,0 +1,117 @@
+@import url('./base.css');
+@import url('./utilityClasses.css');
+
+.banner {
+    height: 40vh;
+    background-image: url("../static/images/assets/carInventory.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-heading {
+    color: var(--font--primary--color);
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 20%;
+    padding: 1rem;
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+    text-align: center;
+    min-width: 200px;
+}
+
+.car-container {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2rem;
+    padding: 0 3rem;
+}
+
+.left {
+    flex: 3;
+    border-radius: 10px;
+    border: 2px solid;
+}
+
+.right {
+    flex: 7;
+}
+
+.car-card {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(209, 209, 209);
+    width: 95%;
+    height: 160px;
+    margin: 2rem auto;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    column-gap: 2rem;
+}
+
+.car-name {
+    color: var(--font--black--color);
+    font-weight: var(--weight--bold);
+    margin: 0 1.2rem;
+}
+
+.car-info td {
+    font-size: var(--smallest--font-size);
+}
+
+
+.car-info th {
+    font-size: var(--smallest--font-size);
+    font-weight: var(--weight--bold);
+    color: var(--bg--first--color);
+    text-align: left;
+}
+
+
+.car-details {
+    width: 55%;
+}
+
+.car-info {
+    display: flex;
+    column-gap: 1rem;
+}
+
+.car-info table {
+    padding-right: 1rem;
+    border-spacing: 1.5rem 1rem;
+}
+
+.car-image {
+    width: 25%;
+    height: 100%;
+}
+
+.car-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px 0 0 8px;
+    object-fit: cover;
+}
+
+.car-rent {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    background-color: rgb(199, 199, 199);
+    border-radius: 0 8px 8px 0;
+}
+
+.price {
+    font-size: var(--primary--size);
+    font-weight: var(--weight--bold);
+    margin: 0.3rem;
+}
