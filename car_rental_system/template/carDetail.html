@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+<!--------------------------------------- CSS Styling Link -------------------------------------->
+
+{% block cssLink %} <link rel="stylesheet" href="../static/css/carDetail.css" /> {% endblock %}
+
+
+<!--------------------------------------- Title --------------------------------------->
+
+{% block title %}{% endblock %}
+
+
+
+{% block body %}
+<main>
+    <div class="container">
+        <div class="car-details">
+            <div class="car-images">
+                <div class="image-container">
+                    <img id="mainImage" class="main-img" src="../static/images/assets/car1.jfif" alt="Car Image">
+                </div>
+                <div class="indicators">
+                    <span class="line" onclick="currentImage(0)"></span>
+                    <span class="line" onclick="currentImage(1)"></span>
+                    <span class="line" onclick="currentImage(2)"></span>
+                </div>
+                <div class="thumbnails">
+                    <img src="../static/images/assets/car1.jfif" onclick="changeImage('../static/images/assets/car1.jfif', 0)" alt="Thumbnail 1">
+                    <img src="../static/images/assets/car2.jfif" onclick="changeImage('../static/images/assets/car2.jfif', 1)" alt="Thumbnail 2">
+                    <img src="../static/images/assets/car3.jfif" onclick="changeImage('../static/images/assets/car3.jfif', 2)" alt="Thumbnail 3">
+                </div>
+            </div>
+            <div class="car-info">
+                <h2>Nissan Altima 2024</h2>
+                <p>A spacious interior, impressive fuel economy and a generous list of standard safety features make the 2024 Nissan Altima a solid midsize sedan for families or anyone wanting a roomy car.</p>
+                <div class="specifications">
+                    <h3>Specifications</h3>
+                    <p><strong>Body:</strong> Sedan</p>
+                    <p><strong>Seat:</strong> 2 seats</p>
+                    <p><strong>Door:</strong> 2 doors</p>
+                    <p><strong>Luggage:</strong> 150</p>
+                    <p><strong>Fuel Type:</strong> Hybrid</p>
+                    <p><strong>Engine:</strong> 3000</p>
+                    <p><strong>Year:</strong> 2020</p>
+                    <p><strong>Mileage:</strong> 200</p>
+                    <p><strong>Transmission:</strong> Automatic</p>
+                    <p><strong>Drive:</strong> AWD</p>
+                </div>
+            </div>
+            <div class="reviews">
+                <div class="daily-rate">
+                    <h3>Daily Rate</h3>
+                    <p>$50</p>
+                </div>
+                <h3>Customer Reviews</h3>
+                <div class="review-list">
+                    <div class="review">
+                        <p><strong>John Doe:</strong> Great car, very comfortable and fuel efficient!</p>
+                         <div class="rating" data-rating="4">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                        </div>
+                    </div>
+                    <div class="review">
+                        <p><strong>Jane Smith:</strong> Loved the spacious interior and smooth ride.</p>
+                    </div>
+                    <div class="review">
+                        <p><strong>Karen Jack:</strong> There were additional charges for things like GPS and child seats that weren't clearly mentioned during the booking process.</p>
+
+                    </div>
+                    <div class="review">
+                        <p><strong>Muhammad Owais:</strong> The car I booked online wasn't available when I arrived. They offered a replacement, but it was a downgrade and not what I wanted.</p>
+
+                    </div>
+
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+ <!--------------------------------------- Javascript Link -------------------------------------->
+
+{% block javascript %}
+<script src="../static/javascript/carDetail.js"></script>
+{% endblock %}
+
+

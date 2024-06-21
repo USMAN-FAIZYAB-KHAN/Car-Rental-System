@@ -1,12 +1,10 @@
-
-{% extends 'base.html' %}
-
-{% load static %}
+{% extends 'base.html' %} {% load static %}
 
 <!--------------------------------------- CSS Styling Link -------------------------------------->
 
-{% block cssLink %} <link rel="stylesheet" href="../static/css/about.css">{% endblock %}
-
+{% block cssLink %}
+<link rel="stylesheet" href="../static/css/about.css" />
+{% endblock %}
 
 <!--------------------------------------- Title --------------------------------------->
 
@@ -14,164 +12,252 @@
 
 <!--------------------------------------- Javascript Link -------------------------------------->
 
-{% block javascript %} <script src="about.js" defer></script>{% endblock %}
+{% block javascript %}
+<script src="../static/javascript/about.js" defer></script>
+{% endblock %} {% block body %}
 
+<div class="about__main__header">
+  <h1>About Us</h1>
+</div>
 
-{% block body %}
 <div class="container">
-    <div class="upper">
-        <img src="subheader.jpg" alt="">
-        <h1>About Us</h1>
+  <div class="about__main__container">
+    <div class="about__content">
+      <h1 class="about__content__left">
+        We offer customers a wide range of
+        <span class="id-color">commercial cars</span> and
+        <span class="id-color">luxury cars</span> for any occasion.
+      </h1>
+      <p class="about__content__right">
+        At Rentaly, we are dedicated to providing exceptional car rental
+        services to our valued customers. With a commitment to quality,
+        convenience, and customer satisfaction, we strive to make every rental
+        experience a seamless and enjoyable one. We understand that every
+        customer has unique needs and preferences when it comes to renting a
+        car. That's why we maintain a diverse fleet of well-maintained vehicles
+        to cater to various requirements. From compact cars for solo travelers
+        to spacious SUVs for families, we have a wide range of options to choose
+        from.
+      </p>
     </div>
-    <div class="lower">
-        <div class="left">
-            <h2 class="hidden-left">We offer customers a wide range of <span class="id-color">commercial cars</span>
-                and <span class="id-color">luxury cars</span> for any occasion.</h2>
-        </div>
-        <div class="right hidden-right">
-            At Rentaly, we are dedicated to providing exceptional car rental services to our valued customers. With
-            a commitment to quality, convenience, and customer satisfaction, we strive to make every rental
-            experience a seamless and enjoyable one. We understand that every customer has unique needs and
-            preferences when it comes to renting a car. That's why we maintain a diverse fleet of well-maintained
-            vehicles to cater to various requirements. From compact cars for solo travelers to spacious SUVs for
-            families, we have a wide range of options to choose from.
-        </div>
-    </div>
+
     <div class="boxes hidden-down">
-        <div class="box">
-            <h2 id="counter" class="counter id-color">15425</h2>
-            <span>Completed Orders</span>
-        </div>
-        <div class="box">
-            <h2 id="counter1" class="counter id-color">2120</h2>
-            <span>Happy Customers</span>
-        </div>
-        <div class="box">
-            <h2 id="counter2" class="counter id-color">210</h2>
-            <span>Vehicles Free</span>
-        </div>
-        <div class="box">
-            <h2 id="counter3" class="counter id-color">20</h2>
-            <span>Years Experience</span>
-        </div>
-
+      <div class="box">
+        <h2 id="counter" class="counter id-color">15425</h2>
+        <p>Completed Orders</p>
+      </div>
+      <div class="box">
+        <h2 id="counter1" class="counter id-color">2120</h2>
+        <p>Happy Customers</p>
+      </div>
+      <div class="box">
+        <h2 id="counter2" class="counter id-color">210</h2>
+        <p>Vehicles Free</p>
+      </div>
+      <div class="box">
+        <h2 id="counter3" class="counter id-color">20</h2>
+        <p>Years Experience</p>
+      </div>
     </div>
-
+  </div>
 </div>
-<div class="container2">
-    <img class="office" src="six.jpg" alt="">
-    <h2 class="main-heading">Board of Directors</h2>
-    <div class="images">
-        <div class="image">
-            <div class="im"><img src="one.jpg" alt=""></div>
-            <div class="icons">
-                <a href=""><i class='bx bxl-facebook'></i></a><a href=""><i class='bx bxl-twitter'></i></a><a
-                    href=""><i class='bx bxl-gmail'></i></a><a href=""><i class='bx bxl-linkedin'></i></a>
-            </div>
-            <h2 style="color: white;margin-top: -8px; ">Fynley Wilkinson</h2>
-            Chief Creative Officer
+<div class="about__rental__person">
+  <h2 style="color: #fff; text-align: center">
+    Board of <span class="styling__content"> Director</span>
+    <span class="underline__style"></span>
+  </h2>
+  <div class="about__person__main container">
+    <div class="about__person">
+      <div class="about__person__content">
+        <img
+          class="about__person__image"
+          width="100%"
+          height="100%"
+          src="../static/images/assets/one.jpg"
+        />
+        <div class="about__person__links">
+          <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+          <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+          <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href=""><i class="fa-brands fa-pinterest-p"></i></a>
         </div>
-        <div class="image">
-            <div class="im"><img src="two.jpg" alt=""></div>
-            <div class="icons">
-                <a href=""><i class='bx bxl-facebook'></i></a><a href=""><i class='bx bxl-twitter'></i></a><a
-                    href=""><i class='bx bxl-gmail'></i></a><a href=""><i class='bx bxl-linkedin'></i></a>
-            </div>
-            <h2 style="color: white;margin-top: -8px; ">Peter Welsh</h2>
-            Chief Technology Officer
-        </div>
-        <div class="image">
-            <div class="im"><img src="three.jpg" alt=""></div>
-            <div class="icons">
-                <a href=""><i class='bx bxl-facebook'></i></a><a href=""><i class='bx bxl-twitter'></i></a><a
-                    href=""><i class='bx bxl-gmail'></i></a><a href=""><i class='bx bxl-linkedin'></i></a>
-            </div>
-            <h2 style="color: white; margin-top: -8px; ">John Shepard</h2>
-            Chief Executive Officer
-        </div>
-        <div class="image">
-            <div class="im"><img src="four.jpg" alt=""></div>
-            <div class="icons">
-                <a href=""><i class='bx bxl-facebook'></i></a><a href=""><i class='bx bxl-twitter'></i></a><a
-                    href=""><i class='bx bxl-gmail'></i></a><a href=""><i class='bx bxl-linkedin'></i></a>
-            </div>
-            <h2 style="color: white;margin-top: -8px; ">Robyn Peel</h2>
-            Director of Finance
-        </div>
+      </div>
+      <div class="person__cont">
+        <h3 style="color: #121212; font-weight: 600">Fynley Wilkinson</h3>
+        <p>Chief Creative Officer</p>
+      </div>
     </div>
+
+    <div class="about__person">
+      <div class="about__person__content">
+        <img
+          class="about__person__image"
+          width="100%"
+          height="100%"
+          src="../static/images/assets/two.jpg"
+        />
+        <div class="about__person__links">
+          <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+          <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+          <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href=""><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div class="person__cont">
+        <h3 style="color: #121212; font-weight: 600">Peter Welsh</h3>
+        <p>Chief Technology Officerr</p>
+      </div>
+    </div>
+
+    <div class="about__person">
+      <div class="about__person__content">
+        <img
+          class="about__person__image"
+          width="100%"
+          height="100%"
+          src="../static/images/assets/three.jpg"
+        />
+        <div class="about__person__links">
+          <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+          <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+          <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href=""><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div class="person__cont">
+        <h3 style="color: #121212; font-weight: 600">John Shepard</h3>
+        <p>Chief Executive Officer</p>
+      </div>
+    </div>
+
+    <div class="about__person">
+      <div class="about__person__content">
+        <img
+          class="about__person__image"
+          width="100%"
+          height="100%"
+          src="../static/images/assets/four.jpg"
+        />
+        <div class="about__person__links">
+          <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+          <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+          <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href=""><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div class="person__cont">
+        <h3 style="color: #121212; font-weight: 600">Robyn Peel</h3>
+        <p>Director of Finance</p>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="features">
-    <h2>Features Hilight</h2>
-    <div class="feat">
-        <div class="leftt hidden-left">
-            <div class="left01">
-                <i class='bx bxs-trophy'></i>
-                <div class="inner1">
-                    <h4>First class services</h4>
-                    Where luxury meets exceptional care, creating unforgettable moments and exceeding your every
-                    expectation.
-                </div>
-            </div>
-            <div class="left02">
-                <i class="fa-solid fa-road"></i>
-                <div class="inner2">
-                    <h4>24/7 road assistance</h4>
-                    Reliable support when you need it most, keeping you on the move with confidence and peace of
-                    mind.
-                </div>
-            </div>
-        </div>
-        <div class="carimg hidden-down">
-            <img src="seven.png" alt="">
-        </div>
-        <div class="rightt hidden-right">
-            <div class="right01">
-                <i class='bx bxs-purchase-tag-alt'></i>
-                <div class="inner3">
-                    <h4>Quality at Minimum Expense</h4>
-                    Unlocking affordable brilliance with elevating quality while minimizing costs for maximum value.
-                </div>
-            </div>
-            <div class="right02">
-                <i class="fa-solid fa-location-dot"></i>
-                <div class="inner4">
-                    <h4>Free Pick-Up & Drop-Off</h4>
-                    Enjoy free pickup and drop-off services, adding an extra layer of ease to your car rental
-                    experience.
-                </div>
-            </div>
-        </div>
+
+<h2 style="text-align: center; margin-top: 12rem">
+  Features <span class="styling__content"> Hilight</span>
+  <span class="underline__style"></span>
+</h2>
+
+<div class="feature__content container">
+  <div class="feature__content__con1">
+    <div class="social__trophy" style="align-items: flex-start">
+      <i class="fa-solid fa-trophy"></i>
+      <div class="trophy__content change__styling">
+        <p style="font-weight: 600">First class services</p>
+        <p>
+          Where luxury meets exceptional care, creating unforgettable moments
+          and exceeding your every expectation.
+        </p>
+      </div>
     </div>
+    <div class="social__trophy" style="align-items: flex-start">
+      <i class="fa-solid fa-road"></i>
+      <div class="road__content change__styling">
+        <p style="font-weight: 600">24/7 road assistance</p>
+        <p>
+          Reliable support when you need it most, keeping you on the move with
+          confidence and peace of mind.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="feature__content__con2">
+    <img src="{% static './images/assets/seven.png' %}" alt="Feature Car Pic" />
+  </div>
+  <div class="feature__content__con3">
+    <div
+      class="social__trophy"
+      style="align-items: flex-start; flex-direction: row-reverse"
+    >
+      <i class="fa-solid fa-tag"></i>
+      <div class="trophy__content change__styling" style="text-align: right">
+        <p style="font-weight: 600">Quality at Minimum Expense</p>
+        <p>
+          Where luxury meets exceptional care, creating unforgettable moments
+          and exceeding your every expectation.
+        </p>
+      </div>
+    </div>
+    <div
+      class="social__trophy"
+      style="align-items: flex-start; flex-direction: row-reverse"
+    >
+      <i class="fa-solid fa-map-pin"></i>
+      <div class="trophy__content change__styling" style="text-align: right">
+        <p style="font-weight: 600">Free Pick-Up & Drop-Off</p>
+        <p>
+          Enjoy free pickup and drop-off services, adding an extra layer of ease
+          to your car rental experience
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="qual">
-    <div class="qualin">
-        <div class="driver-img">
-            <img src="five.jpg" alt="">
-        </div>
-        <div class="content">
-            <h2>Only Quality For Clients</h2>
-            <div class="btns">
-                <button class="btn lux" onclick="to_luxury()">LUXURY</button><button onclick="to_prestige()" class="btn">PRESTIGE</button><button onclick="to_comfort()" class="btn">COMFORT</button>
-            </div>
-            <p class="p-tag">We offer a meticulously curated collection of the most sought-after luxury vehicles on the market.
-                Whether you prefer the sporty allure of a high-performance sports car, the sophistication of a sleek
-                and luxurious sedan, or the versatility of a premium SUV, we have the perfect car to match your
-                discerning taste.</p>
-        </div>
+  <div class="qualin">
+    <div class="qual__driver__img">
+      <img
+        height="100%"
+        width="100%"
+        src="../static/images/assets/five.jpg"
+        alt=""
+      />
     </div>
-</div>
-<div class="contact">
-    <h2>Call us for further information. Rentaly customer care is here to help you anytime.</h2>
-    <div class="cont-left">
-        <i class='bx bxs-phone'></i>
-        <span class="call">CALL US NOW</span>
-        <span class="ph-no">1 200 333 800</span>
-        <button>Contact Us</button>
+    <div class="qual__content">
+      <h2>Only Quality For Clients</h2>
+      <div class="select__qaul__content">
+        <button class="btn lux">LUXURY</button
+        ><button class="btn">PRESTIGE</button
+        ><button class="btn">COMFORT</button>
+      </div>
+      <p>
+        We offer a meticulously curated collection of the most sought-after
+        luxury vehicles on the market. Whether you prefer the sporty allure of a
+        high-performance sports car, the sophistication of a sleek and luxurious
+        sedan, or the versatility of a premium SUV, we have the perfect car to
+        match your discerning taste.
+      </p>
     </div>
+  </div>
 </div>
+<div class="about__contact__box">
+  <div class="about__box1 container">
+    <h2>
+      Call us for further information. Rentaly customer care is here to help you
+      anytime.
+    </h2>
 
+    <div class="cont-left">
+        <i class="fa-solid fa-phone"></i>
+      <p class="call">CALL US NOW</p>
+      <h2 class="ph-no">1 200 333 800</h2>
+      <button>
+        <span class="top extra_top"></span>
+            <a href="#" class="secondary__btn">Contact Us</a>
+            <span class="bottom"></span>
+      </button>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
-
-
-
