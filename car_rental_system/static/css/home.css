@@ -125,6 +125,97 @@
     top: -12%;
 }
 
+.main__fleet__box{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.fleet__box{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    flex-wrap: wrap;
+    border: 1px solid var(--navbar--bg--color);
+    border-radius: 8px;
+    width: 31%;
+    box-shadow: 1px 1px 15px 1px rgba(164, 164, 186, 0.4);
+}
+
+.vehicle__image{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.vehicle__image img{transition: all 0.5s ease-in-out;}
+
+.vehicle__image:hover img{
+    transform: scale(1.1);
+}
+
+.vehicle__description{
+    padding: 2rem ;
+    width: 100%;
+}
+
+.description__box1,
+.description__box3{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.description__box2{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--navbar--bg--color);
+    margin-bottom: 1rem;
+}
+
+.description__box1 span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.description__box2 span p{
+    font-weight: var(--weight--bolder);
+}
+
+.description__box3 h2{
+    font-size: 3rem;
+}
+
+.description__box1 i{
+   color: var(--font--primary--color);
+   background-color: var(--font--white--color);
+   font-size: 1.8rem;
+   padding:  0 0;
+   border-radius: 0;
+   height: 30px;
+   width: 30px;
+   padding-top: 0.6rem;
+}
+.svg__img{
+    display: flex;
+    align-items: center;
+    column-gap: .4rem;
+    margin-right: 2rem;
+    padding: 1rem 0;
+}
+
+.svg__img img{
+    width: 20px;
+    height: 20px;
+    color: var(--font--primary--color);
+}
+
+
 .about__section{
     background-image: linear-gradient(rgba(120, 202, 92, 0.2),rgba(0, 0, 0, 0.7),rgba(120, 202, 92, 0.2)), url('../images/assets/4.jpg');
     background-position: center;
@@ -133,7 +224,7 @@
     background-size: cover;
     min-height: 70vh;
     padding: 4rem 0;
-    margin: 12rem 0;
+    margin: 10rem 0;
 }
 
 .about__car__rental__content{

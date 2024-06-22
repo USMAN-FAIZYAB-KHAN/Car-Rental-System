@@ -48,6 +48,8 @@ button {
     background-color: transparent;
     outline: none;
     border: none;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
 }
 
 i {
@@ -71,10 +73,11 @@ ul {
 .secondary__btn {
     display: inline-block;
     padding: 1.5rem 3rem;
-    border-radius: 5px; 
+    border-radius: 50px; 
     background-color: var(--button--primary--bg--color);
     color: var(--font--white--color);
-    /* overflow: hidden; */
+    transition: all 0.5s ease-in-out;
+    box-shadow: 10px 10px 10px rgba(120, 202, 92, 0.6);
 }
 
 .primary__btn {
@@ -113,6 +116,7 @@ ul {
 .primary__btn:hover,
 .secondary__btn:hover{
     border-radius: 0%;
+    background-color: black;
 }
 
 .primary__btn:hover::after,
@@ -130,7 +134,7 @@ ul {
     height: 0%;
     width: 0.5%;
     background-color: var(--font--white--color);
-    transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;   
 }
 
 
