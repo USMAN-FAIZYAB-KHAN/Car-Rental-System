@@ -52,7 +52,7 @@
             class="nav__link {% if request.path == '/' %} active {% endif %}">Home</a>
           <!-- </li> -->
           <!-- <li > -->
-          <a href="#" class="nav__link">Cars</a>
+          <a href="{% url 'cars' %}" class="nav__link {% if request.path == '/cars' %} active {% endif %}">Cars</a>
           <!-- </li> -->
           <!-- <li -->
 

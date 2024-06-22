@@ -28,13 +28,13 @@
     display: flex;
     flex-wrap: wrap;
     column-gap: 2rem;
-    padding: 0 3rem;
+    /* padding: 0 3rem; */
+    justify-content: space-between;
 }
 
 .left {
     flex: 3;
     border-radius: 10px;
-    border: 2px solid;
 }
 
 .right {
@@ -46,17 +46,20 @@
     align-items: center;
     border: 1px solid rgb(209, 209, 209);
     width: 95%;
-    height: 160px;
-    margin: 2rem auto;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    height: 200px;
+    margin: 3rem auto;
     border-radius: 10px;
     column-gap: 2rem;
+    /* border: 2px solid gold; */
+    z-index: var(--smallest--z-index);
 }
 
 .car-name {
     color: var(--font--black--color);
     font-weight: var(--weight--bold);
     margin: 0 1.2rem;
+    border: 2px solid firebrick;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .car-info td {
@@ -89,6 +92,7 @@
 .car-image {
     width: 25%;
     height: 100%;
+    z-index: var( --second--normal--z-index);
 }
 
 .car-image img {
