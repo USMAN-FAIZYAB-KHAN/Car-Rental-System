@@ -1,10 +1,13 @@
-{% extends 'base.html' %}
-
-{% load static %}
+{% extends 'base.html' %} {% load static %}
 
 <!--------------------------------------- CSS Styling Link -------------------------------------->
 
-{% block cssLink %} <link rel="stylesheet" href="../static/css/home.css" />
+{% block cssLink %}
+<link rel="stylesheet" href="../static/css/home.css" />
+<!-- <link
+  rel="stylesheet"
+  href="../static/css/cdn.jsdelivr.net_npm_swiper@10.3.1_swiper-bundle.min.css"
+/> -->
 {% endblock %}
 
 <!--------------------------------------- Title --------------------------------------->
@@ -14,9 +17,14 @@
 
 {% block javascript %}
 <script src="../static/javascript/index.js" defer></script>
-{% endblock %}
+<!-- <script
+  src="../static/javascript/cdn.jsdelivr.net_npm_swiper@10.3.1_swiper-bundle.min.js"
+  defer
+></script> -->
 
-{% block body %}
+<!-- Initialize Swiper -->
+<!-- <script src="../static/javascript/script.js" defer></script> -->
+{% endblock %} {% block body %}
 
 <!---------------------- HOME ---------------------->
 
@@ -59,7 +67,7 @@
         </div>
       </div>
     </div>
-    <button style="margin-top: 2rem;" >
+    <button style="margin-top: 2rem">
       <span class="top"></span>
       <a href="#" class="primary__btn">Choose a car</a>
       <span class="bottom"></span>
@@ -104,121 +112,176 @@
 
 <!---------------------- Vehicle Fleet ---------------------->
 
-<div class="feature__heading" style="margin-top: 7rem;">
+<div class="feature__heading" style="margin-top: 7rem">
   <h2>
     Our <span class="styling__content"> Vehicle Fleet</span>
     <span class="underline__style"></span>
   </h2>
   <p style="color: #121212">
-    Driving your dreams to reality with an exquisite fleet of versatile vehicles for 
-    <br>
+    Driving your dreams to reality with an exquisite fleet of versatile vehicles
+    for
+    <br />
     unforgettable journeys.
   </p>
 </div>
 
-<div class="vehcile__fleet__container container">
-  <div class="main__fleet__box">
-    <div class="fleet__box">
-      <div class="vehicle__image">
-        <img
-          height="100%"
-          width="100%"
-          src="{% static './images/assets/lexus.jpg' %}"
-          alt=""
-        />
-      </div>
-      <div class="vehicle__description">
-        <div class="description__box1">
-          <h3 style="color: #121212;">Ford Raptor</h3>
-          <span><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> </span>
+<div class="vehcile__fleet__container  container">
+  <!-- <div class="mySwiper"> -->
+    <div class="main__fleet__box">
+      <div class="fleet__box">
+        <div class="vehicle__image">
+          <img
+            height="100%"
+            width="100%"
+            src="{% static './images/assets/lexus.jpg' %}"
+            alt=""
+          />
         </div>
-        <div class="description__box2">
-          <span class="svg__img"><img src="../static/images/assets/1-green.svg" alt=""> <p>5</p></span>
-          <span class="svg__img"><img src="../static/images/assets/2-green.svg" alt=""> <p>4</p></span>
-          <span class="svg__img"><img src="../static/images/assets/3-green.svg" alt=""> <p>2</p></span>
-          <span class="svg__img"><img src="../static/images/assets/4-green.svg" alt=""> <p>Sedan</p></span>
-        </div>
-        <div class="description__box3">
-          <div class="price">
-            <p>Daily rate from</p>
-            <h2>$249</h2>
+        <div class="vehicle__description">
+          <div class="description__box1">
+            <h3 style="color: #121212">Ford Raptor</h3>
+            <span
+              ><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </span>
           </div>
-          <button>
-            <span class="top"></span>
-            <a href="" class="primary__btn">Rent Now</a>
-            <span class="bottom"></span>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="fleet__box">
-      <div class="vehicle__image">
-        <img
-          height="100%"
-          width="100%"
-          src="{% static './images/assets/lexus.jpg' %}"
-          alt=""
-        />
-      </div>
-      <div class="vehicle__description">
-        <div class="description__box1">
-          <h3 style="color: #121212;">Ford Raptor</h3>
-          <span><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> </span>
-        </div>
-        <div class="description__box2">
-          <span class="svg__img"><img src="../static/images/assets/1-green.svg" alt=""> <p>5</p></span>
-          <span class="svg__img"><img src="../static/images/assets/2-green.svg" alt=""> <p>4</p></span>
-          <span class="svg__img"><img src="../static/images/assets/3-green.svg" alt=""> <p>2</p></span>
-          <span class="svg__img"><img src="../static/images/assets/4-green.svg" alt=""> <p>Sedan</p></span>
-        </div>
-        <div class="description__box3">
-          <div class="price">
-            <p>Daily rate from</p>
-            <h2>$249</h2>
+          <div class="description__box2">
+            <span class="svg__img"
+              ><img src="../static/images/assets/1-green.svg" alt="" />
+              <p>5</p></span
+            >
+            <span class="svg__img"
+              ><img src="../static/images/assets/2-green.svg" alt="" />
+              <p>4</p></span
+            >
+            <span class="svg__img"
+              ><img src="../static/images/assets/3-green.svg" alt="" />
+              <p>2</p></span
+            >
+            <span class="svg__img"
+              ><img src="../static/images/assets/4-green.svg" alt="" />
+              <p>Sedan</p></span
+            >
           </div>
-          <button>
-            <span class="top"></span>
-            <a href="" class="primary__btn">Rent Now</a>
-            <span class="bottom"></span>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="fleet__box">
-      <div class="vehicle__image">
-        <img
-          height="100%"
-          width="100%"
-          src="{% static './images/assets/lexus.jpg' %}"
-          alt=""
-        />
-      </div>
-      <div class="vehicle__description">
-        <div class="description__box1">
-          <h3 style="color: #121212;">Ford Raptor</h3>
-          <span><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> </span>
-        </div>
-        <div class="description__box2">
-          <span class="svg__img"><img src="../static/images/assets/1-green.svg" alt=""> <p>5</p></span>
-          <span class="svg__img"><img src="../static/images/assets/2-green.svg" alt=""> <p>4</p></span>
-          <span class="svg__img"><img src="../static/images/assets/3-green.svg" alt=""> <p>2</p></span>
-          <span class="svg__img"><img src="../static/images/assets/4-green.svg" alt=""> <p>Sedan</p></span>
-        </div>
-        <div class="description__box3">
-          <div class="price">
-            <p>Daily rate from</p>
-            <h2>$249</h2>
+          <div class="description__box3">
+            <div class="price">
+              <p>Daily rate from</p>
+              <h2>$249</h2>
+            </div>
+            <button>
+              <span class="top"></span>
+              <a href="" class="primary__btn">Rent Now</a>
+              <span class="bottom"></span>
+            </button>
           </div>
-          <button>
-            <span class="top"></span>
-            <a href="" class="primary__btn">Rent Now</a>
-            <span class="bottom"></span>
-          </button>
         </div>
       </div>
+      <div class="fleet__box">
+        <div class="vehicle__image">
+          <img
+            height="100%"
+            width="100%"
+            src="{% static './images/assets/lexus.jpg' %}"
+            alt=""
+          />
+        </div>
+        <div class="vehicle__description">
+          <div class="description__box1">
+            <h3 style="color: #121212">Ford Raptor</h3>
+            <span
+              ><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </span>
+          </div>
+          <div class="description__box2">
+            <span class="svg__img"
+              ><img src="../static/images/assets/1-green.svg" alt="" />
+              <p>5</p></span
+            >
+            <span class="svg__img"
+              ><img src="../static/images/assets/2-green.svg" alt="" />
+              <p>4</p></span
+            >
+            <span class="svg__img"
+              ><img src="../static/images/assets/3-green.svg" alt="" />
+              <p>2</p></span
+            >
+            <span class="svg__img"
+              ><img src="../static/images/assets/4-green.svg" alt="" />
+              <p>Sedan</p></span
+            >
+          </div>
+          <div class="description__box3">
+            <div class="price">
+              <p>Daily rate from</p>
+              <h2>$249</h2>
+            </div>
+            <button>
+              <span class="top"></span>
+              <a href="" class="primary__btn">Rent Now</a>
+              <span class="bottom"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="fleet__box">
+        <div class="vehicle__image">
+          <img
+            height="100%"
+            width="100%"
+            src="{% static './images/assets/lexus.jpg' %}"
+            alt=""
+          />
+        </div>
+        <div class="vehicle__description">
+          <div class="description__box1">
+            <h3 style="color: #121212">Ford Raptor</h3>
+            <span
+              ><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </span>
+          </div>
+          <div class="description__box2">
+            <span class="svg__img"
+              ><img src="../static/images/assets/1-green.svg" alt="" />
+              <p>5</p></span
+            >
+            <span class="svg__img"
+              ><img src="../static/images/assets/2-green.svg" alt="" />
+              <p>4</p></span
+            >
+            <span class="svg__img"
+              ><img src="../static/images/assets/3-green.svg" alt="" />
+              <p>2</p></span
+            >
+            <span class="svg__img"
+              ><img src="../static/images/assets/4-green.svg" alt="" />
+              <p>Sedan</p></span
+            >
+          </div>
+          <div class="description__box3">
+            <div class="price">
+              <p>Daily rate from</p>
+              <h2>$249</h2>
+            </div>
+            <button>
+              <span class="top"></span>
+              <a href="" class="primary__btn">Rent Now</a>
+              <span class="bottom"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+     
     </div>
-    
-  </div>
+
+  <!-- </div> -->
+  <!-- <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-pagination" ></div> -->
 </div>
 
 <div class="about__section">

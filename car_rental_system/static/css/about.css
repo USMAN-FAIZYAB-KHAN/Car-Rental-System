@@ -160,13 +160,13 @@
     opacity: 0;
     transform: scaleY(0);
     transform-origin: 100% 100%;
-    transition: all 0.7s ease-in-out;
+    transition: all 0.8s ease-in-out;
 }
 
 .about__person__content:hover .about__person__links::after{
     opacity: 0.8;
     top: -20%;
-    transform: scaleY(1);
+    transform: scaleY(1.3);
 }
 
 .about__person__content:hover .about__person__links {

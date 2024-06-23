@@ -125,10 +125,16 @@
     top: -12%;
 }
 
+/* ==================== Vehicle Fleet =================== */
+
+
+
 .main__fleet__box{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     align-items: center;
+    overflow: hidden;
 }
 
 .fleet__box{

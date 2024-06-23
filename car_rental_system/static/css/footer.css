@@ -10,7 +10,6 @@
 }
 
 .footer__container{
-    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     column-gap: 3rem;
