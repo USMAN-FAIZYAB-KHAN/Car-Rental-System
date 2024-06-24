@@ -1,34 +1,48 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Container styles */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
 .car-details {
     display: flex;
+    justify-content: space-between;
     margin: 20px 0;
 }
 
 .car-images {
-    flex: 1;
+    flex: 2;
     text-align: center;
 }
 
-.car-info {
-    flex: 1;
-    padding: 20px;
-}
-
-.reviews {
-    flex: 1;
-    padding: 20px;
-    border-left: 1px solid #ccc;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.image-container {
+    width: 100%;
+    overflow: hidden;
 }
 
 .main-img {
-    width: 500px;
+    width: 400px;
     height: 300px;
     object-fit: cover;
     margin: auto;
     display: block;
-}    
+    transition: transform 0.3s ease; 
+}
+
+.main-img:hover {
+    transform: scale(1.1); 
+}
 
 .indicators {
     display: flex;
@@ -40,13 +54,13 @@
     height: 5px;
     width: 50px;
     margin: 0 5px;
-    background-color: #32CD32; /* Green color */
+    background-color: #32CD32; 
     display: inline-block;
     cursor: pointer;
 }
 
 .active {
-    background-color: #228B22; /* Darker green for active */
+    background-color: #306b30; 
 }
 
 .thumbnails {
@@ -61,70 +75,114 @@
     object-fit: cover;
     margin: 5px;
     cursor: pointer;
+    display: block;
+    transition: transform 0.3s ease;
 }
 
-.specifications {
-    text-align: left;
+.thumbnails img:hover {
+    transform: scale(1.1); 
 }
 
-.daily-rate {
+.car-info {
+    flex: 1;
     background-color: #f9f9f9;
     padding: 20px;
     border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 20px; 
+    font-size: 1.5em; 
+}
+
+.car-info h2 {
+    margin-bottom: 10px;
+    font-size: 1.5em; 
+}
+
+.car-info p {
     margin-bottom: 20px;
-    text-align: center;
+    font-size: 1.2em; 
 }
 
-.daily-rate h3 {
-    margin: 0;
-    font-size: 1.2em;
+.specifications {
+    background-color: #E8E8E8;
+    padding: 15px;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+    margin-top: 10px; 
+    margin-bottom: 20px; 
 }
 
-.daily-rate p {
-    margin: 10px 0 0;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.review-list {
-    width: 100%;
-}
-
-.review {
-    background-color: #f1f1f1;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-.review-form {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin: 20px 0;
-    width: 100%;
-}
-
-.review-form form {
+.specification-list {
     display: flex;
     flex-direction: column;
 }
 
-.review-form label {
-    margin: 10px 0 5px;
+.specification-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
 }
 
-.review-form input,
-.review-form textarea {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.spec-label {
+    font-weight: bold;
 }
 
-.review-form button {
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.spec-value {
+    text-align: right;
 }
+
+.pricing-table {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pricing-table h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.pricing-table p {
+    margin: 10px 0;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+h3 {
+    color: var(--font--black--color);
+    font-size: var(--middle--font-size);
+    font-size: 1.5em; 
+}
+
+h2 {
+    color: var(--font--black--color);
+    font-size: var(--middle--font-size);
+}
+
+.daily-rate {
+    background-color: #E8E8E8;
+    padding: 10px; 
+    border: 2px solid #0e0f0f;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 150px ;
+    height: 150px; 
+    margin: 0 auto;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.daily-rate h3 {
+    margin: 0;
+    font-size: 2em; 
+}
+
+.daily-rate p {
+    margin: 5px 0; 
+    font-size: 3em; 
+    font-weight: bold;
+}
+
+
+
