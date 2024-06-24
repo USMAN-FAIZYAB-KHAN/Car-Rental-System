@@ -1,68 +1,68 @@
-// function countUp(counter, targetNumber, duration) {
-//     let startNumber = 0;
-//     const increment = targetNumber / (duration / 10);
+function countUp(counter, targetNumber, duration) {
+    let startNumber = 0;
+    const increment = targetNumber / (duration / 10);
 
-//     function updateCounter() {
-//         startNumber += increment;
-//         if (startNumber < targetNumber) {
-//             counter.innerText = Math.ceil(startNumber);
-//             setTimeout(updateCounter, 10);
-//         } else {
-//             counter.innerText = targetNumber;
-//         }
-//     }
+    function updateCounter() {
+        startNumber += increment;
+        if (startNumber < targetNumber) {
+            counter.innerText = Math.ceil(startNumber);
+            setTimeout(updateCounter, 10);
+        } else {
+            counter.innerText = targetNumber;
+        }
+    }
 
-//     updateCounter();
-// }
+    updateCounter();
+}
 
-// const counters = document.getElementsByClassName("counter");
-// for (let i = 0; i < counters.length; i++) {
-//     const targetNumber = counters[i].innerText;
-//     countUp(counters[i], targetNumber, 2000);
-// }
-
-
-
-// const observer = new IntersectionObserver((entries)=> {
-//     entries.forEach((entry) => {
-//         // console.log(entry)
-//         if (entry.isIntersecting){
-//             entry.target.classList.add('show')       
-//         }else {
-//             entry.target.classList.remove('show')
-//         }
-//     })
-// })
-// const observer2 = new IntersectionObserver((entries)=> {
-//     entries.forEach((entry) => {
-//         // console.log(entry)
-//         if (entry.isIntersecting){
-//             entry.target.classList.add('show')       
-//         }else {
-//             entry.target.classList.remove('show')
-//         }
-//     })
-// })
-// const observer3 = new IntersectionObserver((entries)=> {
-//     entries.forEach((entry) => {
-//         // console.log(entry)
-//         if (entry.isIntersecting){
-//             entry.target.classList.add('show-down')       
-//         }else {
-//             entry.target.classList.remove('show-down')
-//         }
-//     })
-// })
+const counters = document.getElementsByClassName("counter");
+for (let i = 0; i < counters.length; i++) {
+    const targetNumber = counters[i].innerText;
+    countUp(counters[i], targetNumber, 2000);
+}
 
 
 
+const observer = new IntersectionObserver((entries)=> {
+    entries.forEach((entry) => {
+        // console.log(entry)
+        if (entry.isIntersecting){
+            entry.target.classList.add('show')       
+        }else {
+            entry.target.classList.remove('show')
+        }
+    })
+})
+const observer2 = new IntersectionObserver((entries)=> {
+    entries.forEach((entry) => {
+        // console.log(entry)
+        if (entry.isIntersecting){
+            entry.target.classList.add('show')       
+        }else {
+            entry.target.classList.remove('show')
+        }
+    })
+})
+const observer3 = new IntersectionObserver((entries)=> {
+    entries.forEach((entry) => {
+        // console.log(entry)
+        if (entry.isIntersecting){
+            entry.target.classList.add('show-down')       
+        }else {
+            entry.target.classList.remove('show-down')
+        }
+    })
+})
 
-// const hiddenElements = document.querySelectorAll('.hidden-left')
-// hiddenElements.forEach((el) => observer.observe(el))
-// const hiddenElements2 = document.querySelectorAll('.hidden-right')
-// hiddenElements2.forEach((el) => observer2.observe(el))
-// const hiddenElements3 = document.querySelectorAll('.hidden-down')
-// hiddenElements3.forEach((el) => observer3.observe(el))
+
+
+
+const hiddenElements = document.querySelectorAll('.hidden-left')
+hiddenElements.forEach((el) => observer.observe(el))
+const hiddenElements2 = document.querySelectorAll('.hidden-right')
+hiddenElements2.forEach((el) => observer2.observe(el))
+const hiddenElements3 = document.querySelectorAll('.hidden-down')
+hiddenElements3.forEach((el) => observer3.observe(el))
 
 
 
