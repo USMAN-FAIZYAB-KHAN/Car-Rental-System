@@ -2,28 +2,28 @@ const testimonials = [
     {
       name: "Eva Sawyer",
       job: "CEO, Fashworks",
-      image: "person__2.jpg",
+      image: "../static/images/assets/person__1.jpg",
       testimonial:
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati, tempore!",
     },
     {
       name: "Katey Topaz",
       job: "Developer, TechCrew",
-      image: "person__1.jpg",
+      image: "../static/images/assets/person__2.jpg",
       testimonial:
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati, tempore!",
     },
     {
       name: "Jae Robin",
       job: "UI Designer, Affinity Agency",
-      image: "person__3.jpg",
+      image: "../static/images/assets/person__3.jpg",
       testimonial:
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati, tempore!",
     },
     {
       name: "Nicola Blakely",
       job: "CEO,Zeal Wheels",
-      image: "person__4.jpg",
+      image: "../static/images/assets/person__4.jpg",
       testimonial:
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati, tempore!",
     },
