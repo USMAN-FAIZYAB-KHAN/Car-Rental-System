@@ -36,7 +36,7 @@ body {
 }
 
 .main-img {
-    width: 500px;
+    width: 400px;
     height: 300px;
     object-fit: cover;
     margin: auto;
@@ -197,8 +197,10 @@ h2 {
     flex-direction: column;
 }
 
-.review-form label {
-    margin: 10px 0 5px;
+.specification-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
 }
 
 .review-form input,
@@ -273,3 +275,59 @@ h2 {
     font-size: 14px;
     color: #161414;
 }
+
+.pricing-table {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pricing-table h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.pricing-table p {
+    margin: 10px 0;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+h3 {
+    color: var(--font--black--color);
+    font-size: var(--middle--font-size);
+    font-size: 1.5em; 
+}
+
+h2 {
+    color: var(--font--black--color);
+    font-size: var(--middle--font-size);
+}
+
+.daily-rate {
+    background-color: #E8E8E8;
+    padding: 10px; 
+    border: 2px solid #0e0f0f;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 150px ;
+    height: 150px; 
+    margin: 0 auto;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.daily-rate h3 {
+    margin: 0;
+    font-size: 2em; 
+}
+
+.daily-rate p {
+    margin: 5px 0; 
+    font-size: 3em; 
+    font-weight: bold;
+}
+
+
+
