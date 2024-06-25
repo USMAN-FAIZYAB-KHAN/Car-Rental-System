@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!--------------------------------------- Fontawesome Link -------------------------------------->
-
+    
     <script
       src="https://kit.fontawesome.com/de9e1561cd.js"
       crossorigin="anonymous"></script>
@@ -47,25 +47,13 @@
             <div class="left"></div>
             <div class="right"></div>
           </div>
-          <!-- <li> -->
           <a href="{% url 'home' %}"
             class="nav__link {% if request.path == '/' %} active {% endif %}">Home</a>
-          <!-- </li> -->
-          <!-- <li > -->
           <a href="{% url 'cars' %}" class="nav__link {% if request.path == '/cars' %} active {% endif %}">Cars</a>
-          <!-- </li> -->
-          <!-- <li -->
-
-          
           <a href="{% url 'about' %}" class="nav__link {% if request.path == '/about' %} active {% endif %}">About</a>
-          <!-- </li> -->
-          <!-- <li > -->
           <a href="#" class="nav__link">Blog</a>
-          <!-- </li> -->
-          <!-- <li> -->
           <a href="{% url 'contact' %}"
             class="nav__link {% if request.path == '/contact' %} active {% endif %}">Contact</a>
-          <!-- </li> -->
         </ul>
 
         <div class="account__btns">
@@ -76,7 +64,7 @@
           </button>
           <button>
             <span class="top extra_top"></span>
-            <a href="#" class="secondary__btn">SigUp</a>
+            <a href="{% url 'signup' %}" class="secondary__btn">SigUp</a>
             <span class="bottom"></span>
           </button>
         </div>
