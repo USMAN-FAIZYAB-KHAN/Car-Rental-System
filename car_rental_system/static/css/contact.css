@@ -201,3 +201,52 @@ svg {
     top: 50%;
     left: 56%;
 }
+
+/* Styles for location container */
+.location__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center; /* Center align text */
+    padding: 2rem;
+}
+
+/* Style for the contact specification */
+.contact__specification {
+    display: flex;
+    justify-content: center;
+}
+
+/* Style for contact offices */
+.contact__offices {
+    width: 100%;
+    max-width: 600px; /* Example of limiting width */
+    margin: 0 auto; /* Center align horizontally */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Example shadow */
+    border-radius: 8px; /* Rounded corners */
+}
+
+/* Style for headings */
+.contact__offices h2 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* Style for paragraphs */
+.contact__offices p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+/* Style for icon */
+.contact__offices p i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+    vertical-align: middle;
+    color: #999;
+}
