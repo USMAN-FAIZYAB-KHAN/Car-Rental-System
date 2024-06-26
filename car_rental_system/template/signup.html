@@ -1,0 +1,78 @@
+{% extends 'base.html' %} 
+
+{% load static %}
+
+<!--------------------------------------- CSS Styling Link -------------------------------------->
+
+{% block cssLink %}
+<link rel="stylesheet" href="../static/css/signup.css" />
+{% endblock %}
+
+<!--------------------------------------- Title --------------------------------------->
+
+{% block title %}{% endblock %}
+<!--------------------------------------- Javascript Link -------------------------------------->
+
+{% block javascript %} {% endblock %} 
+
+{% block body %}
+
+<div class="main__wrapper">
+    <div class="wrapper active" id="log">
+      <form action="">
+        <h2>Signup</h2>
+
+          <div class="inputbox">
+            <input
+            type="text"
+            placeholder="First name"
+            style="background: transparent"
+            required
+          />
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="inputbox">
+            <input
+            type="text"
+            placeholder="Last name"
+            style="background: transparent"
+            required
+          />
+          <i class="fa-solid fa-user"></i>
+          </div>
+ 
+
+        <div class="inputbox">
+          <input
+            type="email"
+            placeholder="Email"
+            required
+            style="background: transparent"
+          />
+          <i class="fa-solid fa-envelope"></i>
+        </div>
+
+        <div class="inputbox">
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            style="background: transparent"
+          />
+          <i class="fa-solid fa-lock"></i>
+        </div>
+
+        <button class="btn1">
+          <a href="#" class="account__btn">Signup</a>
+        </button>
+
+        <div class="remember">
+          <p style="color: #fff;">
+            Have an Account? <a href="{% url 'login'%}" style="color: #179510">&nbsp; Login</a>
+          </p>
+        </div>
+      </form>
+    </div>
+</div>
+
+{% endblock %}

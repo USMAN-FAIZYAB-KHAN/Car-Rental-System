@@ -5,19 +5,71 @@
 {% block cssLink %}
 <link rel="stylesheet" href="../static/css/carList.css" /> {% endblock %}
 
+{% block javascript %}
+<script src="../static/javascript/carlist.js" defer></script>
+<script src="https://kit.fontawesome.com/5783f5ea8c.js" crossorigin="anonymous"></script>
+{% endblock %}
 <!--------------------------------------- Title --------------------------------------->
 
 {% block title %}{% endblock %} {% block body %}
 
 <div class="banner">
-  <h2 class="banner-heading">Cars</h2>
+  <h1>Cars</h1>
 </div>
 
 <div class="car-container container">
-  <div class="left"></div>
-  
+  <div class="left">
+    <div class="filter-group">
+      <h4 style="color: black; line-height: 30px; font-weight: bold;">Price Range</h4>
+
+      <div class="price-input">
+        <div class="field">
+          <span>Min</span>
+          <input type="number" class="input-min" value="0">
+        </div>
+        <div class="separator">-</div>
+        <div class="field">
+          <span>Max</span>
+          <input type="number" class="input-max" value="500">
+        </div>
+      </div>
+      <div class="slider">
+        <div class="progress"></div>
+      </div>
+      <div class="range-input">
+        <input type="range" class="range-min" min="0" max="500" value="0" />
+        <input type="range" class="range-max" min="0" max="500" value="500" />
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <h4 style="color: black; line-height: 30px; font-weight: bold;">Car Category</h4>
+      <div class="tile">
+        <input type="checkbox" name="car-category" id="hatchback">
+        <label for="hatchback">
+          <img src="../static/images/assets/Hatchback.png" alt="Hatchback">
+          <p style="color: black; position: absolute; bottom: 15%;">Hatchback</p>
+        </label>
+      </div>
+      <div class="tile">
+        <input type="checkbox" name="car-category" id="sedan">
+        <label for="sedan">
+          <img src="../static/images/assets/Sedan.png" alt="Sedan">
+          <p style="color: black; position: absolute; bottom: 15%;">Sedan</p>
+        </label>
+      </div>
+      <div class="tile">
+        <input type="checkbox" name="car-category" id="suv">
+        <label for="suv">
+          <img src="../static/images/assets/SUV.png" alt="SUV">
+          <p style="color: black; position: absolute; bottom: 15%;">SUV</p>
+        </label>
+      </div>
+    </div>
+  </div>
+
   <div class="right">
-    
+
     <div class="car-card">
       <div class="car-image">
         <img src="../static/images/assets/1.jpg" alt="Car" />
@@ -268,13 +320,11 @@
         </button>
       </div>
     </div>
-  
 
-</div>
+
+  </div>
 </div>
 
 {% endblock %}
 
 <!--------------------------------------- Javascript Link -------------------------------------->
-
-{% block javascript %} {% endblock %}

@@ -1,29 +1,20 @@
 @import url('./base.css');
 @import url('./utilityClasses.css');
 
+/* ----------------- CSS for the banner ------------------- */
 .banner {
     height: 40vh;
-    background-image: url("../static/images/assets/carInventory.png");
+    background-image: linear-gradient(rgba(101, 98, 98, 0.71), rgb(0 0 0 / 70%)), url(../static/images/assets/carInventory.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 1rem 0;
+    margin-top: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.banner-heading {
-    color: var(--font--primary--color);
-    background-color: rgba(255, 255, 255, 0.3);
-    width: 20%;
-    padding: 1rem;
-    border-radius: 10px;
-    backdrop-filter: blur(2px);
-    text-align: center;
-    min-width: 200px;
-}
-
+/* ----------------- CSS for the car list ------------------- */
 .car-container {
     display: flex;
     flex-wrap: wrap;
@@ -33,12 +24,12 @@
 }
 
 .left {
-    flex: 3;
+    flex: 2.5;
     border-radius: 10px;
 }
 
 .right {
-    flex: 7;
+    flex: 7.5;
 }
 
 .car-card {
@@ -58,8 +49,6 @@
     color: var(--font--black--color);
     font-weight: var(--weight--bold);
     margin: 0 1.2rem;
-    border: 2px solid firebrick;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .car-info td {
@@ -109,7 +98,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 1rem;
     background-color: rgb(199, 199, 199);
     border-radius: 0 8px 8px 0;
 }
@@ -118,4 +106,188 @@
     font-size: var(--primary--size);
     font-weight: var(--weight--bold);
     margin: 0.3rem;
+}
+
+/* ----------------- CSS for the filters ------------------- */
+
+.filter-group {
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid rgb(209, 209, 209);
+    padding: 2.5rem;
+    margin-top: 3rem;
+}
+
+.price-input {
+    width: 100%;
+    display: flex;
+    padding: 1.5rem 0;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.price-input .field {
+    display: flex;
+    height: 45px;
+    width: 100%;
+    align-items: center;
+}
+
+.field input {
+    width: 100%;
+    height: 100%;
+    width: 8rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+    outline: none;
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 0 5px 5px 0;
+    text-align: center;
+    -moz-appearance: textfield;
+}
+
+.field span {
+    font-size: 1.5rem;
+    height: 100%;
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid rgb(199, 199, 199);
+    background-color: rgb(199, 199, 199);
+    border-radius: 5px 0 0 5px;
+}
+
+.slider {
+    height: 5px;
+    border-radius: 5px;
+    background-color: rgb(199, 199, 199);
+    position: relative;
+}
+
+.slider .progress {
+    height: 100%;
+    left: 100%;
+    right: 100%;
+    position: absolute;
+    border-radius: 5px;
+    background-color: var(--font--primary--color);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.range-input {
+    position: relative;
+}
+
+.range-input input {
+    position: absolute;
+    width: 100%;
+    background: none;
+    -webkit-appearance: none;
+    pointer-events: none;
+    top: -11px;
+}
+
+.range-input input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    pointer-events: auto;
+    background: var(--button--primary--bg--color);
+}
+
+.range-input input[type="range"]::-moz-range-thumb {
+    -moz-appearance: none;
+    border: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    pointer-events: auto;
+    background: var(--button--primary--bg--color);
+}
+
+.separator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    padding: 0 1rem;
+}
+
+.tile{
+    height: 130px;
+    width: 80%;
+    position: relative;
+    margin: 1.5rem auto;
+}
+
+.tile label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+}
+
+.tile img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    background-color: #ffffff;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+input[type="checkbox"]:after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    font-size: 22px;
+    content: "\f111";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: var(--font--primary--color);
+}
+
+input[type="checkbox"]:hover {
+    transform: scale(1.01);
+}
+
+input[type="checkbox"]:checked {
+    border: 3px solid var(--font--primary--color);
+}
+
+input[type="checkbox"]:checked:after {
+    font-weight: 900;
+    content: "\f058";
+    color: var(--font--primary--color);
+}
+
+input[type="checkbox"]:checked + label {
+    animation: grow 0.5s;
+}
+
+@keyframes grow {
+    50% {
+        transform: scale(1.1);
+    }
 }

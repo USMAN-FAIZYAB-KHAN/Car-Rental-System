@@ -23,5 +23,5 @@ def carList(request):
 def carDetail(request):
     return render(request, 'carDetail.html')
 
-# def signUp(request):
-#     return render(request, 'Signup.html')
+def signup(request):
+    return render(request, 'signup.html')
