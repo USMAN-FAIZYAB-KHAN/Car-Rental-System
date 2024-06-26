@@ -19,7 +19,16 @@
 
     <div class="main__wrapper">
       <div class="wrapper active" id="log">
-        <form action="">
+        <form method="post" action="{% url 'login' %}" role="form">
+          {% csrf_token %}
+
+          <!-- {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %} -->
           <h2>Login</h2>
 
           <div class="inputbox">
@@ -28,6 +37,7 @@
               placeholder="Email"
               required
               style="background: transparent"
+              name="email"
             />
             <i class="fa-solid fa-user"></i>
           </div>
@@ -38,12 +48,14 @@
               placeholder="Password"
               required
               style="background: transparent"
+              name="password"
+              minlength="8"
             />
             <i class="fa-solid fa-lock"></i>
           </div>
 
           <button class="btn1">
-            <a href="#" class="account__btn">Login</a>
+            <a class="account__btn">Login</a>
           </button>
 
           <div class="reminber">
