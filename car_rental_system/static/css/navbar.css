@@ -40,7 +40,7 @@
 }
 
 .account__btns {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
