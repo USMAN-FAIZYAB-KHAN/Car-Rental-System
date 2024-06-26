@@ -1,28 +1,32 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator 
+from django.contrib.auth.models import AbstractUser
+from .manager import UserManager
 
-
-class User(models.Model):
-    user_id = models.AutoField(primary_key=True)
-    firstname = models.CharField(max_length=20)
-    lastname = models.CharField(max_length=20)
-    email = models.EmailField(max_length=50)
-    password = models.CharField(max_length=20)  # error message
-    address = models.CharField(max_length=200)
-    phone = models.CharField(max_length=15)
-    user_type = models.CharField(max_length=10, choices=[('Customer', 'customer'), ('Admin', 'admin')]) 
-
-    def __str__(self):
-        return self.firstname + ' ' + self.lastname
-    
 class UserType(models.Model):
     type_id = models.AutoField(primary_key=True)
     type_name = models.CharField(max_length=20)
 
     def __str__(self):
         return self.type_name
-    
 
+class User(AbstractUser):
+    username = None
+    email = models.EmailField(unique=True)
+    firstname = models.CharField(max_length=50)
+    lastname = models.CharField(max_length=50)
+    address = models.CharField(max_length=200, blank=True)
+    phone = models.CharField(max_length=15, blank=True)
+    user_type = models.ForeignKey(UserType, on_delete=models.SET_NULL, null=True)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    objects = UserManager()
+
+    def __str__(self):
+        return self.firstname + ' ' + self.lastname
+    
+    
 class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -40,7 +44,7 @@ class Transmission(models.Model):
     def __str__(self):
         return self.name
     
-class Model(models.Model):
+class CarModel(models.Model):
     model_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     manufacturer = models.CharField(max_length=50)
@@ -53,7 +57,7 @@ class Model(models.Model):
 class Car(models.Model):
     car_id = models.AutoField(primary_key=True)
     category = models.ForeignKey(Category, on_delete= models.SET_NULL, null=True)
-    model = models.ForeignKey(Model, on_delete=models.SET_NULL, null=True)
+    model = models.ForeignKey(CarModel, on_delete=models.SET_NULL, null=True)
     year = models.IntegerField()
     color = models.CharField(max_length=10)
     price_per_day = models.FloatField()
@@ -83,19 +87,31 @@ class Rental(models.Model):
     status = models.ForeignKey(RentalStatus, on_delete=models.SET_NULL, null=True)
 
     class Meta:
-            unique_together = ('user', 'pickup_date')
+            unique_together = ('car', 'pickup_date')
+
+    def __str__(self):
+        return f"Car: {self.car.license_number}, Pickup Date: {self.pickup_date}"
+
+
 
 class Payment(models.Model):
-    rental = models.ForeignKey(Rental, on_delete=models.SET_NULL, null=True)
-    payment_number = models.IntegerField()
+    rental = models.ForeignKey(Rental, on_delete=models.CASCADE)
+    payment_type = models.CharField(max_length=50)
     payment_method = models.CharField(max_length=50)
     payment_date = models.DateField()
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"Rental: {self.rental.car.license_number}, Payment Date: {self.payment_date}"
     
 
-
 class Review(models.Model):
-    rental = models.ForeignKey(Rental, on_delete=models.SET_NULL, null=True)
+    rental = models.OneToOneField(Rental, on_delete=models.CASCADE)
+    # one to one relationship with rental table, so that a review can be given only once for a rental
+    # it is like a foreign key, but with unique constraint
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
-    reviewe_date = models.DateField()
+    review_date = models.DateField()
     comment = models.TextField()
+
+    def __str__(self):
+        return f"Rental: {self.rental.car.license_number}, Rating: {self.rating}"
