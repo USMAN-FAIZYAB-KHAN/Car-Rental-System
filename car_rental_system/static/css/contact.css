@@ -5,7 +5,7 @@
 .contact__main__header {
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('../images/assets/contactheader.jpg');
     background-position: center;
-    /* background-attachment: fixed; */
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
     margin-top: 2rem;
@@ -35,13 +35,14 @@
 }
 
 .contact__rentaly {
-    flex: 5.7;
+    /* flex: 5.7; */
     padding: 1rem;
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
     justify-content: center;
     align-items: flex-start;
+    width: 67%;
 }
 
 .contact__specification {
@@ -200,4 +201,120 @@ svg {
 .multan-label {
     top: 50%;
     left: 56%;
+}
+
+
+
+/* ----------------------------------------Testimonial----------------------------------------------- */
+
+
+.testimonial__wrapper {
+    background-color: #F5F5F5;
+    position: absolute;
+    width: 440px;
+    height: 300px;
+    border-radius: 0.6em;
+    transform: translate(-50%, -50%);
+    left: 83%;
+    top: 90%;
+    box-shadow: 0 0 1.5em rgba(1, 17, 39, 0.15);
+    overflow: hidden;
+}
+
+.testimonial-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.testimonial {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 5.8em 1.2em;
+    text-align: center;
+}
+
+.testimonial p {
+    /* color: #8c8c90; */
+    font-size: 14px;
+    line-height: 2em;
+    letter-spacing: 0.05em;
+}
+
+.testimonial img {
+    display: block;
+    margin: 1.9em auto 1.25em auto;
+    border-radius: 50%;
+    width: 7.4rem;
+}
+
+.testimonial h3 {
+    color: var(--font--secondary--color);
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.quote-icon {
+    font-size: 7em;
+    height: 30px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #27ae60;
+    position: absolute;
+    top: 20px;
+    left: 0px;
+}
+
+.quote-icon span{
+    font-weight: bolder;
+    background-color: #1ECB15;
+    height: 50px;
+    width: 70px;
+    padding-left: 15px;
+    color: #ffffff;
+    border-bottom-right-radius: 13px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: -20px;
+}
+
+.testimonial h6 {
+    color: var(--bg--first--color);
+    font-size: 1.3em;
+    letter-spacing: 0.03em;
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+
+.testimonial__wrapper button {
+    font-size: 1.8em;
+    height: 2.2em;
+    width: 2.2em;
+    background-color: #ffffff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    color: #0a69ed;
+    box-shadow: 0 0 10px  rgba(1, 17, 39, 0.25);
+    cursor: pointer;
+    border-radius: 50%;
+    margin: 0 40px;
+}
+
+button#next {
+    right: -1.1em;
+    color: #1ECB15;
+}
+
+button#prev {
+    left: -1.1em;
+    color: #1ECB15;
 }

@@ -62,9 +62,6 @@ def signup(request):
             return redirect('home')
         else:
             return render(request, 'signup.html', {'error': 'Authentication failed'})
-            
-        # except Exception as e:
-        #     return render(request, 'signup.html', {'error': f'Error creating user: {str(e)}'})
 
     return render(request, 'signup.html')
 
