@@ -216,8 +216,8 @@ svg {
     border-radius: 0.6em;
     transform: translate(-50%, -50%);
     left: 83%;
-    top: 94%;
-    box-shadow: 0 1.8em 2em rgba(1, 17, 39, 0.15);
+    top: 90%;
+    box-shadow: 0 0 1.5em rgba(1, 17, 39, 0.15);
     overflow: hidden;
 }
 
@@ -236,7 +236,7 @@ svg {
 }
 
 .testimonial p {
-    color: #8c8c90;
+    /* color: #8c8c90; */
     font-size: 14px;
     line-height: 2em;
     letter-spacing: 0.05em;
@@ -250,7 +250,7 @@ svg {
 }
 
 .testimonial h3 {
-    color: #2d3d67;
+    color: var(--font--secondary--color);
     font-size: 16px;
     margin-top: 20px;
 }
@@ -285,7 +285,7 @@ svg {
 }
 
 .testimonial h6 {
-    color: #bcc4da;
+    color: var(--bg--first--color);
     font-size: 1.3em;
     letter-spacing: 0.03em;
     font-weight: 400;
@@ -303,7 +303,7 @@ svg {
     transform: translateY(-50%);
     border: none;
     color: #0a69ed;
-    box-shadow: 0 0 1em rgba(1, 17, 39, 0.25);
+    box-shadow: 0 0 10px  rgba(1, 17, 39, 0.25);
     cursor: pointer;
     border-radius: 50%;
     margin: 0 40px;
@@ -311,8 +311,10 @@ svg {
 
 button#next {
     right: -1.1em;
+    color: #1ECB15;
 }
 
 button#prev {
     left: -1.1em;
+    color: #1ECB15;
 }
