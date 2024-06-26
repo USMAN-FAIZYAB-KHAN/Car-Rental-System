@@ -158,10 +158,24 @@ svg {
 
 .marker {
     position: absolute;
-    background-color: green;
+    background-color: #179510;
     border-radius: 50%;
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse{
+    0%{
+        transform: scale(0.9);
+        box-shadow: 0 0 0px 0px rgba(23, 149, 16, 0.5);
+    }
+    70%{
+        transform: scale(1);
+        box-shadow: 0 0 0px 10px rgba(23, 149, 16, 0.3);
+    }
+    100%{
+        transform: scale(0.9);
+    }
 }
 
 .marker-label {
@@ -178,8 +192,8 @@ svg {
 }
 
 .islamabad-label{
-    top: 23%; 
-    left: 64%;
+    top: 22%; 
+    left: 62%;
 }
 
 .karachi-dot {
@@ -199,7 +213,7 @@ svg {
 
 .multan-label {
     top: 50%;
-    left: 56%;
+    left: 54%;
 }
 
 /* Styles for location container */
