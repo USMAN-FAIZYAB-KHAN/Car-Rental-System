@@ -1,44 +1,48 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login as django_login, authenticate
 
 User = get_user_model()
 
 # Create your views here.
 def home(request):
-    print(request.path)
+    # print(request.path)
+    if request.user.is_authenticated:
+        return render(request, 'home.html', {"user": request.user})
     return render(request, 'home.html')
 
 def about(request):
     print(request.path)
-    return render(request, 'about.html')
+    return render(request, 'about.html', {"user": request.user})
 
 def contact(request):
     print(request.path)
-    return render(request, 'contact.html')
+    return render(request, 'contact.html', {"user": request.user})
 
 def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
 
-        print(email, password)
+        user = authenticate(request, username=email, password=password)
 
-        # user = authenticate(request, email=email, password=password)
-        # if user is not None:
-        #     login(request, user)
-        #     return render(request, 'home.html')
-        # else:
-        #     return render(request, 'login.html', {'error': 'Invalid email or password'})
+        if user:
+            django_login(request, user)
+            return redirect('home')
         
-
+        return render(request, 'login.html', {'error': 'Invalid Credentials'})
+            
+    elif request.user.is_authenticated:
+        return redirect('home')
+    
     return render(request, 'login.html')
 
+        
 def carList(request):
-    return render(request, 'carList.html')
+    return render(request, 'carList.html', {"user": request.user})
 
 def carDetail(request):
-    return render(request, 'carDetail.html')
+    return render(request, 'carDetail.html', {"user": request.user})
 
 
 def signup(request):
@@ -56,12 +60,15 @@ def signup(request):
         user.save()
             
         # Authenticate and login the user
-        user = authenticate(username=email, password=password)
+        user = authenticate(request, username=email, password=password)
         if user is not None:
-            login(request)
+            django_login(request, user)
             return redirect('home')
         else:
             return render(request, 'signup.html', {'error': 'Authentication failed'})
+        
+    elif request.user.is_authenticated:
+        return redirect('home')
 
     return render(request, 'signup.html')
 
