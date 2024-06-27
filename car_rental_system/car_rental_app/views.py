@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-from django.contrib.auth import get_user_model
-from django.contrib.auth import login, authenticate
-from django.shortcuts import render, redirect
-=======
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login, authenticate
 
->>>>>>> de12dbe2f974ac1b2cb854ce98a3b8243a2a1c72
 User = get_user_model()
 
 # Create your views here.
