@@ -3,7 +3,7 @@
 
 
 .contact__main__header {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('../images/assets/contactheader.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('../images/assets/contactheader.jpg');
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;

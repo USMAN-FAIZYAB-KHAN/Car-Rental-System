@@ -1,6 +1,9 @@
 
 
-const view_dashboard = () => {
+const view_dashboard = (element) => {
+    
+    document.querySelector('.profile__main__header h1').innerHTML = element;
+
     let div = document.querySelector(".rentaly__dashboard");
     div.innerHTML = " ";
 
@@ -94,7 +97,9 @@ const view_dashboard = () => {
     div.appendChild(box3);
 };
 
-const view_order = () => {
+const view_order = (element) => {
+
+    document.querySelector('.profile__main__header h1').innerHTML = element;
 
     let div = document.querySelector(".rentaly__dashboard");
     div.innerHTML = " ";
@@ -237,18 +242,17 @@ const view_order = () => {
 };
 
 const dash_links = document.querySelectorAll(".dashboard_links");
-console.log(dash_links);
+
 dash_links.forEach((link) => {
     link.addEventListener("click", (e) => {
         e.preventDefault();
         let target = e.target;
         if (target.innerHTML == "Dashboard") {
-            console.log("dashboard");
             remove_active(target);
-            view_dashboard();
+            view_dashboard("Dashboard");
         } else if (target.innerHTML == "My Order") {
             remove_active(target);
-            view_order();
+            view_order("Orders");
         }
     });
 });
@@ -259,3 +263,16 @@ const remove_active = (target) => {
     });
     target.parentNode.classList.add("buttonActive");
 };
+
+document.addEventListener("DOMContentLoaded",() => {
+    dash_links.forEach((val)=>{
+        if (val.classList.contains("buttonActive")){
+            let target = document.querySelector(".buttonActive")
+            if (target.lastChild.innerHTML == "Dashboard") {
+                view_dashboard("Dashboard");
+            } else if (target.lastChild.innerHTML == "My Order") {
+                view_order("Orders");
+            }
+        };    
+    });
+});

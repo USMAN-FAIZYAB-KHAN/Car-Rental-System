@@ -435,33 +435,36 @@
     display: block;
 }
 
-.marquee__about__car{
-    padding: 40px 0 40px 0;
-    position: relative;
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.marquee {
+    padding: 40px 0 ;
     background-color: var(--bg--third--color);
     z-index: var(--normal--z-index);
     overflow: hidden;
     white-space: nowrap;
 }
-
-.marquee {
-    display: inline-block;
-    white-space: nowrap;
-    position: relative; 
-}
   
 .marquee__inner {
     display: inline-block;
+    animation: 10s marquee linear infinite;
     white-space: nowrap;
-    animation: marquee 30s linear infinite;
 }
 
 .marquee__about__car .marquee__txt{
+    display: inline-block;
     font-size: 64px;
     line-height: 64px;
-    letter-spacing: -2px;
     font-weight: var(--weight--bold) ;
     color: var(--font--secondary--color);
+    white-space: nowrap;
 }
 
 .marquee__about__car .marquee__dot{
@@ -474,13 +477,3 @@
     background: var(--font--primary--color);
 }
 
-/* Define the animation */
-@keyframes marquee {
-    0% {
-        transform: translateX(2%);
-    }
-    100% {
-        transform: translateX(-100%);
-         /* Adjust for spacing */
-    }
-}

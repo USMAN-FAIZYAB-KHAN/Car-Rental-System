@@ -4,7 +4,7 @@
 /* ----------------- CSS for the banner ------------------- */
 .banner {
     height: 40vh;
-    background-image: linear-gradient(rgba(101, 98, 98, 0.71), rgb(0 0 0 / 70%)), url(../static/images/assets/carInventory.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(../static/images/assets/carInventory.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
