@@ -33,13 +33,16 @@ class Category(models.Model):
     seating_capacity = models.IntegerField()
     description = models.TextField()
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
     def __str__(self):
         return self.name
     
 class Transmission(models.Model):
     transmission_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    description = models.TextField(null=True)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -72,6 +75,9 @@ class RentalStatus(models.Model):
     status_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     description = models.TextField(null=True)
+
+    class Meta:
+        verbose_name_plural = "Rental Statuses"
 
     def __str__(self):
         return self.name
