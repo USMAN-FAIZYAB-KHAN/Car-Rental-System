@@ -1,6 +1,9 @@
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login as django_login, authenticate
+from django.core.paginator import Paginator
+# from .model import Car
 
 User = get_user_model()
 
@@ -42,6 +45,12 @@ def carList(request):
     return render(request, 'carList.html', {"user": request.user})
 
 def carDetail(request):
+#     car = Car.objects.all()
+#     paginator = Paginator(car, 5)
+#     page_number = request.GET.get('page')
+#     page_obj = paginator.get_page(page_number)
+
+
     return render(request, 'carDetail.html', {"user": request.user})
 
 def userDashboard(request):
