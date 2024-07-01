@@ -67,22 +67,6 @@ hiddenElements3.forEach((el) => observer3.observe(el))
 
 
 
-function to_luxury() {
-    document.querySelector('.p-tag').innerText = `We offer a meticulously curated collection of the most sought-after luxury vehicles on the market.
-                    Whether you prefer the sporty allure of a high-performance sports car, the sophistication of a sleek
-                    and luxurious sedan, or the versatility of a premium SUV, we have the perfect car to match your
-                    discerning taste.`
-}
-function to_prestige() {
-    document.querySelector('.p-tag').innerText = `We understand that prestige goes beyond luxury. It's about making a statement, embracing sophistication, and indulging in the finer things in life. That's why we offer an exclusive selection of prestigious cars that exude elegance, style, and status.`
-}
-function to_comfort() {
-    document.querySelector('.p-tag').innerText = `We prioritize your comfort and convenience throughout your journey. We understand that a comfortable ride can make a world of difference, whether you're embarking on a business trip or enjoying a leisurely vacation. That's why we offer a wide range of well-maintained, comfortable cars that cater to your specific needs.`
-}
-
-
-
-
 const content__about = [
     {
     'para1' : `We offer a meticulously curated collection of the most sought-after luxury vehicles on the market.

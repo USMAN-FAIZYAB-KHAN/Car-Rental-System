@@ -2,8 +2,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login as django_login, authenticate
-from django.core.paginator import Paginator
-# from .model import Car
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus
 
 User = get_user_model()
 
@@ -15,8 +15,12 @@ def home(request):
     return render(request, 'home.html')
 
 def about(request):
-    print(request.path)
-    return render(request, 'about.html', {"user": request.user})
+    completed_orders_count = Rental.objects.filter(status__name='Completed').count()
+    customers_count = User.objects.filter(user_type__type_name='Customer').count()
+    free_vehicles_count = Car.objects.filter(availability=True).count()
+    total_vehicles_count = Car.objects.count()
+    
+    return render(request, 'about.html', {"user": request.user, "completed_orders_count": completed_orders_count, "customers_count": customers_count, "free_vehicles_count": free_vehicles_count, "total_vehicles_count": total_vehicles_count})
 
 def contact(request):
     print(request.path)
@@ -42,14 +46,25 @@ def login(request):
 
         
 def carList(request):
-    return render(request, 'carList.html', {"user": request.user})
+    cars_list = Car.objects.all()
+
+    p = Paginator(cars_list, 2)
+    # get the page number from the request
+    page_number = request.GET.get('page')
+
+    try:
+        cars = p.get_page(page_number)
+    
+    except PageNotAnInteger:
+        cars = p.get_page(1)
+    
+    # if the page number is greater than the total number of pages
+    except EmptyPage:
+        cars = p.get_page(p.num_pages)
+
+    return render(request, 'carList.html', {"user": request.user, "cars": cars})
 
 def carDetail(request):
-#     car = Car.objects.all()
-#     paginator = Paginator(car, 5)
-#     page_number = request.GET.get('page')
-#     page_obj = paginator.get_page(page_number)
-
 
     return render(request, 'carDetail.html', {"user": request.user})
 

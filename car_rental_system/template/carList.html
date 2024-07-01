@@ -19,31 +19,30 @@
 
 <div class="car-container container">
   <div class="left">
-    <div class="filter-group">
-      <h4 style="color: black; line-height: 30px; font-weight: bold;">Price Range</h4>
-
+    <div class="filter-group" style="height: 200px;">
+      <h4 style="color: black; line-height: 10px; font-weight: bold; align-self: center;">Price Range</h4>
       <div class="price-input">
         <div class="field">
           <span>Min</span>
-          <input type="number" class="input-min" value="0">
+          <input type="number" class="input-min" value="2500">
         </div>
         <div class="separator">-</div>
         <div class="field">
           <span>Max</span>
-          <input type="number" class="input-max" value="500">
+          <input type="number" class="input-max" value="7500">
         </div>
       </div>
       <div class="slider">
         <div class="progress"></div>
       </div>
       <div class="range-input">
-        <input type="range" class="range-min" min="0" max="500" value="0" />
-        <input type="range" class="range-max" min="0" max="500" value="500" />
+        <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
+        <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
       </div>
     </div>
 
     <div class="filter-group">
-      <h4 style="color: black; line-height: 30px; font-weight: bold;">Car Category</h4>
+      <h4 style="color: black; line-height: 40px; font-weight: bold; align-self: center;">Car Category</h4>
       <div class="tile">
         <input type="checkbox" name="car-category" id="hatchback">
         <label for="hatchback">
@@ -70,41 +69,42 @@
 
   <div class="right">
 
+    {% for car in cars %}
     <div class="car-card">
       <div class="car-image">
-        <img src="../static/images/assets/1.jpg" alt="Car" />
+        <img src="{{ car.main_image.image.url }}" alt="Car" />
       </div>
 
       <div class="car-details">
-        <h3 class="car-name">Car Name</h3>
+        <h3 class="car-name">{{ car.variant.model.manufacturer }} {{ car.variant.model.name }} {{ car.variant.variant_name }}</h3>
 
         <div class="car-info">
           <table>
             <tr>
               <th>Model</th>
-              <td>2021</td>
+              <td>{{ car.variant.model.year }}</td>
             </tr>
             <tr>
               <th>Color</th>
-              <td>Black</td>
+              <td>{{ car.color }}</td>
             </tr>
             <tr>
               <th>Price</th>
-              <td>$100/day</td>
+              <td>{{ car.price_per_day }} Rs/day</td>
             </tr>
           </table>
           <table>
             <tr>
               <th>Seats</th>
-              <td>4</td>
+              <td>{{ car.variant.model.seating_capacity }}</td>
             </tr>
             <tr>
               <th>Transmission</th>
-              <td>Automatic</td>
+              <td>{{ car.variant.transmission.name }}</td>
             </tr>
             <tr>
               <th>Engine</th>
-              <td>2.0L</td>
+              <td>{{ car.variant.engine }} cc</td>
             </tr>
           </table>
         </div>
@@ -112,7 +112,7 @@
 
       <div class="car-rent">
         <p>Daily rate from</p>
-        <h2 class="price">$100</h2>
+        <h2 class="price">{{ car.price_per_day }} Rs</h2>
         <button>
           <span class="top"></span>
           <a href="#" class="secondary__btn">Rent Now</a>
@@ -120,207 +120,25 @@
         </button>
       </div>
     </div>
-    <div class="car-card">
-      <div class="car-image">
-        <img src="../static/images/assets/1.jpg" alt="Car" />
-      </div>
+    {% endfor %}
 
-      <div class="car-details">
-        <h3 class="car-name">Car Name</h3>
+    <div class="pagination">
+      {%if cars.has_previous %} {# whether the previous page exists #}
+      <a href="?page={{cars.previous_page_number}}" class="prev-page">Previous</a> {# link to the prev page #}
+      {% endif %}
 
-        <div class="car-info">
-          <table>
-            <tr>
-              <th>Model</th>
-              <td>2021</td>
-            </tr>
-            <tr>
-              <th>Color</th>
-              <td>Black</td>
-            </tr>
-            <tr>
-              <th>Price</th>
-              <td>$100/day</td>
-            </tr>
-          </table>
-          <table>
-            <tr>
-              <th>Seats</th>
-              <td>4</td>
-            </tr>
-            <tr>
-              <th>Transmission</th>
-              <td>Automatic</td>
-            </tr>
-            <tr>
-              <th>Engine</th>
-              <td>2.0L</td>
-            </tr>
-          </table>
-        </div>
-      </div>
+      {% for i in cars.paginator.page_range %} {# loop through the page numbers #}
+      {% if cars.number == i %} {# if the current page #}
+      <a href="?page={{i}}" class="page active">{{i}}</a> {# display the page number as active #}
+      {% else %}
+      <a href="?page={{i}}" class="page">{{i}}</a> {# display the page number as a link #}
+      {% endif %}
+      {% endfor %}
 
-      <div class="car-rent">
-        <p>Daily rate from</p>
-        <h class="price">$100</h>
-        <button>
-          <span class="top"></span>
-          <a href="#" class="secondary__btn">Rent Now</a>
-          <span class="bottom"></span>
-        </button>
-      </div>
+      {%if cars.has_next %} {# whether the next page exists #}
+      <a href="?page={{cars.next_page_number}}" class="next-page">Next</a> {# link to the next page #}
+      {% endif %}
     </div>
-    <div class="car-card">
-      <div class="car-image">
-        <img src="../static/images/assets/1.jpg" alt="Car" />
-      </div>
-
-      <div class="car-details">
-        <h3 class="car-name">Car Name</h3>
-
-        <div class="car-info">
-          <table>
-            <tr>
-              <th>Model</th>
-              <td>2021</td>
-            </tr>
-            <tr>
-              <th>Color</th>
-              <td>Black</td>
-            </tr>
-            <tr>
-              <th>Price</th>
-              <td>$100/day</td>
-            </tr>
-          </table>
-          <table>
-            <tr>
-              <th>Seats</th>
-              <td>4</td>
-            </tr>
-            <tr>
-              <th>Transmission</th>
-              <td>Automatic</td>
-            </tr>
-            <tr>
-              <th>Engine</th>
-              <td>2.0L</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-
-      <div class="car-rent">
-        <p>Daily rate from</p>
-        <h2 class="price">$100</h2>
-        <button>
-          <span class="top"></span>
-          <a href="#" class="secondary__btn">Rent Now</a>
-          <span class="bottom"></span>
-        </button>
-      </div>
-    </div>
-    <div class="car-card">
-      <div class="car-image">
-        <img src="../static/images/assets/1.jpg" alt="Car" />
-      </div>
-
-      <div class="car-details">
-        <h3 class="car-name">Car Name</h3>
-
-        <div class="car-info">
-          <table>
-            <tr>
-              <th>Model</th>
-              <td>2021</td>
-            </tr>
-            <tr>
-              <th>Color</th>
-              <td>Black</td>
-            </tr>
-            <tr>
-              <th>Price</th>
-              <td>$100/day</td>
-            </tr>
-          </table>
-          <table>
-            <tr>
-              <th>Seats</th>
-              <td>4</td>
-            </tr>
-            <tr>
-              <th>Transmission</th>
-              <td>Automatic</td>
-            </tr>
-            <tr>
-              <th>Engine</th>
-              <td>2.0L</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-
-      <div class="car-rent">
-        <p>Daily rate from</p>
-        <h2 class="price">$100</h2>
-        <button>
-          <span class="top"></span>
-          <a href="#" class="secondary__btn">Rent Now</a>
-          <span class="bottom"></span>
-        </button>
-      </div>
-    </div>
-    <div class="car-card">
-      <div class="car-image">
-        <img src="../static/images/assets/1.jpg" alt="Car" />
-      </div>
-
-      <div class="car-details">
-        <h3 class="car-name">Car Name</h3>
-
-        <div class="car-info">
-          <table>
-            <tr>
-              <th>Model</th>
-              <td>2021</td>
-            </tr>
-            <tr>
-              <th>Color</th>
-              <td>Black</td>
-            </tr>
-            <tr>
-              <th>Price</th>
-              <td>$100/day</td>
-            </tr>
-          </table>
-          <table>
-            <tr>
-              <th>Seats</th>
-              <td>4</td>
-            </tr>
-            <tr>
-              <th>Transmission</th>
-              <td>Automatic</td>
-            </tr>
-            <tr>
-              <th>Engine</th>
-              <td>2.0L</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-
-      <div class="car-rent">
-        <p>Daily rate from</p>
-        <h2 class="price">$100</h2>
-        <button>
-          <span class="top"></span>
-          <a href="#" class="secondary__btn">Rent Now</a>
-          <span class="bottom"></span>
-        </button>
-      </div>
-    </div>
-
 
   </div>
 </div>
