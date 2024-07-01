@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator 
 from django.contrib.auth.models import AbstractUser
-from .manager import UserManager
+from .manager import UserManager    
 
 class UserType(models.Model):
     type_id = models.AutoField(primary_key=True)

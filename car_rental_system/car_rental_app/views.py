@@ -66,7 +66,7 @@ def carList(request):
 
 def carDetail(request):
 
-    return render(request, 'carDetail.html', {"user": request.user})
+    return render(request, 'check.html', {"user": request.user})
 
 def userDashboard(request):
     return render(request, 'userdashboard.html')

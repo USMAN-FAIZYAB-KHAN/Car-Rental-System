@@ -1,57 +1,56 @@
 {% extends 'base.html' %}
-
 {% load static %}
-
 <!--------------------------------------- CSS Styling Link -------------------------------------->
-
 {% block cssLink %}
-<link rel="stylesheet" href="{% static 'css/carDetail.css' %}" />
-
+    <link rel="stylesheet" href="{% static 'css/carDetail.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css" />
 {% endblock %}
-
 <!--------------------------------------- Title --------------------------------------->
-
 {% block title %}
-Car Details
+    Car Details
 {% endblock %}
-
 <!--------------------------------------- Javascript Link -------------------------------------->
-
 {% block javascript %}
-<script src="{% static 'javascript/carDetail.js' %}"></script> {% endblock %}
+    <script src="{% static 'javascript/carDetail.js' %}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" defer></script>   
+{% endblock %}
 
 {% block body %}
 <main>
-    <div class="container">
-        <div class="car-details">
-            <div class="car-images">
-                <div class="image-container">
-                    <img id="mainImage" class="main-img" src="{% static 'images/assets/car1.jfif' %}" alt="Car Image">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="parallax"></div>
+
+    <div class="content-container">
+        <div class="row">
+            <div class="column large">
+                <div class="main-image-container">
+                    <img id="mainImage" src="https://www.w3schools.com/howto/img_mountains.jpg" alt="Main Image" class="main-image">
+                    <div class="lines">
+                        <div class="line" onclick="changeImage('https://www.w3schools.com/howto/img_forest.jpg', this)"></div>
+                        <div class="line" onclick="changeImage('https://www.w3schools.com/howto/img_snow.jpg', this)"></div>
+                        <div class="line" onclick="changeImage('https://www.w3schools.com/howto/img_mountains.jpg', this)"></div>
+                    </div>
                 </div>
-                <div class="indicators">
-                    <div class="line" onclick="currentImage(0)"></div>
-                    <div class="line" onclick="currentImage(1)"></div>
-                    <div class="line" onclick="currentImage(2)"></div>
-                </div>
-<!--                 
-                <div class="indicators">
-                    <span class="line" onclick="currentImage(0)"></span>
-                    <span class="line" onclick="currentImage(1)"></span>
-                    <span class="line" onclick="currentImage(2)"></span>
-                    
-                </div> -->
-                <div class="thumbnails">
-                    <img src="{% static 'images/assets/car1.jfif' %}" onclick="changeImage('../static/images/assets/car3.jfif', 1)" alt="Thumbnail 1">
-                    <img src="{% static 'images/assets/car2.jfif' %}" onclick="changeImage('../static/images/assets/car3.jfif', 2)" alt="Thumbnail 2">
-                    <img src="{% static 'images/assets/car3.jfif' %}" onclick="changeImage('../static/images/assets/car3.jfif', 3)" alt="Thumbnail 3">
+                <div class="thumbnail-container">
+                    <img src="https://www.w3schools.com/howto/img_forest.jpg" alt="Thumbnail 1" onclick="changeImage('https://www.w3schools.com/howto/img_forest.jpg', document.querySelector('.lines .line:nth-child(1)'))">
+                    <img src="https://www.w3schools.com/howto/img_snow.jpg" alt="Thumbnail 2" onclick="changeImage('https://www.w3schools.com/howto/img_snow.jpg', document.querySelector('.lines .line:nth-child(2)'))">
+                    <img src="https://www.w3schools.com/howto/img_mountains.jpg" alt="Thumbnail 3" onclick="changeImage('https://www.w3schools.com/howto/img_mountains.jpg', document.querySelector('.lines .line:nth-child(3)'))">
+                    <img src="https://www.w3schools.com/howto/img_forest.jpg" alt="Thumbnail 4" onclick="changeImage('https://www.w3schools.com/howto/img_forest.jpg', document.querySelector('.lines .line:nth-child(1)'))">
                 </div>
             </div>
-            <div class="car-info">
-                <h2>Nissan Altima 2024</h2>
-                <p>A spacious interior, impressive fuel economy and a generous list of standard safety features make the 2024 Nissan Altima a solid midsize sedan for families or anyone wanting a roomy car.</p>
-                <div class="specifications">
-                    <h3>Specifications</h3>
-                    <div class="specification-list">
+            
+            <div class="column">
+                <div class="car-info">
+                    <h2>BMW M2 2020</h2>
+                    <p>A spacious interior, impressive fuel economy and a generous list of standard safety features make the 2024 Nissan Altima a solid midsize sedan for families or anyone wanting a roomy car.</p>
+                    <div class="specifications">
+                        <h3>Specifications</h3>
                         <div class="specification-item">
                             <div class="spec-label">Body:</div><div class="spec-value">Sedan</div>
                         </div>
@@ -83,15 +82,48 @@ Car Details
                             <div class="spec-label">Drive:</div><div class="spec-value">AWD</div>
                         </div>
                     </div>
+                    <div class="spacer-single"></div>
+                    <h4>Features</h4>
+                    <ul class="ul-style-2">
+                        <li>Bluetooth</li>
+                        <li>Multimedia Player</li>
+                        <li>Central Lock</li>
+                        <li>Sunroof</li>
+                    </ul>
                 </div>
             </div>
-            <div class="daily-rate">
-                <h3>Daily Rate</h3>
-                <p>$50</p>
+            
+            <div class="column">
+                <div class="daily-price">
+                    <h3>Daily Rate</h3>
+                    <p>$50</p>
+                </div>
+                <div class="testimonial__wrapper">
+                    <div class="testimonial-container" id="testimonial-container"></div>
+                    <button id="prev">&lt;</button>
+                    <button id="next">&gt;</button>
+                </div>
+                <div class="social-media">
+                    <h4>Share</h4>
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-google"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="#" class="fa fa-youtube"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                    <a href="#" class="fa fa-pinterest"></a>
+                    <a href="#" class="fa fa-snapchat-ghost"></a>
+                    <a href="#" class="fa fa-yahoo"></a>
+                    <a href="#" class="fa fa-reddit"></a>
+                    <a href="#" class="fa fa-rss"></a>
+                    <a href="#" class="fa fa-stumbleupon"></a>
+                </div>
+                <div id="purchase-now">
+                    <a href="#">Purchase Now</a>
+                    <div class="pn-hover">Click to book</div>
+                </div>
             </div>
-
         </div>
     </div>
 </main>
-            
 {% endblock %}
