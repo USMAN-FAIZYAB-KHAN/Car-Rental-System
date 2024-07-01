@@ -89,4 +89,5 @@ body {
     font-style: var(--weight--normal);
     background-color: var(--body--main--color);
     color: var(--font--black--color);
+    overflow-x: hidden;
 }

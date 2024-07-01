@@ -13,7 +13,7 @@
     margin-top: 2rem;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
 }
 
 .about__main__container{
@@ -23,6 +23,31 @@
     align-items: center;
     row-gap: 6rem;
     flex-wrap: wrap;
+}
+
+.hidden-left{
+    opacity: 0;
+    transform: translateX(-30%);
+    transition: all 1s;
+}
+.hidden-right{
+    opacity: 0;
+    transform: translateX(30%);
+    transition: all 1s;
+}
+.hidden-down{
+    opacity: 0;
+    transform: translateY(20%);
+    transition: all 1s;
+}
+
+.show {
+    opacity: 1;
+    transform: translateX(0%);
+}
+.show-down {
+    opacity: 1;
+    transform: translateX(0%);
 }
 
 .about__content{
@@ -117,6 +142,8 @@
     overflow: hidden;
     cursor: pointer;
 }
+
+
 
 .about__person__image{
     object-fit: cover;
@@ -350,4 +377,9 @@
 
 .footer__container{
     margin-top: 0;
+}
+
+
+.hidden{
+    display: none;
 }
