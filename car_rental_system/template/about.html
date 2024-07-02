@@ -14,7 +14,9 @@
 
 {% block javascript %}
 <script src="../static/javascript/about.js" defer></script>
-{% endblock %} {% block body %}
+{% endblock %} 
+
+{% block body %}
 
 <div class="about__main__header">
   <h1>About Us</h1>
@@ -22,13 +24,13 @@
 
 <div class="container">
   <div class="about__main__container">
-    <div class="about__content">
-      <h1 class="about__content__left">
+    <div class="about__content ">
+      <h1 class="about__content__left hidden-left">
         We offer customers a wide range of
         <span class="id-color">commercial cars</span> and
         <span class="id-color">luxury cars</span> for any occasion.
       </h1>
-      <p class="about__content__right">
+      <p class="about__content__right hidden-right">
         At Rentaly, we are dedicated to providing exceptional car rental
         services to our valued customers. With a commitment to quality,
         convenience, and customer satisfaction, we strive to make every rental
@@ -159,7 +161,7 @@
 </h2>
 
 <div class="feature__content container">
-  <div class="feature__content__con1">
+  <div class="feature__content__con1 hidden-left">
     <div class="social__trophy" style="align-items: flex-start">
       <i class="fa-solid fa-trophy"></i>
       <div class="trophy__content change__styling">
@@ -181,10 +183,10 @@
       </div>
     </div>
   </div>
-  <div class="feature__content__con2">
+  <div class="feature__content__con2 hidden-down">
     <img src="{% static './images/assets/seven.png' %}" alt="Feature Car Pic" />
   </div>
-  <div class="feature__content__con3">
+  <div class="feature__content__con3 hidden-right">
     <div
       class="social__trophy"
       style="align-items: flex-start; flex-direction: row-reverse"
