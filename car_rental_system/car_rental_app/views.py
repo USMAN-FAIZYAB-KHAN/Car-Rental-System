@@ -82,7 +82,7 @@ def carList(request):
     except EmptyPage:
         cars = p.get_page(p.num_pages)
 
-    return render(request, 'carList.html', {"user": request.user, "cars": cars, "ac"})
+    return render(request, 'carList.html', {"user": request.user, "cars": cars})
 
 def carDetail(request):
 
