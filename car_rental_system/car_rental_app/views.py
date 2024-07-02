@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import login as django_login, authenticate
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus
+from django.db.models import Q
 
 User = get_user_model()
 
@@ -45,9 +46,28 @@ def login(request):
 
         
 def carList(request):
-    cars_list = Car.objects.all()
 
-    p = Paginator(cars_list, 2)
+    cars_list = Car.objects.all()
+    query_params = request.GET
+
+    print(request.GET)
+    
+    minPrice = query_params.get('minPrice', None)
+    maxPrice = query_params.get('maxPrice', None)
+    categories = query_params.get('categories', None)
+
+
+    if minPrice and maxPrice:
+        cars_list = cars_list.filter(price_per_day__gte=minPrice, price_per_day__lte=maxPrice)
+
+    if categories:
+        categories = categories.split(',')
+        filter_conditions = Q()
+        for category in categories:
+            filter_conditions |= Q(variant__model__category__name=category)
+        cars_list = cars_list.filter(filter_conditions)    
+
+    p = Paginator(cars_list, 1)
     # get the page number from the request
     page_number = request.GET.get('page')
 
@@ -61,7 +81,7 @@ def carList(request):
     except EmptyPage:
         cars = p.get_page(p.num_pages)
 
-    return render(request, 'carList.html', {"user": request.user, "cars": cars})
+    return render(request, 'carList.html', {"user": request.user, "cars": cars, "ac"})
 
 def carDetail(request):
 

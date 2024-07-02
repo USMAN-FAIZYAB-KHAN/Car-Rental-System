@@ -19,6 +19,19 @@
 
 <div class="car-container container">
   <div class="left">
+    <div class="filter-wrapper">
+      <button>
+        <span class="top"></span>
+        <a href="#" class="secondary__btn" id="addfilter">Apply Filter</a>
+        <span class="bottom"></span>
+      </button>
+      <button>
+        <span class="top"></span>
+        <a href="#" class="secondary__btn" id="removeFilter">Remove Filter</a>
+        <span class="bottom"></span>
+      </button>
+    </div>
+
     <div class="filter-group" style="height: 200px;">
       <h4 style="color: black; line-height: 10px; font-weight: bold; align-self: center;">Price Range</h4>
       <div class="price-input">
@@ -44,21 +57,21 @@
     <div class="filter-group">
       <h4 style="color: black; line-height: 40px; font-weight: bold; align-self: center;">Car Category</h4>
       <div class="tile">
-        <input type="checkbox" name="car-category" id="hatchback">
+        <input type="checkbox" name="car-category" id="hatchback" value="Hatchback">
         <label for="hatchback">
           <img src="../static/images/assets/Hatchback.png" alt="Hatchback">
           <p style="color: black; position: absolute; bottom: 15%;">Hatchback</p>
         </label>
       </div>
       <div class="tile">
-        <input type="checkbox" name="car-category" id="sedan">
+        <input type="checkbox" name="car-category" id="sedan" value="Sedan">
         <label for="sedan">
           <img src="../static/images/assets/Sedan.png" alt="Sedan">
           <p style="color: black; position: absolute; bottom: 15%;">Sedan</p>
         </label>
       </div>
       <div class="tile">
-        <input type="checkbox" name="car-category" id="suv">
+        <input type="checkbox" name="car-category" id="suv" value="SUV">
         <label for="suv">
           <img src="../static/images/assets/SUV.png" alt="SUV">
           <p style="color: black; position: absolute; bottom: 15%;">SUV</p>
@@ -112,7 +125,7 @@
 
       <div class="car-rent">
         <p>Daily rate from</p>
-        <h2 class="price">{{ car.price_per_day }} Rs</h2>
+        <h2 class="price">{{ car.price_per_day }} Rs {{ request.path }}</h2>
         <button>
           <span class="top"></span>
           <a href="#" class="secondary__btn">Rent Now</a>
@@ -124,19 +137,19 @@
 
     <div class="pagination">
       {%if cars.has_previous %} {# whether the previous page exists #}
-      <a href="?page={{cars.previous_page_number}}" class="prev-page">Previous</a> {# link to the prev page #}
+      <a href="" class="pagination-link prev-page" data-page={{cars.previous_page_number}}>Previous</a> {# link to the prev page #}
       {% endif %}
 
       {% for i in cars.paginator.page_range %} {# loop through the page numbers #}
       {% if cars.number == i %} {# if the current page #}
-      <a href="?page={{i}}" class="page active">{{i}}</a> {# display the page number as active #}
+      <a href="?page={{i}}" class="page active pagination-link" data-page={{i}}>{{i}}</a> {# display the page number as active #}
       {% else %}
-      <a href="?page={{i}}" class="page">{{i}}</a> {# display the page number as a link #}
+      <a href="?page={{i}}" class="page pagination-link" data-page={{i}}>{{i}}</a> {# display the page number as a link #}
       {% endif %}
       {% endfor %}
 
       {%if cars.has_next %} {# whether the next page exists #}
-      <a href="?page={{cars.next_page_number}}" class="next-page">Next</a> {# link to the next page #}
+      <a href="?page={{cars.next_page_number}}" class="pagination-link next-page" data-page={{cars.next_page_number}}>Next</a> {# link to the next page #}
       {% endif %}
     </div>
 
