@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% load static %}
+{% extends 'base.html' %} 
+{% load static %}
 <!--------------------------------------- CSS Styling Link -------------------------------------->
 {% block cssLink %}
 <!-- <link
@@ -17,7 +18,7 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 /> -->
-<link rel="stylesheet" href="../static/css/check.css">
+<link rel="stylesheet" href="{% static './css/check.css' %}">
 {% endblock %}
 
 <!--------------------------------------- Title --------------------------------------->
@@ -25,7 +26,7 @@
 
 <!--------------------------------------- Javascript Link -------------------------------------->
 {% block javascript %}
-<script src="../static/javascript/check.js" defer></script>
+<script src="{% static './javascript/check.js' %}" defer></script>
 
 <!-- <script src="{% static 'javascript/carDetail.js' %}" defer></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
@@ -43,7 +44,7 @@
     <div class="car-images">
       <img
         id="mainImage"
-        src="../static/images/assets/car-single/1.jpg"
+        src="{{ car_images.0 }}"
         alt="Main Image"
         class="main-image"
       />
@@ -64,32 +65,19 @@
       </div>
 
       <div class="thumbnail-container">
+        {% for image in car_images %}
         <img
-          src="../static/images/assets/car-single/1.jpg"
-          alt="Thumbnail 1"
-          class="car__thumnail__image "
-        />
-        <img
-          src="../static/images/assets/car-single/2.jpg"
-          alt="Thumbnail 2"
+          src="{{ image }}"
+          alt="Thumbnail {{ forloop.counter }}"
           class="car__thumnail__image"
         />
-        <img
-          src="../static/images/assets/car-single/3.jpg"
-          alt="Thumbnail 3"
-          class="car__thumnail__image"
-        />
-        <img
-          src="../static/images/assets/car-single/4.jpg"
-          alt="Thumbnail 4"
-          class="car__thumnail__image"
-        />
+        {% endfor %}
       </div>
     </div>
 
     <div class="car_detail__right">
         <div class="detail__middle__box">
-            <h3>BMW M2 2020</h3>  
+            <h3>{{car.variant.model.manufacturer}} {{car.variant.model.name}} {{car.variant.variant_name}}</h3>  
             <p>
               A spacious interior, impressive fuel economy and a generous list of
               standard safety features make the 2024 Nissan Altima a solid midsize
@@ -101,12 +89,12 @@
 
                 <div class="specification__warpper">
                     <p>Body</p>
-                    <p>Sedan</p>
+                    <p>{{ car.variant.model.category.name }}</p>
                 </div>
                 
                 <div class="specification__warpper">
                     <p>Seat</p>
-                    <p>5 seats</p>
+                    <p>{{ car.variant.model.seating_capacity }} seats</p>
                 </div>
 
                 <div class="specification__warpper">
@@ -115,38 +103,33 @@
                 </div>
 
                 <div class="specification__warpper">
-                    <p>Luggage</p>
-                    <p>150 liters</p>
-                </div>
-
-                <div class="specification__warpper">
                     <p>Fuel Type</p>
-                    <p>Hybrid</p>
+                    <p>{{ car.variant.fuel_type.name }}</p>
                 </div>
 
                 <div class="specification__warpper">
-                    <p>Engine:</p>
-                    <p>3000 cc</p>
+                    <p>Engine</p>
+                    <p>{{ car.variant.engine }} cc</p>
                 </div>
 
                 <div class="specification__warpper">
-                    <p>Year:</p>
-                    <p>2024</p>
+                    <p>Year</p>
+                    <p>{{ car.variant.model.year }}</p>
                 </div>
 
                 <div class="specification__warpper">
-                    <p>Mileage:</p>
-                    <p>200 miles</p>
+                    <p>Mileage</p>
+                    <p>{{ car.variant.mileage }}</p>
                 </div>
                 
                 <div class="specification__warpper">
-                    <p>Color:</p>
-                    <p>Red</p>
+                    <p>Color</p>
+                    <p>{{ car.color }}</p>
                 </div>
 
                 <div class="specification__warpper">
-                    <p>Transmission:</p>
-                    <p>Automatic</p>
+                    <p>Transmission</p>
+                    <p>{{ car.variant.transmission.name }}</p>
                 </div>
             </div>
 
@@ -162,27 +145,27 @@
           <div class="detail__right__box">
                 <div class="price__box">
                   <p>Daily rate</p>
-                  <h1>$295</h1>
+                  <h1>10000 <span style="color: #1ECB15; font-size: 3rem;">RS</span></h1>
                 </div>
-                <div class="booking__box">
+                <form method="post" role="form" action="{% url 'detail' car.car_id %}" class="booking__box">
                   <h4>Booking this car</h4>
                   <p>Booking Date</p>
-                  <input type="date" name="" id="" >
+                  <input type="date" name="bookdate" id="" required >
                   <p>Pick up date</p>
-                  <input type="date" name="" id="">
+                  <input type="date" name="pickdate" id="" required>
                   <p>Drop Off date</p>
-                  <input type="date" name="" id="">
+                  <input type="date" name="dropdate" id="" required>
                   <p>Address</p>
-                  <input type="text" placeholder="Address">
+                  <input type="text" placeholder="Address" name="address" required>
                   <p>Phone Number</p>
-                  <input type="number" name="" id="" max="11" placeholder="+92 3322321393">
+                  <input type="tel" name="phonenumber" id="" max="13" placeholder="+923322321393" required>
       
-                  <button>
+                  <button type="submit">
                     <span class="top"></span>
-                    <a href="#" class="secondary__btn">Rent Now</a>
+                    <a class="secondary__btn">Rent Now</a>
                     <span class="bottom"></span>
                   </button>
-                </div>
+                </form>
 
                 
       

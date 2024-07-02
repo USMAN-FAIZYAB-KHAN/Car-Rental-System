@@ -2,8 +2,9 @@ const rangeInput = document.querySelectorAll(".range-input input"),
     priceInput = document.querySelectorAll(".price-input input"),
     range = document.querySelector(".slider .progress");
 
-minPrice = localStorage.getItem("minPrice");
-maxPrice = localStorage.getItem("maxPrice");
+minPrice = sessionStorage.getItem("minPrice");
+maxPrice = sessionStorage.getItem("maxPrice");
+categories = sessionStorage.getItem("categories");
 
 if (minPrice && maxPrice) {
     rangeInput[0].value = minPrice;
@@ -12,6 +13,14 @@ if (minPrice && maxPrice) {
     priceInput[1].value = maxPrice;
     range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
     range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+}
+
+if (categories) {
+    categories = categories.split(",");
+    categories.forEach((category) => {
+        checkbox = document.querySelector(`input[value="${category}"]`);
+        checkbox.checked = true;
+    })
 }
 
 let priceGap = 0;
@@ -57,6 +66,15 @@ const applyfilter = document.querySelector("#addfilter");
 const removeFilter = document.querySelector("#removeFilter");
 
 
+removeFilter.addEventListener("click", (e) => {
+    sessionStorage.removeItem("minPrice");
+    sessionStorage.removeItem("maxPrice");
+    sessionStorage.removeItem("categories");
+    const baseurl = window.location.href.split('?')[0];
+    window.location.href = baseurl;
+});
+
+
 const generateURL = () => {
 
     const minPrice = parseInt(priceInput[0].value),
@@ -74,9 +92,9 @@ const generateURL = () => {
     queryParams.push(`minPrice=${minPrice}`);
     queryParams.push(`maxPrice=${maxPrice}`);
 
-    localStorage.setItem("minPrice", minPrice);
-    localStorage.setItem("maxPrice", maxPrice);
-    localStorage.setItem("categories", categories.join(','));
+    sessionStorage.setItem("minPrice", minPrice);
+    sessionStorage.setItem("maxPrice", maxPrice);
+    sessionStorage.setItem("categories", categories.join(','));
 
     if (categories.length > 0) {
         queryParams.push(`categories=${categories.join(',')}`);
@@ -93,32 +111,16 @@ applyfilter.addEventListener("click", (e) => {
     window.location.href = generateURL();
 });
 
+
 const pagination_links = document.querySelectorAll(".pagination-link");
+
 pagination_links.forEach(link => {
     link.addEventListener("click", (e) => {
         e.preventDefault();
-        baseurl = window.location.href.split('?')[0];
-        queryParams = window.location.href.split('?')[1];
-        queryParams = queryParams.split('&');
-
-        if (queryParams.length > 1) {
-            window.location.href = `${generateURL()}&page=${link.dataset.page}`;
-        } else {
-            window.location.href = `${baseurl}?page=${link.dataset.page}`;
-        }
-
+        
+        const baseurl = window.location.href.split('?')[0];
+        let queryParams = new URLSearchParams(window.location.search);
+        queryParams.set('page', link.dataset.page);
+        window.location.href = `${baseurl}?${queryParams.toString()}`;
     });
 });
-
-        // const AddChange = (minPrice, maxPrice, checkboxes) => {
-        //     console.log(minPrice, maxPrice, checkboxes);
-        //     min_input = document.querySelector(".input-min");
-        //     max_input = document.querySelector(".input-max");
-        
-        //     min_input.value = minPrice
-        //     max_input.value = maxPrice;
-        //     checkboxes.forEach(checkbox => {
-        //         checkbox.checked = true;
-        //     });
-           
-        // }

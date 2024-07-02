@@ -99,11 +99,11 @@ h4 {
 
 .specification__warpper :nth-child(1) {
     color: #4f4f4f;
-    width: 55%;
+    width: 50%;
 }
 
 .specification__warpper :nth-child(2) {
-    width: 25%;
+    width: 45%;
     font-weight: var(--weight--bolder);
 }
 
@@ -127,7 +127,7 @@ h4 {
 }
 
 .price__box :nth-child(2) {
-    font-size: 5.8rem;
+    font-size: 5rem;
     color: var(--font--primary--color);
     font-weight: var(--weight--bolder);
 }
