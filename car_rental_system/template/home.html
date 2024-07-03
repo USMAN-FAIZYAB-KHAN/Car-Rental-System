@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %}
 
 <!--------------------------------------- CSS Styling Link -------------------------------------->
 
@@ -115,12 +114,60 @@
   </p>
 </div>
 
-<div class="vehcile__fleet__container  container">
-  <div class="vehicle___fleet__wrapper">
-    <div class="vehicle___fleet-container" id="vehicle___fleet-container"></div>
-    <button class="slider__button" id="prev">&lt;</button>
-    <button class="slider__button" id="next">&gt;</button>
+<div class="vehcile__fleet__container container">
+  <div class="main__fleet__box">
+    <div class="fleet__box">
+      <div class="vehicle__image">
+        <img
+          height="100%"
+          width="100%"
+          src="{% static './images/assets/lexus.jpg' %}"
+          alt=""
+        />
+      </div>
+      <div class="vehicle__description">
+        <div class="description__box1">
+          <h3 style="color: #121212">Ford Raptor</h3>
+          <span
+            ><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </span>
+        </div>
+        <div class="description__box2">
+          <span class="svg__img"
+            ><img src="../static/images/assets/1-green.svg" alt="" />
+            <p>5</p></span
+          >
+          <span class="svg__img"
+            ><img src="../static/images/assets/2-green.svg" alt="" />
+            <p>4</p></span
+          >
+          <span class="svg__img"
+            ><img src="../static/images/assets/3-green.svg" alt="" />
+            <p>2</p></span
+          >
+          <span class="svg__img"
+            ><img src="../static/images/assets/4-green.svg" alt="" />
+            <p>Sedan</p></span
+          >
+        </div>
+        <div class="description__box3">
+          <div class="price">
+            <p>Daily rate from</p>
+            <h2>$249</h2>
+          </div>
+          <button>
+            <span class="top"></span>
+            <a href="" class="primary__btn">Rent Now</a>
+            <span class="bottom"></span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
+  <button class="slider__button" id="prev">&lt;</button>
+  <button class="slider__button" id="next">&gt;</button>
 </div>
 
 <div class="about__section">
@@ -157,7 +204,7 @@
         <p>Vehicles Fleet</p>
       </div>
       <div class="about__vehicle">
-        <h2 class="number " id="experience">14</h2>
+        <h2 class="number" id="experience">14</h2>
         <p>Years Experience</p>
       </div>
     </div>
@@ -203,10 +250,16 @@
       </div>
     </div>
     <div class="feature__content__con2 hidden-down">
-      <img src="{% static './images/assets/car-2.png' %}" alt="Feature Car Pic" />
+      <img
+        src="{% static './images/assets/car-2.png' %}"
+        alt="Feature Car Pic"
+      />
     </div>
     <div class="feature__content__con3 hidden-right">
-      <div class="social__trophy" style="align-items: flex-start; flex-direction: row-reverse">
+      <div
+        class="social__trophy"
+        style="align-items: flex-start; flex-direction: row-reverse"
+      >
         <i class="fa-solid fa-tag"></i>
         <div class="trophy__content change__styling" style="text-align: right">
           <p style="color: #1ecb15; font-weight: 600">
@@ -218,7 +271,10 @@
           </p>
         </div>
       </div>
-      <div class="social__trophy" style="align-items: flex-start; flex-direction: row-reverse">
+      <div
+        class="social__trophy"
+        style="align-items: flex-start; flex-direction: row-reverse"
+      >
         <i class="fa-solid fa-map-pin"></i>
         <div class="trophy__content change__styling" style="text-align: right">
           <p style="color: #1ecb15; font-weight: 600">
@@ -253,7 +309,12 @@
             <div>10</div>
             <div>MAR</div>
           </div>
-          <img src="{% static './images/assets/1.jpg' %}" alt="" width="100%" height="100%" />
+          <img
+            src="{% static './images/assets/1.jpg' %}"
+            alt=""
+            width="100%"
+            height="100%"
+          />
         </div>
 
         <div class="latest__content hidden-down">
@@ -279,7 +340,12 @@
             <span>12</span>
             <span>MAR</span>
           </div>
-          <img src="{% static './images/assets/2.jpg' %}" alt="" width="100%" height="100%" />
+          <img
+            src="{% static './images/assets/2.jpg' %}"
+            alt=""
+            width="100%"
+            height="100%"
+          />
         </div>
 
         <div class="latest__content hidden-down">
@@ -305,7 +371,12 @@
             <span>14</span>
             <span>MAR</span>
           </div>
-          <img src="{% static './images/assets/3.jpg' %}" alt="" width="100%" height="100%" />
+          <img
+            src="{% static './images/assets/3.jpg' %}"
+            alt=""
+            width="100%"
+            height="100%"
+          />
         </div>
 
         <div class="latest__content hidden-down">
@@ -339,7 +410,11 @@
         <div class="questions">
           <p>
             How do I get started with Car Rental?
-            <img src="{% static './images/assets/arrow-down-light.png' %}" class="questionArrow" alt />
+            <img
+              src="{% static './images/assets/arrow-down-light.png' %}"
+              class="questionArrow"
+              alt
+            />
           </p>
           <p class="answer__description">
             At vero eos et accusamus et iusto odio dignissimos ducimus qui
@@ -353,7 +428,11 @@
         <div class="questions">
           <p>
             How do I get started with Car Rental?
-            <img src="{% static './images/assets/arrow-down-light.png' %}" class="questionArrow" alt />
+            <img
+              src="{% static './images/assets/arrow-down-light.png' %}"
+              class="questionArrow"
+              alt
+            />
           </p>
           <p class="answer__description">
             At vero eos et accusamus et iusto odio dignissimos ducimus qui
@@ -367,7 +446,11 @@
         <div class="questions">
           <p>
             How do I get started with Car Rental?
-            <img src="{% static './images/assets/arrow-down-light.png' %}" class="questionArrow" alt />
+            <img
+              src="{% static './images/assets/arrow-down-light.png' %}"
+              class="questionArrow"
+              alt
+            />
           </p>
           <p class="answer__description">
             At vero eos et accusamus et iusto odio dignissimos ducimus qui
@@ -383,7 +466,11 @@
         <div class="questions">
           <p>
             How do I get started with Car Rental?
-            <img src="{% static './images/assets/arrow-down-light.png' %}" class="questionArrow" alt />
+            <img
+              src="{% static './images/assets/arrow-down-light.png' %}"
+              class="questionArrow"
+              alt
+            />
           </p>
           <p class="answer__description">
             At vero eos et accusamus et iusto odio dignissimos ducimus qui
@@ -397,7 +484,11 @@
         <div class="questions">
           <p>
             How do I get started with Car Rental?
-            <img src="{% static './images/assets/arrow-down-light.png' %}" class="questionArrow" alt />
+            <img
+              src="{% static './images/assets/arrow-down-light.png' %}"
+              class="questionArrow"
+              alt
+            />
           </p>
           <p class="answer__description">
             At vero eos et accusamus et iusto odio dignissimos ducimus qui
@@ -411,7 +502,11 @@
         <div class="questions">
           <p>
             How do I get started with Car Rental?
-            <img src="{% static './images/assets/arrow-down-light.png' %}" class="questionArrow" alt />
+            <img
+              src="{% static './images/assets/arrow-down-light.png' %}"
+              class="questionArrow"
+              alt
+            />
           </p>
           <p class="answer__description">
             At vero eos et accusamus et iusto odio dignissimos ducimus qui

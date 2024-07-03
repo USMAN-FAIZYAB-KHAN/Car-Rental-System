@@ -1,432 +1,191 @@
-.row {
+@import url("./base.css");
+@import url("./utilityClasses.css");
+
+.car__detail__main {
     display: flex;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 100px;
-}
-
-.main-image-container {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
-.main-image {
-    width: 400px;
-    height: auto;
-    border-radius: 10px;
-}
-
-/* Larger column */
-.column.large {
-    flex: 66.66%; /* Takes up 2/3 of the row */
-    padding: 5px;
-    text-align: center;
-    background-color: #fff;
-}
-.column h2 {
-    text-align: center;
-    font-size: 26px;
-    margin-bottom: 40px;
-    letter-spacing: -.5px;
-    margin-top: 60px;
-}
-
-  /* Smaller columns */
-.column {
-    flex: 33.33%; /* Each takes up 1/3 of the row */
-    padding: 5px;
-    text-align: center;
-    background-color: #f0f0f0;
-}
-
-  /* Add some padding inside the columns */
-.column img {
-    width: 100%;
-    height: auto;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: all 0.3s;
-}
-
-  /* Style for thumbnails */
-.thumbnail-container {
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
+    padding: 1rem;
+}
+.car-images {
+    display: flex;
+    width: 45%;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+    overflow: hidden;
+}
+
+#mainImage {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+
+.thumbnail-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .thumbnail-container img {
-    max-width: 100px;
+    width: 23%;
     height: auto;
-    margin: 5px; /* Adjust spacing between thumbnails */
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    cursor: pointer; /* Add cursor pointer on hover */
-    transition: all 0.3s;
-}
-
-.thumbnail-container img:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.lines {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.line {
-    width: 20px;
-    height: 4px;
-    background-color: white;
+    object-fit: cover;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s;
-    border-radius: 15px;
-    background: linear-gradient(to right, yellow, orange);
+    position: relative;
+    z-index: 1;
 }
 
-.line:hover {
-    width: 40px;
+.slide-in {
+    animation: slide-in 0.5s forwards;
 }
 
-.line.active {
-    width: 40px; /* Adjust size for active state */
-    background-color: orange; /* Change color for active state */
-}
-
-.car-info {
-    flex: 1;
-    background-color: #f9f9f9;
-    padding: 50px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-    margin-left: 0px;
-    font-size: 1em;
-    height: 100%;
-}
-
-.car-info h2 {
-    margin-bottom: 10px;
-    font-size: 1.5em;
-    text-align: left;
-}
-
-.car-info p {
-    margin-bottom: 20px;
-    font-size: 1.2em;
-    text-align: left;
-    line-height: 1.2;
-}
-
-.specifications {
-    text-align: left;
-    font-size: 1em;
-}
-
-.specification-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    border-bottom: 1px solid black;
-    padding-bottom: 5px;
-    
-}
-
-.spec-label {
-    font-weight: bold;
-    
-   /* Add underline to specification value */
-}
-
-  
-.spec-line {
-    flex-grow: 1;
-    height: 1px;
-    background-color: black; /* Adjust color for the underline */
-    margin: 0 10px; /* Adjust margin between label and value */
-}
-
-
-.ul-style-2 {
-    list-style-type: none; /* Remove default list styles */
-    padding: 0; /* Remove default padding */
-    font-size: 20px;
-    text-align: left;
-}
-
-.ul-style-2 li::before {
-    content: "\2714 ";
-    color: green; /* Unicode character for checkmark */
-}
-
-.column h4 {
-    text-align: left;
-    font-size: 26px;
-    margin-bottom: 40px;
-    letter-spacing: -.5px;
-    margin-top: 60px;
-    color:black
-}
-
-.daily-price {
-    background-color: lightgrey;
-    width: 150px;
-    height: 120px;
-    border: 3px solid green;
-    padding: 5px;
-    margin-top: 2px;
-    margin: 100px auto;
-    text-align:center;
-}
-
-  
-
-.testimonial__wrapper {
-    background-color: #ffffff;
-    position: absolute;
-    width: 320px;
-    height: 305px;
-    border-radius: 0.6em;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
-    box-shadow: 0 1.8em 3em rgba(1, 17, 39, 0.15);
-    overflow: hidden;
-    margin-left:470px ;
-    margin-top: 650px;
-}
-
-.testimonial-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.testimonial {
-    min-width: 100%;
-    box-sizing: border-box;
-    padding: 1.8em 1.2em;
-    text-align: center;
-}
-
-.testimonial p {
-    color: #8c8c90;
-    font-size: 0.9em;
-    line-height: 2em;
-    letter-spacing: 0.05em;
-}
-
-.testimonial img {
-    display: block;
-    margin: 1.8em auto 1.25em auto;
-    border-radius: 50%;
-    width: 4.4em;
-    /* transition: all 0.5s ease-in-out; */
-    
-}
-
-.testimonial h3 {
-    color: #2d3d67;
-    font-size: 1em;
-}
-
-.testimonial h6 {
-    color: #bcc4da;
-    font-size: 0.9em;
-    letter-spacing: 0.03em;
-    font-weight: 400;
-    margin-top: 16px;
-}
-
-.testimonial__wrapper button {
-    font-size: 1.8em;
-    height: 2.2em;
-    width: 2.2em;
-    background-color: #ffffff;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    color: #0a69ed;
-    box-shadow: 0 0 1em rgba(1, 17, 39, 0.25);
-    cursor: pointer;
-    border-radius: 50%;
-    margin: 0 40px;
-}
-
-button#next {
-    right: -1.1em;
-}
-
-button#prev {
-    left: -1.1em;
-}
-
-.social-media {
-    background-color: #fff;
-    width: 270px;
-    border: 3px solid green;
-    padding:10px;
-    
-    margin: 15 auto;
-    text-align: left;
-    color: white;
-    border-radius: 5px;
-    margin-top:500px;
-}
-
- 
-.fa {
-    padding: 10px;
-    font-size: 20px;
-    width: 40px;
-    text-align: center;
-    text-decoration: none;
-    margin: 2px 2px;
-    color:rgb(56, 18, 18);
-    margin-top:10px;
-}
-.fa-facebook {
-    background: #3B5998;
-    color: white;
-}
-.fa:hover {
-    opacity: 0.7;
-}
-.fa-twitter {
-    background: #55ACEE;
-    color: white;
-}
-
-.fa-google {
-    background: #dd4b39;
-    color: white;
-}
-
-.fa-linkedin {
-    background: #007bb5;
-    color: white;
-}
-
-.fa-stumbleupon {
-    background: #eb4924;
-    color: white;
-}
-
-.fa-youtube {
-    background: #bb0000;
-    color: white;
-}
-
-.fa-instagram {
-    background: #125688;
-    color: white;
-}
-
-.fa-pinterest {
-    background: #cb2027;
-    color: white;
-}
-
-.fa-snapchat-ghost {
-    background: #fffc00;
-    color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-
-.fa-yahoo {
-    background: #430297;
-    color: white;
-}
-
-.fa-reddit {
-    background: #ff5700;
-    color: white;
-}
-
-.fa-rss {
-    background: #ff6600;
-    color: white;
-}
-
-.parallax {
-    /* The image used */
-    background-image: url('../static/images/assets/Hatchback.png');
-    
-    /* Full height */
-    height:60%; 
-
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-  /* Turn off parallax scrolling for tablets and phones. Increase the pixels if needed */
-@media only screen and (max-device-width: 1900px) {
-    .parallax {
-      background-attachment: scroll;
+@keyframes slide-in {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
     }
 }
-body, html {
-    height: 100%;
-}
-img {
-    image-rendering: auto; /* Default: let the browser decide */
-    object-fit: cover; /* Ensures the image covers the container */
-    object-position: center; /* Centers the image within the container */
-    width: 100%; /* Make the image responsive */
-    height: auto; /* Maintain the aspect ratio */
+
+.car_detail__right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 53%;
 }
 
-#purchase-now {
-    position: relative;
-    display: inline-block;
-    margin-top: 20px;
+.detail__middle__box {
+    display: flex;
+    row-gap: 1.5rem;
+    flex-direction: column;
+    width: 43%;
 }
 
-#purchase-now a {
-    display: block;
-    background-color: #ff6f61;
-    color: white;
-    padding: 15px 30px;
-    text-decoration: none;
+.detail__right__box {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4rem;
+    width: 40%;
+}
+
+.detail__middle__box h3,
+h4 {
+    color: var(--font--black--color);
+    font-weight: var(--weight--bolder);
+}
+
+.detail__middle__box>p {
+    text-align: justify;
+    color: #4f4f4f;
+}
+
+.specification__warpper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #a5a5a5;
+    padding: 0.5rem 0;
+}
+
+.specification__warpper :nth-child(1) {
+    color: #4f4f4f;
+    width: 50%;
+}
+
+.specification__warpper :nth-child(2) {
+    width: 45%;
+    font-weight: var(--weight--bolder);
+}
+
+.price__box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(0, 0, 0, .05);
+    padding: 35px 0 35px 0;
     font-size: 18px;
-    font-weight: bold;
-    border-radius: 5px;
+    border-radius: 8px;
     text-align: center;
-    transition: background-color 0.3s ease;
+    row-gap: 1.3rem;
+    width: 100%;
 }
 
-#purchase-now a:hover {
-    background-color: #ff3d2e;
+.price__box :nth-child(1) {
+    font-size: 2.1rem;
+    color: var(--bg--first--color);
 }
 
-#purchase-now .pn-hover {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #ff3d2e;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    white-space: nowrap;
-    font-size: 14px;
-    margin-top: 10px;
-    z-index: 1;
-} 
+.price__box :nth-child(2) {
+    font-size: 5rem;
+    color: var(--font--primary--color);
+    font-weight: var(--weight--bolder);
+}
 
-#purchase-now a:hover + .pn-hover {
-      display: block;
+.booking__box {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    box-shadow: 0px 0px 8px 0px rgba(164, 164, 186, 0.2);
+    border-radius: 8px;
+    padding: 3.5rem 2.5rem;
+}
+
+.booking__box p {
+    font-size: 1.7rem;
+    font-weight: var(--weight--bolder);
+}
+
+.booking__box input {
+    height: 40px;
+    width: 100%;
+    padding: 0.5rem;
+    outline: none;
+    font-size: 1.7rem;
+    border: 2px solid #a5a5a5;
+    border-radius: 6px;
+}
+
+.booking__box button {
+    margin: 2rem 0;
+}
+
+.booking__box button a {
+    width: 100%;
+}
+
+.booking__box button a:hover {
+    border-radius: 0%;
+    box-shadow: 0px 0px 7px 0px var(--font--secondary--color);
+}
+
+.booking__features__rentally {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    box-shadow: 0px 0px 8px 0px rgba(164, 164, 186, 0.2);
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.booking__features__rentally i{
+    font-size: 1.3rem;
+    height: 30px;
+    width: 30px;
+    margin-right: 1rem;
+}
+
+.testimonial__wrapper{
+    width: 70%;
+    box-shadow: 0px 0px 8px 0px rgba(164, 164, 186, 0.2);
+    background-color: #fff;
 }

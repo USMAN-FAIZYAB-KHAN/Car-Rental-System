@@ -1,13 +1,17 @@
-function changeImage(src, clickedLine) {
-    // Change the main image
-    document.getElementById('mainImage').src = src;
-    
-    // Remove 'active' class from all lines
-    var lines = document.querySelectorAll('.lines .line');
-    lines.forEach(function(line) {
-        line.classList.remove('active');
+
+const car_image_set = document.querySelectorAll(".car__thumnail__image");
+
+car_image_set.forEach(link => {  
+    link.addEventListener("click", (e) => {
+        let src_target = e.target.src;
+        let mainImage = document.getElementById("mainImage");
+
+        mainImage.classList.remove("slide-in"); 
+
+        setTimeout(() => {
+            mainImage.src = src_target;
+            mainImage.classList.add("slide-in"); 
+        }, 10);
     });
-    
-    // Add 'active' class to the clicked line
-    clickedLine.classList.add('active');
-}
+});
+
