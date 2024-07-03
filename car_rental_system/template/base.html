@@ -13,10 +13,10 @@
   <script src="https://kit.fontawesome.com/de9e1561cd.js" crossorigin="anonymous"></script>
 
   <!--------------------------------------- CSS Styling Link -------------------------------------->
-  <link rel="stylesheet" href="../static/css/base.css">
-  <link rel="stylesheet" href="../static/css/utilityClasses.css">
-  <link rel="stylesheet" href="../static/css/navbar.css">
-  <link rel="stylesheet" href="../static/css/footer.css">
+  <link rel="stylesheet" href="{% static './css/base.css' %}">
+  <link rel="stylesheet" href="{% static './css/utilityClasses.css' %}">
+  <link rel="stylesheet" href="{% static './css/navbar.css' %}">
+  <link rel="stylesheet" href="{% static './css/footer.css' %}">
   {% block cssLink %} {% endblock %}
 
   <!--------------------------------------- Title --------------------------------------->
@@ -68,7 +68,7 @@
         {% if user.is_authenticated %}  
         
         <a class="account__box" href="{% url 'userdashboard' %}">
-          <img src="../static/images/assets/1-green.svg" alt="" class="profile__image" >
+          <img src="{% static './images/assets/1-green.svg' %}" alt="" class="profile__image" >
           <p>{{user.first_name}} {{user.last_name}}</p>
         </a>
 

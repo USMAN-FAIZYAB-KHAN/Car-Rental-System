@@ -125,10 +125,10 @@
 
       <div class="car-rent">
         <p>Daily rate from</p>
-        <h2 class="price">{{ car.price_per_day }} Rs {{ request.path }}</h2>
+        <h2 class="price">{{ car.price_per_day }} Rs</h2>
         <button>
           <span class="top"></span>
-          <a href="#" class="secondary__btn">Rent Now</a>
+          <a href="{% url 'detail' car.car_id %}" class="secondary__btn">Rent Now</a>
           <span class="bottom"></span>
         </button>
       </div>

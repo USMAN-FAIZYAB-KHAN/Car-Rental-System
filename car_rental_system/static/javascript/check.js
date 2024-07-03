@@ -1,10 +1,3 @@
-document.querySelector('form').addEventListener('submit', function(event) {
-    if (!this.checkValidity()) {
-      event.preventDefault(); // Prevent form submission
-      alert('Please fill out all required fields.');
-    }
-  });
-
 
 const car_image_set = document.querySelectorAll(".car__thumnail__image");
 

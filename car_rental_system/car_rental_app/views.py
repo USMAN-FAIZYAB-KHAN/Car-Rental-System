@@ -89,17 +89,31 @@ def carList(request):
 
     return render(request, 'carList.html', {"user": request.user, "cars": cars})
 
-def carDetail(request):
-    if request.method == 'POST':
-        booking_date = request.POST['bookDate']
-        pickup_date = request.POST['pickDate']
-        drop_date = request.POST['dropDate']
-        address = request.POST['address']
-        phoneNumber = request.POST['phoneNumber']
+def carDetail(request, car_id):
 
-    
-        print(booking_date, pickup_date, drop_date, address, phoneNumber)
-    return render(request, 'check.html', {"user": request.user})
+    car = Car.objects.get(car_id=car_id)
+    images = car.images.all()
+
+    if request.method == 'POST':
+        book_date = request.POST['bookdate']
+        pickup_date = request.POST['pickdate']
+        drop_date = request.POST['dropdate']
+        address = request.POST['address']
+        phone_number = request.POST['phonenumber']
+
+        print(book_date, pickup_date, drop_date, address, phone_number)
+
+    # rental = Rental()
+    # rental.car = car
+    # rental.customer = request.user
+    # rental.start_date = start_date
+    # rental.end_date = end_date
+    # rental.status = RentalStatus.objects.get(name='Pending')
+    # rental.save()    
+
+    # return redirect('userDashboard')
+
+    return render(request, 'check.html', {"user": request.user, "car": car, "car_images": images})
 
 def userDashboard(request):
     return render(request, 'userdashboard.html')

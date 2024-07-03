@@ -232,7 +232,11 @@
    width: 30px;
    padding-top: 0.6rem;
 }
+<<<<<<< HEAD
 .description__box2 .svg__img{
+=======
+.vehicle___fleet .svg__img{
+>>>>>>> 3d08426cb18f93200205d6bfc8ab7ddb050e0fb3
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -571,7 +575,11 @@ button#prev {
 
 
 /*--------------------------AYan----------------------------*/
+<<<<<<< HEAD
 /* 
+=======
+
+>>>>>>> 3d08426cb18f93200205d6bfc8ab7ddb050e0fb3
 .vehcile__fleet__container{
     height: 70vh;
     width: 100%;
@@ -581,29 +589,53 @@ button#prev {
 .vehicle___fleet__wrapper {
     position: relative;
     width: 100%;
+<<<<<<< HEAD
+=======
+    /* height: 500px; */
+>>>>>>> 3d08426cb18f93200205d6bfc8ab7ddb050e0fb3
     border-radius: 0.6em;
     display: flex;
     flex-wrap: wrap;
     border: 2px solid darkblue;
     overflow: hidden;
+<<<<<<< HEAD
 } */
 /* 
+=======
+}
+
+>>>>>>> 3d08426cb18f93200205d6bfc8ab7ddb050e0fb3
 .vehicle___fleet-container {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+<<<<<<< HEAD
+=======
+    /* flex-wrap: wrap; */
+>>>>>>> 3d08426cb18f93200205d6bfc8ab7ddb050e0fb3
     column-gap: 52px;
     transition: all 0.5s ease-in-out;
 }
 
 .vehicle___fleet {
+<<<<<<< HEAD
     width: 31%;
     flex: 0 0 auto;
     border-radius: 8px;
     height: 388px;
     text-align: center;
     border: 1px solid #ccc; 
+=======
+    width: 31%; /* Adjust the width to fit 3 vehicle___fleets */
+    /* margin: 0 1%; Add some margin for spacing */
+    flex: 0 0 auto;
+    /* padding: 1.8em 1.2em; */
+    border-radius: 8px;
+    height: 388px;
+    text-align: center;
+    border: 1px solid #ccc; /* Add border to each vehicle___fleet */
+>>>>>>> 3d08426cb18f93200205d6bfc8ab7ddb050e0fb3
 
     background-color: #f9f9f9;
   }
@@ -681,5 +713,69 @@ button#prev {
     font-weight: 400;
     margin-top: 16px;
   }
+<<<<<<< HEAD
    */
   
+=======
+  
+  .slider__button {
+    font-size: 1.8em;
+    height: 2.2em;
+    width: 2.2em;
+    background-color: #ffffff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    color: #0a69ed;
+    box-shadow: 0 0 1em rgba(1, 17, 39, 0.25);
+    cursor: pointer;
+    border-radius: 50%;
+    margin: 0 40px;
+  }
+  
+  button#next {
+    right: -1.1em;
+  }
+
+
+  .vehicle___fleet .slider__btn{
+    position: relative;
+    left: 104px;
+    top: -68px;
+  }
+
+  
+  button#prev {
+    left: -1.1em;
+    color: #179510;
+  }
+
+
+
+
+  .hidden-left{
+    opacity: 0;
+    transform: translateX(-30%);
+    transition: all 1s;
+}
+.hidden-right{
+    opacity: 0;
+    transform: translateX(30%);
+    transition: all 1s;
+}
+.hidden-down{
+    opacity: 0;
+    transform: translateY(30%);
+    transition: all 1s;
+}
+
+.show {
+    opacity: 1;
+    transform: translateX(0%);
+}
+.show-down {
+    opacity: 1;
+    transform: translateX(0%);
+}
+>>>>>>> 3d08426cb18f93200205d6bfc8ab7ddb050e0fb3
