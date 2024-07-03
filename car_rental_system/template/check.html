@@ -1,66 +1,198 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #f1f1f1;
-        }
+{% extends 'base.html' %} {% load static %}
+<!--------------------------------------- CSS Styling Link -------------------------------------->
+{% block cssLink %}
+<!-- <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/> -->
+<link rel="stylesheet" href="../static/css/check.css">
+{% endblock %}
 
-        .wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 50%;
-            height: 50%;
-            background-color: aqua;
-        }
+<!--------------------------------------- Title --------------------------------------->
+{% block title %} Car Details {% endblock %}
 
-        .slider {
-            width: 60px;
-            height: 80px;
-            border-left: 20px solid green;
-            border-right: 20px solid green;
-            position: relative;
-        }
+<!--------------------------------------- Javascript Link -------------------------------------->
+{% block javascript %}
+<script src="../static/javascript/check.js" defer></script>
 
-        .slider:after {
-            content: '';
-            width: 100%;
-            height: 50%;
-            border-left: 20px solid green;
-            border-right: 20px solid green;
-            border-bottom: 20px solid green;
-            border-radius: 5px;
-            left: -34%;
-            top: -60%;
+<!-- <script src="{% static 'javascript/carDetail.js' %}" defer></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+<script
 
-            position: absolute;
-        }
+  src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+  defer
+></script> -->
 
-        .slider:before {
-            content: '';
-            width: 100%;
-            height: 20px;
-            background-color: green;
-            position: absolute;
-            top: 60px;
-        }
-    </style>
-</head>
-<body>
-    <div class="wrapper">
-        <div class="slider"></div>
+{% endblock %} 
+
+{% block body %}
+
+
+<div class="container car__detail__main">
+    <div class="car-images">
+      <img
+        id="mainImage"
+        src="../static/images/assets/car-single/1.jpg"
+        alt="Main Image"
+        class="main-image"
+      />
+
+      <div class="lines">
+        <div
+          class="line"
+          onclick="changeImage('https://www.w3schools.com/howto/img_forest.jpg', this)"
+        ></div>
+        <div
+          class="line"
+          onclick="changeImage('https://www.w3schools.com/howto/img_snow.jpg', this)"
+        ></div>
+        <div
+          class="line"
+          onclick="changeImage('https://www.w3schools.com/howto/img_mountains.jpg', this)"
+        ></div>
+      </div>
+
+      <div class="thumbnail-container">
+        <img
+          src="../static/images/assets/car-single/1.jpg"
+          alt="Thumbnail 1"
+          class="car__thumnail__image "
+        />
+        <img
+          src="../static/images/assets/car-single/2.jpg"
+          alt="Thumbnail 2"
+          class="car__thumnail__image"
+        />
+        <img
+          src="../static/images/assets/car-single/3.jpg"
+          alt="Thumbnail 3"
+          class="car__thumnail__image"
+        />
+        <img
+          src="../static/images/assets/car-single/4.jpg"
+          alt="Thumbnail 4"
+          class="car__thumnail__image"
+        />
+      </div>
     </div>
-</body>
-</html>
+
+    <div class="car_detail__right">
+        <div class="detail__middle__box">
+            <h3>BMW M2 2020</h3>  
+            <p>
+              A spacious interior, impressive fuel economy and a generous list of
+              standard safety features make the 2024 Nissan Altima a solid midsize
+              sedan for families or anyone wanting a roomy car.
+            </p>
+            <h4>Specification</h4>
+
+            <div class="specification__car">
+
+                <div class="specification__warpper">
+                    <p>Body</p>
+                    <p>Sedan</p>
+                </div>
+                
+                <div class="specification__warpper">
+                    <p>Seat</p>
+                    <p>5 seats</p>
+                </div>
+
+                <div class="specification__warpper">
+                    <p>Door</p>
+                    <p>4 doors</p>
+                </div>
+
+                <div class="specification__warpper">
+                    <p>Luggage</p>
+                    <p>150 liters</p>
+                </div>
+
+                <div class="specification__warpper">
+                    <p>Fuel Type</p>
+                    <p>Hybrid</p>
+                </div>
+
+                <div class="specification__warpper">
+                    <p>Engine:</p>
+                    <p>3000 cc</p>
+                </div>
+
+                <div class="specification__warpper">
+                    <p>Year:</p>
+                    <p>2024</p>
+                </div>
+
+                <div class="specification__warpper">
+                    <p>Mileage:</p>
+                    <p>200 miles</p>
+                </div>
+                
+                <div class="specification__warpper">
+                    <p>Color:</p>
+                    <p>Red</p>
+                </div>
+
+                <div class="specification__warpper">
+                    <p>Transmission:</p>
+                    <p>Automatic</p>
+                </div>
+            </div>
+
+            <div class="booking__features__rentally">
+              <h4 style="line-height: 40px;">Features</h4>
+              <p><i class="fa-solid fa-check"></i> Bluetooth</p>
+              <p><i class="fa-solid fa-check"></i> Central</p>
+              <p><i class="fa-solid fa-check"></i> Multimedia Player</p>
+            </div>
+
+          </div>
+
+          <form method="post" class="detail__right__box" role="form" action="{% url 'detail' %}">
+            {% csrf_token %}
+                <div class="price__box">
+                  <p>Daily rate</p>
+                  <h1>$295</h1>
+                </div>
+                <div class="booking__box">
+                  <h4>Booking this car</h4>
+                  <p>Booking Date</p>
+                  <input type="date" name="bookDate" id="" required >
+                  <p>Pick up date</p>
+                  <input type="date" name="pickdate" id="" required>
+                  <p>Drop Off date</p>
+                  <input type="date" name="dropDate" id="" required>
+                  <p>Address</p>
+                  <input type="text" placeholder="Address" name="address" required>
+                  <p>Phone Number</p>
+                  <input type="number" name="phoneNumber" id="" max="11" placeholder="+92 3322321393" required>
+      
+                  <button type="submit">
+                    <span class="top"></span>
+                    <a href="#" class="secondary__btn">Rent Now</a>
+                    <span class="bottom"></span>
+                  </button>
+
+          </form>
+
+                
+      
+    </div>
+
+
+    
+ 
+</div>
+{% endblock %}

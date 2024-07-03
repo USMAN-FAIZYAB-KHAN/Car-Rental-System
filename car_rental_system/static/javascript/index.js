@@ -31,68 +31,192 @@ arrows.forEach((arrow) => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  let orderCompleted = document.querySelector('#order');
-  let customerReview = document.querySelector('#review');
-  let vehicle = document.querySelector('#vehicle');
-  let carExperience = document.querySelector('#experience');
+function countUp(counter, targetNumber, duration) {
+  let startNumber = 0;
+  const increment = targetNumber / (duration / 10);
 
-  // Initialize counters to 0 initially
-  orderCompleted.innerHTML = 0;
-  customerReview.innerHTML = 0;
-  vehicle.innerHTML = 0;
-  carExperience.innerHTML = 0;
+  function updateCounter() {
+      startNumber += increment;
+      if (startNumber < targetNumber) {
+          counter.innerText = Math.ceil(startNumber);
+          setTimeout(updateCounter, 10);
+      } else {
+          counter.innerText = targetNumber;
+      }
+  }
 
-  // Target values
-  let orderCompletedTarget = 7487;
-  let customerReviewTarget = 5844;
-  let vehicleTarget = 246;
-  let carExperienceTarget = 15;
+  updateCounter();
+}
 
-  // Total duration in milliseconds
-  let delay = 500; 
-  let duration = 2000; 
-  let intervalTime = 140;
+const counters = document.getElementsByClassName("number");
+for (let i = 0; i < counters.length; i++) {
+  const targetNumber = counters[i].innerText;
+  countUp(counters[i], targetNumber, 2000);
+}
 
-  // Function to start counters after a brief delay
-  setTimeout(() => {
-    // Calculate the number of steps for each target value to finish within the duration
-    let steps = duration / intervalTime;
 
-    // Calculate increments for each counter
-    let orderCompletedIncrement = orderCompletedTarget / steps;
-    let customerReviewIncrement = customerReviewTarget / steps;
-    let vehicleIncrement = vehicleTarget / steps;
+//--------------------------------------vehicle__fleet------------------------------------------------
+
+
+const vehicle_fleets = [
+  {
+    car_name: "Jeep Renegade",
+    car_type: "Sedan",
+    car_image: "../static/images/assets/lexus.jpg",
+    car_seats: "4",
+    car_idk: "2",
+    car_doors: "4",
+    car_price: "$6183",
+  },
+  {
+    car_name: "Ford Mustang",
+    car_type: "Sports Car",
+    car_image: "../static/images/assets/lexus.jpg",
+    car_seats: "2",
+    car_idk: "3",
+    car_doors: "2",
+    car_price: "$7500",
+  },
+  {
+    car_name: "Toyota Camry",
+    car_type: "Sedan",
+    car_image: "../static/images/assets/lexus.jpg",
+    car_seats: "5",
+    car_idk: "2",
+    car_doors: "4",
+    car_price: "$4500",
+  },
+  {
+    car_name: "Honda CR-V",
+    car_type: "SUV",
+    car_image: "../static/images/assets/lexus.jpg",
+    car_seats: "5",
+    car_idk: "4",
+    car_doors: "4",
+    car_price: "$5500",
+  },
+  {
+    car_name: "Chevrolet Malibu",
+    car_type: "Sedan",
+    car_image: "../static/images/assets/lexus.jpg",
+    car_seats: "5",
+    car_idk: "2",
+    car_doors: "4",
+    car_price: "$4600",
+  },
+  {
+    car_name: "BMW X5",
+    car_type: "SUV",
+    car_image: "../static/images/assets/lexus.jpg",
+    car_seats: "5",
+    car_idk: "4",
+    car_doors: "4",
+    car_price: "$7000",
+  },
+];
+
+let currentIndex = 0;
+const vehicle_fleet_Container = document.querySelector(".main__fleet__box");
+const nextBtn = document.getElementById("next");
+const prevBtn = document.getElementById("prev");
+
+// const createVehicleFleetHTML = (vehicle) => {
+//   return `
     
-    let orderCompletedCurrent = 0;
-    let customerReviewCurrent = 0;
-    let vehicleCurrent = 0;
-    let carExperienceCurrent = 0;
+//   `;
+// };
 
-    let currentStep = 0;
+// const updateVehicleFleets = () => {
+//   vehicle_fleet_Container.innerHTML = '';
+//   vehicle_fleets.forEach(vehicle => {
+//     vehicle_fleet_Container.innerHTML += createVehicleFleetHTML(vehicle);
+//   });
+// };
 
-    const interval = setInterval(() => {
-      currentStep++;
+const slideNext = () => {
+  currentIndex = (currentIndex + 3) % vehicle_fleets.length;
+  vehicle_fleet_Container.style.transform = `translateX(-${currentIndex * (100 / 3)}%)`;
+};
 
-      // Update each counter
-      orderCompletedCurrent = Math.min(orderCompletedTarget, Math.round(orderCompletedCurrent + orderCompletedIncrement));
-      customerReviewCurrent = Math.min(customerReviewTarget, Math.round(customerReviewCurrent + customerReviewIncrement));
-      vehicleCurrent = Math.min(vehicleTarget, Math.round(vehicleCurrent + vehicleIncrement));
-      
-      if (carExperienceCurrent < carExperienceTarget) {
-        carExperienceCurrent++;
-      }
+const slidePrev = () => {
+  currentIndex = (currentIndex - 3 + vehicle_fleets.length) % vehicle_fleets.length;
+  vehicle_fleet_Container.style.transform = `translateX(-${currentIndex * (100 / 3)}%)`;
+};
 
-      orderCompleted.innerHTML = Math.round(orderCompletedCurrent);
-      customerReview.innerHTML = Math.round(customerReviewCurrent);
-      vehicle.innerHTML = Math.round(vehicleCurrent);
-      carExperience.innerHTML = carExperienceCurrent;
+nextBtn.addEventListener("click", slideNext);
+prevBtn.addEventListener("click", slidePrev);
 
-      // Check if all counters have reached their targets
-      if (currentStep >= steps) {
-        clearInterval(interval);
-      }
-    }, intervalTime);
-  }, delay);
-});
+updateVehicleFleets();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//____________________________________ANIMATION_______________________________________________//
+
+
+// const observerDown = new IntersectionObserver((entries) => {
+//   entries.forEach((entry) => {
+//       if (entry.isIntersecting) {
+//           entry.target.classList.add('show-down');
+//       } else {
+//           entry.target.classList.remove('show-down');
+//       }
+//   });
+// });
+
+// const observerLeft = new IntersectionObserver((entries) => {
+//   entries.forEach((entry) => {
+//       if (entry.isIntersecting) {
+//           setTimeout(() => {
+//               entry.target.classList.add('show');
+//           }, 500); // Delay for left elements
+//       } else {
+//           entry.target.classList.remove('show');
+//       }
+//   });
+// });
+
+// const observerRight = new IntersectionObserver((entries) => {
+//   entries.forEach((entry) => {
+//       if (entry.isIntersecting) {
+//           setTimeout(() => {
+//               entry.target.classList.add('show');
+//           }, 700); // Delay for right elements
+//       } else {
+//           entry.target.classList.remove('show');
+//       }
+//   });
+// });
+
+// const hiddenElementsDown = document.querySelectorAll('.hidden-down');
+// hiddenElementsDown.forEach((el) => observerDown.observe(el));
+
+// const hiddenElementsLeft = document.querySelectorAll('.hidden-left');
+// hiddenElementsLeft.forEach((el) => observerLeft.observe(el));
+
+// const hiddenElementsRight = document.querySelectorAll('.hidden-right');
+// hiddenElementsRight.forEach((el) => observerRight.observe(el));

@@ -1,5 +1,3 @@
-
-
 /* ==================== utility Classes =================== */
 
 .container {
@@ -19,10 +17,12 @@ h2 {
     color: var(--font--black--color);
     font-weight: var(--weight--bolder);
 }
-h3{
+
+h3 {
     color: var(--font--white--color);
     font-size: var(--middle--font-size);
 }
+
 h4 {
     font-size: var(--small--font-size);
     color: var(--font--white--color);
@@ -72,7 +72,7 @@ ul {
 .secondary__btn {
     display: inline-block;
     padding: 1.5rem 3rem;
-    border-radius: 5px; 
+    border-radius: 5px;
     background-color: var(--button--primary--bg--color);
     color: var(--font--white--color);
     transition: all 0.5s ease-in-out;
@@ -100,7 +100,7 @@ ul {
 }
 
 .primary__btn::after,
-.secondary__btn::after{
+.secondary__btn::after {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -112,7 +112,7 @@ ul {
 }
 
 .primary__btn:hover,
-.secondary__btn:hover{
+.secondary__btn:hover {
     border-radius: 0%;
     box-shadow: 0px 0px 10px 1px var(--font--secondary--color);
 }
@@ -120,11 +120,11 @@ ul {
 .primary__btn:hover::after,
 .primary__btn:hover::before,
 .secondary__btn:hover::before,
-.secondary__btn:hover::after{
+.secondary__btn:hover::after {
     width: 100%;
 }
 
-.top{
+.top {
     display: block;
     position: absolute;
     top: 0;
@@ -132,11 +132,11 @@ ul {
     height: 0%;
     width: 0.5%;
     background-color: var(--font--white--color);
-    transition: all 0.5s ease-in-out;   
+    transition: all 0.5s ease-in-out;
 }
 
 
-.bottom{
+.bottom {
     display: block;
     position: absolute;
     bottom: 0;
@@ -148,7 +148,7 @@ ul {
 }
 
 button:hover .top,
-button:hover .bottom{
+button:hover .bottom {
     height: 100%;
 }
 
@@ -164,4 +164,92 @@ button:hover .bottom{
     background-color: var(--font--primary--color);
     margin: 1rem auto;
     transform: skewX(-50deg);
+}
+
+.toast {
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    padding-right: 3rem;
+    position: fixed;
+    top: 5%;
+    right: 4%;
+    column-gap: 1rem;
+    z-index: var(--largest--z-index);
+    background-color: var(--font--white--color);
+    border-left: 4px solid var(--font--primary--color);
+    box-shadow: 0px 0px 8px 0px rgba(164, 164, 186, 0.2);
+    overflow: hidden;
+    transform: translateX(150%);
+}
+
+.toast::after {
+    content: '';
+    height: 3px;
+    background-color: var(--font--primary--color);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    animation: toastAnimation 2s 1s linear forwards;
+}
+
+.toastanimate {
+    animation: toastAnimateIn 0.4s linear forwards;
+}
+
+.toastanimateout {
+    animation: toastAnimateOut 0.4s linear forwards;
+}
+
+@keyframes toastAnimation {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes toastAnimateIn {
+    from {
+        transform: translateX(150%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes toastAnimateOut {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(150%);
+    }
+}
+
+.toast__message h4 {
+    font-size: 1.7rem;
+    line-height: 30px;
+    font-weight: 500;
+}
+
+.toast__message p {
+    font-size: 1.4rem;
+}
+
+.toast .toast__link i {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    font-size: 1.5rem;
+    padding: 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
