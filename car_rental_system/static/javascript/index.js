@@ -55,11 +55,15 @@ for (let i = 0; i < counters.length; i++) {
 }
 
 
-//--------------------------------------vehicle__fleet------------------------------------------------
+//-------------------------------------- Vehicle Fleet ------------------------------------------------//
 
 
+<<<<<<< HEAD
 
 const vehicle___fleets = [
+=======
+const vehicle_fleets = [
+>>>>>>> 3fd8e9ee77a783f99c92b2dea65d5ee1b1eff906
   {
     car_name: "Jeep Renegade",
     car_type: "Sedan",
@@ -117,66 +121,24 @@ const vehicle___fleets = [
 ];
 
 let currentIndex = 0;
-const vehicle___fleetContainer = document.querySelector(".vehicle___fleet-container");
+const vehicle_fleet_Container = document.querySelector(".main__fleet__box");
 const nextBtn = document.getElementById("next");
 const prevBtn = document.getElementById("prev");
 
-const createVehicleFleetHTML = (vehicle___fleet) => {
-  return `
-    <div class="vehicle___fleet">
-      <img class="car__image" src="${vehicle___fleet.car_image}" alt="${vehicle___fleet.car_name}">
-      <span class="car__name">${vehicle___fleet.car_name}</span>
-      <div class="car__det">
-        <span class="svg__img"><img src="../static/images/assets/1-green.svg" alt="" /><p>${vehicle___fleet.car_seats}</p></span>
-        <span class="svg__img"><img src="../static/images/assets/2-green.svg" alt="" /><p>${vehicle___fleet.car_idk}</p></span>
-        <span class="svg__img"><img src="../static/images/assets/3-green.svg" alt="" /><p>${vehicle___fleet.car_doors}</p></span>
-        <span class="svg__img"><img src="../static/images/assets/4-green.svg" alt="" /><p>${vehicle___fleet.car_type}</p></span>
-      </div>
-      <span class="rating_stars">
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-      </span>  
-      <p style="font-size: 15px; height: auto; position: relative; width: 145px; top: 4px;">Daily Rate From</p>
-      <h4>${vehicle___fleet.car_price}</h4>  
-      <button class="slider__btn">
-        <span class="top"></span>
-        <a href="" class="primary__btn">Rent Now</a>
-        <span class="bottom"></span>
-      </button>
-    </div>
-  `;
-};
-
-const updateVehicleFleets = () => {
-  vehicle___fleetContainer.innerHTML = '';
-  vehicle___fleets.forEach(vehicle => {
-    vehicle___fleetContainer.innerHTML += createVehicleFleetHTML(vehicle);
-  });
-};
-
 const slideNext = () => {
-  currentIndex = (currentIndex + 3) % vehicle___fleets.length;
-  vehicle___fleetContainer.style.transform = `translateX(-${currentIndex * (100 / 3)}%)`;
+  currentIndex = (currentIndex + 3) % vehicle_fleets.length;
+  vehicle_fleet_Container.style.transform = `translateX(-${currentIndex * (100 / 3)}%)`;
 };
 
 const slidePrev = () => {
-  currentIndex = (currentIndex - 3 + vehicle___fleets.length) % vehicle___fleets.length;
-  vehicle___fleetContainer.style.transform = `translateX(-${currentIndex * (100 / 3)}%)`;
+  currentIndex = (currentIndex - 3 + vehicle_fleets.length) % vehicle_fleets.length;
+  vehicle_fleet_Container.style.transform = `translateX(-${currentIndex * (100 / 3)}%)`;
 };
 
 nextBtn.addEventListener("click", slideNext);
 prevBtn.addEventListener("click", slidePrev);
 
-updateVehicleFleets();
-
-
-
-
-//____________________________________ANIMATION_______________________________________________//
-
-
+//-------------------------------------- Animation ------------------------------------------------//
 const observerDown = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
       if (entry.isIntersecting) {

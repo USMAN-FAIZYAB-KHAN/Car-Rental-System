@@ -4,7 +4,7 @@
 
 
 .about__main__header{
-    background-image: Linear-gradient(rgba(0, 0, 0, 0.1),rgba(120, 202, 92, 0.4)), url('../images/assets/aboutheader.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/assets/aboutheader.jpg');
     background-position: center;
     /* background-attachment: fixed; */
     background-repeat: no-repeat;

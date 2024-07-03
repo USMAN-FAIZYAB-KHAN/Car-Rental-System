@@ -13,10 +13,10 @@
   <script src="https://kit.fontawesome.com/de9e1561cd.js" crossorigin="anonymous"></script>
 
   <!--------------------------------------- CSS Styling Link -------------------------------------->
-  <link rel="stylesheet" href="../static/css/base.css">
-  <link rel="stylesheet" href="../static/css/utilityClasses.css">
-  <link rel="stylesheet" href="../static/css/navbar.css">
-  <link rel="stylesheet" href="../static/css/footer.css">
+  <link rel="stylesheet" href="{% static './css/base.css' %}">
+  <link rel="stylesheet" href="{% static './css/utilityClasses.css' %}">
+  <link rel="stylesheet" href="{% static './css/navbar.css' %}">
+  <link rel="stylesheet" href="{% static './css/footer.css' %}">
   {% block cssLink %} {% endblock %}
 
   <!--------------------------------------- Title --------------------------------------->
@@ -30,6 +30,18 @@
 </head>
 
 <body>
+
+   <!-------- Thoast Notification -------->
+  <div class="toast" id="toast_notification">
+    <div class="toast__link">
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <div class="toast__message">
+      <h4 style="color: #121212;">Success</h4>
+      <p>Your changed have been saved</p>
+    </div>
+  </div>
+  
 
   <div class="main__home">
 
@@ -56,7 +68,7 @@
         {% if user.is_authenticated %}  
         
         <a class="account__box" href="{% url 'userdashboard' %}">
-          <img src="../static/images/assets/1-green.svg" alt="" class="profile__image" >
+          <img src="{% static './images/assets/1-green.svg' %}" alt="" class="profile__image" >
           <p>{{user.first_name}} {{user.last_name}}</p>
         </a>
 
@@ -69,7 +81,7 @@
           </button>
           <button>
             <span class="top extra_top"></span>
-            <a href="{% url 'signup' %}" class="secondary__btn">SigUp</a>
+            <a href="{% url 'signup' %}" class="secondary__btn">Signup</a>
             <span class="bottom"></span>
           </button>
         </div>

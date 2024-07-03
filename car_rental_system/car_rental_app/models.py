@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator 
 from django.contrib.auth.models import AbstractUser
-from .manager import UserManager
+from .manager import UserManager    
 
 class UserType(models.Model):
     type_id = models.AutoField(primary_key=True)
@@ -29,15 +29,22 @@ class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     description = models.TextField()
-
-    class Meta:
-        verbose_name_plural = "Categories"
+    image = models.ImageField(upload_to='category_images/')
 
     def __str__(self):
         return self.name
     
 class Transmission(models.Model):
     transmission_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+    description = models.TextField(null=True)
+
+    def __str__(self):
+        return self.name
+    
+    
+class FuelType(models.Model):
+    fuel_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
 
@@ -104,9 +111,7 @@ class RentalStatus(models.Model):
     status_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     description = models.TextField(null=True)
-
-    class Meta:
-        verbose_name_plural = "Rental Statuses"
+    abcd = models.IntegerField()
 
     def __str__(self):
         return self.name

@@ -4,7 +4,7 @@
 /* ----------------- CSS for the banner ------------------- */
 .banner {
     height: 40vh;
-    background-image: linear-gradient(rgba(101, 98, 98, 0.71), rgb(0 0 0 / 70%)), url(../static/images/assets/carInventory.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(../static/images/assets/carInventory.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -21,15 +21,22 @@
     column-gap: 2rem;
     /* padding: 0 3rem; */
     justify-content: space-between;
+    
+    margin: 8rem auto;
 }
 
 .left {
     flex: 2.2;
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
 }
 
 .right {
     flex: 6.8;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
 }
 
 .car-card {
@@ -38,7 +45,6 @@
     border: 1px solid rgb(209, 209, 209);
     width: 95%;
     height: 200px;
-    margin: 3rem auto;
     border-radius: 10px;
     column-gap: 2rem;
     /* border: 2px solid gold; */
@@ -119,7 +125,6 @@
     border-radius: 10px;
     border: 1px solid rgb(209, 209, 209);
     padding: 2.5rem;
-    margin-top: 3rem;
 }
 
 
@@ -303,6 +308,24 @@ input[type="checkbox"]:checked+label {
     }
 }
 
+
+.filter-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    height: 200px;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 3rem 2.5rem;
+}
+
+.filter-wrapper .secondary__btn{
+    width: 180px;
+}
 /* ----------------- CSS for the pagination ------------------- */
 
 .pagination {

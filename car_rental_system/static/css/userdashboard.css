@@ -11,7 +11,7 @@
 }
 
 .profile__main__header {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('../images/assets/12.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/assets/12.jpg');
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -22,8 +22,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
-    
+.profile__main__header h1{
+    animation: fade 1s linear forwards;
 }
 
 .main__user__dashboard{
@@ -52,7 +54,6 @@
     row-gap: 2rem;
     transition: all 0.5s ease-in-out;
     animation: fade 1s linear forwards;
-
 }
 
 

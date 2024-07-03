@@ -27,3 +27,19 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
   });
 });
+
+
+
+const toast_notification = document.querySelector("#toast_notification");
+console.log("onj")
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    toast_notification.classList.add("toastanimate");
+
+    // Remove the class after the ::after animation completes (assuming 2s animation and 1.5s delay)
+    setTimeout(() => {
+      toast_notification.classList.remove("toastanimate");
+      toast_notification.classList.add("toastanimateout");
+    }, 3000); // 3500ms = 1.5s delay + 2s animation
+  }, 10);
+});

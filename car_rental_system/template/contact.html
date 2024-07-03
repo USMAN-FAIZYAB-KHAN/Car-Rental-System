@@ -8,6 +8,12 @@
 <link rel="stylesheet" href="../static/css/contact.css" />
 {% endblock %}
 
+<!--------------------------------------- Javascript Link -------------------------------------->
+
+{% block javascript %}
+<script src="../static/javascript/contact.js" defer></script>
+ {% endblock %}
+
 <!--------------------------------------- Title --------------------------------------->
 
 {% block title %}{% endblock %}
@@ -41,11 +47,18 @@
     </button>
   </div>
 
-  <div class="testimonial__wrapper">
-    <div class="quote-icon"><i class="fa-solid fa-quote-left" id="quote"></i></div>
-    <div class="testimonial-container" id="testimonial-container"></div>
-    <button id="prev">&lt;</button>
-    <button id="next">&gt;</button>
+  <div class="main__testimonial">
+    <div class="testimonial__header">
+      <h3 style="color: #121212;" class="">
+        Testimonial </h3>
+        <span></span>
+    </div>
+    <div class="testimonial__wrapper">
+      <div class="quote-icon"><i class="fa-solid fa-quote-left" id="quote"></i></div>
+      <div class="testimonial-container" id="testimonial-container"></div>
+      <button id="prev">&lt;</button>
+      <button id="next">&gt;</button>
+    </div>
   </div>
 
 </div>
