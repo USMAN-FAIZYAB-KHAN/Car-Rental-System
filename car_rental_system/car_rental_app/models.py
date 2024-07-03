@@ -105,6 +105,7 @@ class RentalStatus(models.Model):
     status_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     description = models.TextField(null=True)
+    abcd = models.IntegerField()
 
     class Meta:
         verbose_name_plural = "Rental Statuses"
