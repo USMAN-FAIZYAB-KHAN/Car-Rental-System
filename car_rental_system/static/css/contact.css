@@ -13,6 +13,7 @@
     min-height: 40vh;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .main__contact__container {
@@ -304,3 +305,57 @@ button#prev {
     opacity: 1;
     transform: translateY(0%);
 }
+
+/* Popup Styles */
+.popup {
+    position: absolute;
+    background-color: var(--font--secondary--color);
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    animation: right_to_left 0.5s ease-out;
+    transition: right 0.5s ease-out;
+  }
+
+   @keyframes right_to_left {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+   
+  .popup-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .tick-mark {
+    margin-right: 10px;
+    font-size: 20px;
+    animation: tick-animation 0.5s ease-out;
+  }
+  
+  @keyframes tick-animation {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .hidden2 {
+    display: none;
+  }
+
+  .visible{
+    right: 0px;
+  }
+  
+  

@@ -16,21 +16,27 @@
 
 <div class="contact__main__header">
   <h1>Contact Us</h1>
+  <div id="popup" class="popup hidden2">
+    <div class="popup-content">
+      <p class="tick-mark">✔</p>
+      <p>Email Sent Successfully!</p>
+    </div>
+  </div>  
 </div>
 
 <div class="main__contact__container container">
   <div class="contact__rentaly">
     <h2>Do you have any question?</h2>
     <div class="contact__info">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <input type="number" placeholder="Your Phone" required>
+      <input class="user_name" type="text" placeholder="Your Name" required>
+      <input class="user_email" type="email" placeholder="Your Email" required>
+      <input class="ph_no" type="number" placeholder="Your Phone" required>
     </div>
-    <textarea name id placeholder="Your Message" required></textarea>
+    <textarea class="message" name id placeholder="Your Message" required></textarea>
 
     <button>
       <span class="top"></span>
-      <a href="#" class="secondary__btn">Send Message</a>
+      <a href="#" onclick="sendMail()" class="secondary__btn send__mail">Send Message</a>
       <span class="bottom"></span>
     </button>
   </div>
@@ -93,4 +99,14 @@
 
 {% block javascript %}
 <script src="../static/javascript/contact.js" defer></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "-6bIFvHsiLq5GmfWm",
+      });
+   })();
+</script>
  {% endblock %}

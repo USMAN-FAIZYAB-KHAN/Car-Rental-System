@@ -93,7 +93,7 @@ const testimonials = [
 
   const observer = new IntersectionObserver((entries)=> {
     entries.forEach((entry) => {
-        console.log(entry)
+        // console.log(entry)
         if (entry.isIntersecting){
             entry.target.classList.add('show')       
         }else {
@@ -104,3 +104,35 @@ const testimonials = [
 
 const hiddenElements = document.querySelectorAll('.hidden')
 hiddenElements.forEach((el) => observer.observe(el))
+
+
+
+function sendMail() {
+  showPopup();
+  var params = {
+    user_name: document.querySelector('.user_name').value,
+    ph_no: document.querySelector('.ph_no').value,
+    user_email: document.querySelector('.user_email').value,
+    message: document.querySelector('.message').value,
+  }
+  
+  emailjs.send("service_a4wsrkd", "template_4f02w0v", params).then(function(res) {
+    
+  });
+}
+
+function showPopup() {
+  var popup = document.getElementById('popup');
+  popup.classList.remove('hidden2');
+  popup.classList.add('visible');
+
+  setTimeout(function() {
+    popup.classList.remove('visible');
+    popup.classList.add('hidden2');
+  }, 2000);
+}
+
+
+
+
+
