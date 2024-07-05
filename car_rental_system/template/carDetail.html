@@ -13,11 +13,13 @@
 <!--------------------------------------- Javascript Link -------------------------------------->
 {% block javascript %}
 <script src="{% static './javascript/carDetail.js' %}" defer></script>
-
 {% endblock %} 
 
+
+<!--------------------------------------- Body --------------------------------------->
 {% block body %}
 
+<!-------- Single Car View Section -------->
 <div class="container car__detail__main">
     <div class="car-images">
       <img
@@ -27,7 +29,7 @@
         class="main-image"
       />
 
-      <div class="lines">
+      <!-- <div class="lines">
         <div
           class="line"
           onclick="changeImage('https://www.w3schools.com/howto/img_forest.jpg', this)"
@@ -40,7 +42,7 @@
           class="line"
           onclick="changeImage('https://www.w3schools.com/howto/img_mountains.jpg', this)"
         ></div>
-      </div>
+      </div> -->
 
       <div class="thumbnail-container">
         {% for image in car_images %}

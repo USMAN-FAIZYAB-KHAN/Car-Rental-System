@@ -1,24 +1,35 @@
-{% extends 'base.html' %}
-
-{% load static %}
+{% extends 'base.html' %} {% load static %}
 
 <!--------------------------------------- CSS Styling Link -------------------------------------->
-
 {% block cssLink %}
 <link rel="stylesheet" href="../static/css/contact.css" />
 {% endblock %}
 
 <!--------------------------------------- Javascript Link -------------------------------------->
-
 {% block javascript %}
 <script src="../static/javascript/contact.js" defer></script>
- {% endblock %}
+{% endblock %}
 
 <!--------------------------------------- Title --------------------------------------->
-
 {% block title %}{% endblock %}
 
+<!--------------------------------------- Body --------------------------------------->
 {% block body %}
+
+<!-------- Toast Notification -------->
+
+<div class="toast" id="toast_notification">
+  <div class="toast__link">
+    <i class="fa-solid fa-xmark"></i>
+  </div>
+  <div class="toast__message">
+    <h4 style="color: #121212">Empty</h4>
+    <p>Fill out all the input field</p>
+  </div>
+  <span id="toast-border"></span>
+</div>
+
+<!-------- Contact Section -------->
 
 <div class="contact__main__header">
   <h1>Contact Us</h1>
@@ -28,36 +39,36 @@
   <div class="contact__rentaly">
     <h2>Do you have any question?</h2>
     <div class="contact__info">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <input type="number" placeholder="Your Phone" required>
+      <input type="text" placeholder="Your Name" id="name" required />
+      <input type="email" placeholder="Your Email" id="email" required />
+      <input type="number" placeholder="Your Phone" id="phonenumber" required />
     </div>
     <textarea name id placeholder="Your Message" required></textarea>
 
-    <button>
+    <button type="submit">
       <span class="top"></span>
-      <a href="#" class="secondary__btn">Send Message</a>
+      <a href="#" class="secondary__btn" id="btn">Send Message</a>
       <span class="bottom"></span>
     </button>
   </div>
 
   <div class="main__testimonial">
     <div class="testimonial__header">
-      <h3 style="color: #121212;" class="">
-        Testimonial </h3>
-        <span></span>
+      <h3 style="color: #121212" class="">Testimonial</h3>
+      <span></span>
     </div>
     <div class="testimonial__wrapper">
-      <div class="quote-icon"><i class="fa-solid fa-quote-left" id="quote"></i></div>
+      <div class="quote-icon">
+        <i class="fa-solid fa-quote-left" id="quote"></i>
+      </div>
       <div class="testimonial-container" id="testimonial-container"></div>
       <button id="prev">&lt;</button>
       <button id="next">&gt;</button>
     </div>
   </div>
-
 </div>
 
-<h2 style="text-align: center;">
+<h2 style="text-align: center">
   Our <span class="styling__content"> Location</span>
   <span class="underline__style"></span>
 </h2>
@@ -65,32 +76,41 @@
   <div class="contact__specification hidden">
     <div class="contact__offices hidden">
       <h2>Karachi Office</h2>
-      <p><i class="fa-solid fa-location-dot"></i> &nbsp; 08 W 36th St, New York,
-        NY 10001</p>
+      <p>
+        <i class="fa-solid fa-location-dot"></i> &nbsp; 08 W 36th St, New York,
+        NY 10001
+      </p>
       <p><i class="fa-solid fa-phone"></i> &nbsp; +1 333 9296</p>
-      <p style="color: #1ECB15;"><i class="fa-solid fa-envelope"></i> &nbsp;
-        contact@example.com</p>
+      <p style="color: #1ecb15">
+        <i class="fa-solid fa-envelope"></i> &nbsp; contact@example.com
+      </p>
     </div>
     <div class="contact__offices hidden">
       <h2>Islamabad Office</h2>
-      <p><i class="fa-solid fa-location-dot"></i> &nbsp; 08 W 36th St, New York,
-        NY 10001</p>
+      <p>
+        <i class="fa-solid fa-location-dot"></i> &nbsp; 08 W 36th St, New York,
+        NY 10001
+      </p>
       <p><i class="fa-solid fa-phone"></i> &nbsp; +1 333 9296</p>
-      <p style="color: #1ECB15;"><i class="fa-solid fa-envelope"></i> &nbsp;
-        contact@example.com</p>
+      <p style="color: #1ecb15">
+        <i class="fa-solid fa-envelope"></i> &nbsp; contact@example.com
+      </p>
     </div>
     <div class="contact__offices hidden">
       <h2>Multan Office</h2>
-      <p><i class="fa-solid fa-location-dot"></i> &nbsp; 08 W 36th St, New York,
-        NY 10001</p>
+      <p>
+        <i class="fa-solid fa-location-dot"></i> &nbsp; 08 W 36th St, New York,
+        NY 10001
+      </p>
       <p><i class="fa-solid fa-phone"></i> &nbsp; +1 333 9296</p>
-      <p style="color: #1ECB15;"><i class="fa-solid fa-envelope"></i> &nbsp;
-        contact@example.com</p>
+      <p style="color: #1ecb15">
+        <i class="fa-solid fa-envelope"></i> &nbsp; contact@example.com
+      </p>
     </div>
   </div>
   <div class="map__upper__container">
     <div class="map-container">
-      <img src="../static/images/assets/pk.svg" alt="">
+      <img src="../static/images/assets/pk.svg" alt="" />
       <div class="marker karachi-dot" title="Karachi"></div>
       <div class="marker-label karachi-label">Karachi</div>
       <div class="marker islamabad-dot" title="Islamabad"></div>
@@ -100,5 +120,5 @@
     </div>
   </div>
 </div>
-{% endblock %}
 
+{% endblock %}

@@ -30,16 +30,37 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
 
-const toast_notification = document.querySelector("#toast_notification");
-console.log("onj")
-document.addEventListener("DOMContentLoaded", () => {
-  setTimeout(() => {
-    toast_notification.classList.add("toastanimate");
+// const toast_notification = document.querySelector("#toast_notification");
 
-    // Remove the class after the ::after animation completes (assuming 2s animation and 1.5s delay)
-    setTimeout(() => {
-      toast_notification.classList.remove("toastanimate");
-      toast_notification.classList.add("toastanimateout");
-    }, 3000); // 3500ms = 1.5s delay + 2s animation
-  }, 10);
+// document.addEventListener("DOMContentLoaded", () => {
+//   setTimeout(() => {
+//     toast_notification.classList.add("toastanimate");
+
+//     // Remove the class after the ::after animation completes (assuming 2s animation and 1.5s delay)
+//     setTimeout(() => {
+//       toast_notification.classList.remove("toastanimate");
+//       toast_notification.classList.add("toastanimateout");
+//     }, 3000); // 3500ms = 1.5s delay + 2s animation
+//   }, 10);
+// });
+
+let scrollHome = document.querySelector(".scroll-up");
+
+const scroll = () => {
+  let windowHeight = window.innerHeight;
+  if (window.scrollY >= windowHeight) { // Show button when scrolled down the height of one page
+    scrollHome.classList.add('show');
+  } else {
+    scrollHome.classList.remove('show');
+  }
+};
+
+window.addEventListener('scroll', scroll);
+
+scrollHome.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
 });

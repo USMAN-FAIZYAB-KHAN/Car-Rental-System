@@ -93,7 +93,6 @@ const testimonials = [
 
   const observer = new IntersectionObserver((entries)=> {
     entries.forEach((entry) => {
-        console.log(entry)
         if (entry.isIntersecting){
             entry.target.classList.add('show')       
         }else {
@@ -104,3 +103,39 @@ const testimonials = [
 
 const hiddenElements = document.querySelectorAll('.hidden')
 hiddenElements.forEach((el) => observer.observe(el))
+
+const showToast = (border) => {
+  toast_notification.classList.remove("toastanimate", "toastanimateout");
+  void toast_notification.offsetWidth; 
+
+  
+  border.classList.add("toastBoderAnimation");
+
+  toast_notification.classList.add("toastanimate");
+
+  setTimeout(() => {
+    toast_notification.classList.remove("toastanimate");
+    toast_notification.classList.add("toastanimateout");
+    setTimeout(() => {
+      toast_notification.classList.remove("toastanimateout");
+    }, 300); 
+  }, 2300); 
+};
+
+const toast_notification = document.querySelector("#toast_notification");
+const checkButton = document.querySelector("#btn");
+
+checkButton.addEventListener("click", (e) => {
+  let name = document.querySelector("#name").value;
+  let email = document.querySelector("#email").value;
+  let number = document.querySelector("#phonenumber").value;
+  let toast_border = document.querySelector("#toast-border");
+
+  e.preventDefault();
+  if (name === "" || email === "" || number === "") {
+    toast_border.classList.remove("toastBoderAnimation");
+    showToast(toast_border);
+  }
+  
+  // location.reload()
+});
