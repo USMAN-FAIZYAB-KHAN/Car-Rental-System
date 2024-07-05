@@ -153,6 +153,16 @@ h4 {
     border-radius: 6px;
 }
 
+.country-select {
+    width: 30%;
+    height: 40px;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    outline: none;
+    font-size: 1.7rem;
+    border: 2px solid #a5a5a5;
+    border-radius: 6px;
+}
+
 .booking__box button {
     margin: 2rem 0;
 }

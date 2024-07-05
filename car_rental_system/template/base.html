@@ -27,8 +27,13 @@
     {% block javascript %} {% endblock %}
   </head>
 
-  <!--------------------------------------- Body --------------------------------------->
-  <body>
+  
+
+</head>
+
+<!--------------------------------------- Body --------------------------------------->
+<body>
+  
     <!-------- Scrolling Up -------->
 
     <a href="#navbar" class="scroll-up"
@@ -37,16 +42,25 @@
         alt="Scroll Up"
     /></a>
 
-    <div class="main__home">
-      <!-------- Navbar -------->
-      <nav class="navbar" id="navbar">
-        <div class="logo">
-          <a href="{% url 'home' %}"
-            ><img
-              src="{% static './images/assets/logo-light.png' %}"
-              alt="Car Rental"
-          /></a>
-        </div>
+   <!-------- Thoast Notification -------->
+  <div class="toast" id="toast_notification">
+    <div class="toast__link">
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <div class="toast__message">
+      <h4 style="color: #121212;">Success</h4>
+      <p>Your changed have been saved</p>
+    </div>
+  </div>
+  
+
+  <div class="main__home">
+
+    <!-------- Navbar -------->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="{% url 'home' %}"><img src="{% static './images/assets/logo-light.png' %}" alt="Car Rental" /></a>
+      </div>
 
         <ul class="nav__items">
           <div class="hori-selector">

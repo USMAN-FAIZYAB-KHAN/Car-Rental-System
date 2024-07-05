@@ -58,12 +58,7 @@ for (let i = 0; i < counters.length; i++) {
 //-------------------------------------- Vehicle Fleet ------------------------------------------------//
 
 
-<<<<<<< HEAD
-
-const vehicle___fleets = [
-=======
 const vehicle_fleets = [
->>>>>>> 3fd8e9ee77a783f99c92b2dea65d5ee1b1eff906
   {
     car_name: "Jeep Renegade",
     car_type: "Sedan",

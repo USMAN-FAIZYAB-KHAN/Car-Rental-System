@@ -12,9 +12,7 @@ User = get_user_model()
 def home(request):
     
     car = Car.objects.all()
-
-    # for i in car:
-    #     print(i.variant.name)
+    car.order_by('variant__model__year')
 
     if request.user.is_authenticated:
         return render(request, 'home.html', {"user": request.user})
@@ -54,14 +52,12 @@ def login(request):
 def carList(request):
 
     cars_list = Car.objects.all()
+    cars_list.order_by('variant__model__year')
     query_params = request.GET
-
-    print(request.GET)
     
     minPrice = query_params.get('minPrice', None)
     maxPrice = query_params.get('maxPrice', None)
     categories = query_params.get('categories', None)
-
 
     if minPrice and maxPrice:
         cars_list = cars_list.filter(price_per_day__gte=minPrice, price_per_day__lte=maxPrice)
@@ -95,25 +91,12 @@ def carDetail(request, car_id):
     images = car.images.all()
 
     if request.method == 'POST':
-        book_date = request.POST['bookdate']
         pickup_date = request.POST['pickdate']
         drop_date = request.POST['dropdate']
         address = request.POST['address']
         phone_number = request.POST['phonenumber']
 
-        print(book_date, pickup_date, drop_date, address, phone_number)
-
-    # rental = Rental()
-    # rental.car = car
-    # rental.customer = request.user
-    # rental.start_date = start_date
-    # rental.end_date = end_date
-    # rental.status = RentalStatus.objects.get(name='Pending')
-    # rental.save()    
-
-    # return redirect('userDashboard')
-
-    return render(request, 'check.html', {"user": request.user, "car": car, "car_images": images})
+    return render(request, 'carDetail.html', {"user": request.user, "car": car, "car_images": images})
 
 def userDashboard(request):
     return render(request, 'userdashboard.html')

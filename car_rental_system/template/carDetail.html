@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% load static %}
 
@@ -13,7 +13,8 @@
 <!--------------------------------------- Javascript Link -------------------------------------->
 {% block javascript %}
 <script src="{% static './javascript/carDetail.js' %}" defer></script>
-{% endblock %} 
+
+{% endblock %}
 
 
 <!--------------------------------------- Body --------------------------------------->
@@ -21,139 +22,125 @@
 
 <!-------- Single Car View Section -------->
 <div class="container car__detail__main">
-    <div class="car-images">
-      <img
-        id="mainImage"
-        src="{{ car_images.0 }}"
-        alt="Main Image"
-        class="main-image"
-      />
+  <div class="car-images">
+    <img id="mainImage" src="{{ car_images.0 }}" alt="Main Image" class="main-image" />
 
-      <!-- <div class="lines">
-        <div
-          class="line"
-          onclick="changeImage('https://www.w3schools.com/howto/img_forest.jpg', this)"
-        ></div>
-        <div
-          class="line"
-          onclick="changeImage('https://www.w3schools.com/howto/img_snow.jpg', this)"
-        ></div>
-        <div
-          class="line"
-          onclick="changeImage('https://www.w3schools.com/howto/img_mountains.jpg', this)"
-        ></div>
-      </div> -->
+    <div class="lines">
+      <div class="line" onclick="changeImage('https://www.w3schools.com/howto/img_forest.jpg', this)"></div>
+      <div class="line" onclick="changeImage('https://www.w3schools.com/howto/img_snow.jpg', this)"></div>
+      <div class="line" onclick="changeImage('https://www.w3schools.com/howto/img_mountains.jpg', this)"></div>
+    </div>
 
-      <div class="thumbnail-container">
-        {% for image in car_images %}
-        <img
-          src="{{ image }}"
-          alt="Thumbnail {{ forloop.counter }}"
-          class="car__thumnail__image"
-        />
-        {% endfor %}
+    <div class="thumbnail-container">
+      {% for image in car_images %}
+      <img src="{{ image }}" alt="Thumbnail {{ forloop.counter }}" class="car__thumnail__image" />
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="car_detail__right">
+    <div class="detail__middle__box">
+      <h3>{{car.variant.model.manufacturer}} {{car.variant.model.name}} {{car.variant.variant_name}}</h3>
+      <p>
+        A spacious interior, impressive fuel economy and a generous list of
+        standard safety features make the 2024 Nissan Altima a solid midsize
+        sedan for families or anyone wanting a roomy car.
+      </p>
+      <h4>Specification</h4>
+
+      <div class="specification__car">
+
+        <div class="specification__warpper">
+          <p>Body</p>
+          <p>{{ car.variant.model.category.name }}</p>
+        </div>
+
+        <div class="specification__warpper">
+          <p>Seat</p>
+          <p>{{ car.variant.model.seating_capacity }} seats</p>
+        </div>
+
+        <div class="specification__warpper">
+          <p>Door</p>
+          <p>4 doors</p>
+        </div>
+
+        <div class="specification__warpper">
+          <p>Fuel Type</p>
+          <p>{{ car.variant.fuel_type.name }}</p>
+        </div>
+
+        <div class="specification__warpper">
+          <p>Engine</p>
+          <p>{{ car.variant.engine }} cc</p>
+        </div>
+
+        <div class="specification__warpper">
+          <p>Year</p>
+          <p>{{ car.variant.model.year }}</p>
+        </div>
+
+        <div class="specification__warpper">
+          <p>Mileage</p>
+          <p>{{ car.variant.mileage }}</p>
+        </div>
+
+        <div class="specification__warpper">
+          <p>Color</p>
+          <p>{{ car.color }}</p>
+        </div>
+
+        <div class="specification__warpper">
+          <p>Transmission</p>
+          <p>{{ car.variant.transmission.name }}</p>
+        </div>
       </div>
-    </div>
 
-    <div class="car_detail__right">
-        <div class="detail__middle__box">
-            <h3>{{car.variant.model.manufacturer}} {{car.variant.model.name}} {{car.variant.variant_name}}</h3>  
-            <p>
-              A spacious interior, impressive fuel economy and a generous list of
-              standard safety features make the 2024 Nissan Altima a solid midsize
-              sedan for families or anyone wanting a roomy car.
-            </p>
-            <h4>Specification</h4>
-
-            <div class="specification__car">
-
-                <div class="specification__warpper">
-                    <p>Body</p>
-                    <p>{{ car.variant.model.category.name }}</p>
-                </div>
-                
-                <div class="specification__warpper">
-                    <p>Seat</p>
-                    <p>{{ car.variant.model.seating_capacity }} seats</p>
-                </div>
-
-                <div class="specification__warpper">
-                    <p>Door</p>
-                    <p>4 doors</p>
-                </div>
-
-                <div class="specification__warpper">
-                    <p>Fuel Type</p>
-                    <p>{{ car.variant.fuel_type.name }}</p>
-                </div>
-
-                <div class="specification__warpper">
-                    <p>Engine</p>
-                    <p>{{ car.variant.engine }} cc</p>
-                </div>
-
-                <div class="specification__warpper">
-                    <p>Year</p>
-                    <p>{{ car.variant.model.year }}</p>
-                </div>
-
-                <div class="specification__warpper">
-                    <p>Mileage</p>
-                    <p>{{ car.variant.mileage }}</p>
-                </div>
-                
-                <div class="specification__warpper">
-                    <p>Color</p>
-                    <p>{{ car.color }}</p>
-                </div>
-
-                <div class="specification__warpper">
-                    <p>Transmission</p>
-                    <p>{{ car.variant.transmission.name }}</p>
-                </div>
-            </div>
-
-            <div class="booking__features__rentally">
-              <h4 style="line-height: 40px;">Features</h4>
-              <p><i class="fa-solid fa-check"></i> Bluetooth</p>
-              <p><i class="fa-solid fa-check"></i> Central</p>
-              <p><i class="fa-solid fa-check"></i> Multimedia Player</p>
-            </div>
-
-          </div>
-
-          <div class="detail__right__box">
-                <div class="price__box">
-                  <p>Daily rate</p>
-                  <h1>10000 <span style="color: #1ECB15; font-size: 3rem;">RS</span></h1>
-                </div>
-                <form method="post" role="form" action="{% url 'detail' car.car_id %}" class="booking__box">
-                  <h4>Booking this car</h4>
-                  <p>Booking Date</p>
-                  <input type="date" name="bookdate" id="" required >
-                  <p>Pick up date</p>
-                  <input type="date" name="pickdate" id="" required>
-                  <p>Drop Off date</p>
-                  <input type="date" name="dropdate" id="" required>
-                  <p>Address</p>
-                  <input type="text" placeholder="Address" name="address" required>
-                  <p>Phone Number</p>
-                  <input type="tel" name="phonenumber" id="" max="13" placeholder="+923322321393" required>
-      
-                  <button type="submit">
-                    <span class="top"></span>
-                    <a class="secondary__btn">Rent Now</a>
-                    <span class="bottom"></span>
-                  </button>
-                </form>
-
-                
-      
-          </div>
-    </div>
-
+      <div class="booking__features__rentally">
+        <h4 style="line-height: 40px;">Features</h4>
+        <p><i class="fa-solid fa-check"></i> Bluetooth</p>
+        <p><i class="fa-solid fa-check"></i> Central</p>
+        <p><i class="fa-solid fa-check"></i> Multimedia Player</p>
+      </div>
 
     </div>
- 
+
+    <div class="detail__right__box">
+      <div class="price__box">
+        <p>Daily rate</p>
+        <h1>10000 <span style="color: #1ECB15; font-size: 3rem;">RS</span></h1>
+      </div>
+      <form method="post" role="form" action="{% url 'detail' car.car_id %}" class="booking__box">
+        {% csrf_token %}
+        <h4>Book Now</h4>
+        <p>Pick up date</p>
+        <input type="date" name="pickdate" id="" required>
+        <p>Drop Off date</p>
+        <input type="date" name="dropdate" id="" required>
+        <p>Address</p>
+        <input type="text" placeholder="Address" name="address" required>
+        <p>Phone Number</p>
+
+        <div class="phone-div" style="display: flex; column-gap: 1rem;">
+          <select name="countrycode" class="country-select" required>
+            <option value="+92" class="flag-option">
+              +92
+            </option>
+          </select>
+          <input style="width: 70%; text-align: center;" type="tel" name="phonenumber" maxlength="10"
+            placeholder="XXXXXXXXXX" pattern="\d{10}" required>
+        </div>
+
+        <button type="submit">
+          <span class="top"></span>
+          <a class="secondary__btn">Rent Now</a>
+          <span class="bottom"></span>
+        </button>
+      </form>
+    </div>
+  </div>
 </div>
+</div>
+
 {% endblock %}
+
