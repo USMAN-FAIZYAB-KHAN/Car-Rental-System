@@ -29,7 +29,6 @@ class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     description = models.TextField()
-    image = models.ImageField(upload_to='category_images/')
 
     def __str__(self):
         return self.name
@@ -111,7 +110,6 @@ class RentalStatus(models.Model):
     status_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     description = models.TextField(null=True)
-    abcd = models.IntegerField()
 
     def __str__(self):
         return self.name
