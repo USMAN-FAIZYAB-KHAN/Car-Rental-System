@@ -8,7 +8,17 @@
 <!--------------------------------------- Javascript Link -------------------------------------->
 {% block javascript %}
 <script src="../static/javascript/contact.js" defer></script>
-{% endblock %}
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "-6bIFvHsiLq5GmfWm",
+      });
+   })();
+</script>
+ {% endblock %}
 
 <!--------------------------------------- Title --------------------------------------->
 {% block title %}{% endblock %}
@@ -45,15 +55,15 @@
   <div class="contact__rentaly">
     <h2>Do you have any question?</h2>
     <div class="contact__info">
-      <input class="user_name" type="text" placeholder="Your Name" required>
-      <input class="user_email" type="email" placeholder="Your Email" required>
-      <input class="ph_no" type="number" placeholder="Your Phone" required>
+      <input class="user_name" type="text" placeholder="Your Name" id="name" required>
+      <input class="user_email" type="email" placeholder="Your Email" id="email" required>
+      <input class="ph_no" type="number" placeholder="Your Phone" id="phonenumber" required>
     </div>
     <textarea class="message" name id placeholder="Your Message" required></textarea>
 
     <button type="submit">
       <span class="top"></span>
-      <a href="#" onclick="sendMail()" class="secondary__btn send__mail">Send Message</a>
+      <a href="#" class="secondary__btn send__mail" id="btn">Send Message</a>
       <span class="bottom"></span>
     </button>
   </div>
@@ -127,18 +137,4 @@
   </div>
 </div>
 
-<!--------------------------------------- Javascript Link -------------------------------------->
-
-{% block javascript %}
-<script src="../static/javascript/contact.js" defer></script>
-<script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init({
-        publicKey: "-6bIFvHsiLq5GmfWm",
-      });
-   })();
-</script>
- {% endblock %}
+{% endblock %}
