@@ -188,7 +188,7 @@ button:hover .bottom {
     top: 5%;
     right: 4%;
     column-gap: 1rem;
-    z-index: var(--largest--z-index);
+    z-index: 99999;
     background-color: var(--font--white--color);
     border-left: 4px solid var(--font--primary--color);
     box-shadow: 0px 0px 8px 0px rgba(164, 164, 186, 0.2);
