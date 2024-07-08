@@ -20,8 +20,153 @@
 <!--------------------------------------- Body --------------------------------------->
 {% block body %}
 
+<!-------- Toast Notification -------->
+
+<div class="toast" id="toast_notification">
+  <div class="toast__link">
+    <i class="fa-solid fa-xmark"></i>
+  </div>
+  <div class="toast__message">
+    <h4 style="color: #121212">Empty</h4>
+    <p>Fill out all the input field</p>
+  </div>
+  <span id="toast-border"></span>
+</div>
+
+<!---------------------- Payment ---------------------->
+<div class="main-payment">
+  
+  <div class="payment-container">
+    <i class="fa-solid fa-xmark" id="payment-cross"></i>
+    <div class="payment-methods">
+      <h4>Payment Methods</h4>
+      <ul>
+        <li class="tile">
+          <input
+            type="checkbox"
+            name="car-category"
+            id="hatchback"
+            value="Hatchback"
+          />
+          <label for="">
+            <img
+              src="{% static './images/assets/payment-method-image/visa.png' %}"
+              width="100%"
+              height="100%"
+              alt="payment-visa"
+            />
+          </label>
+        </li>
+  
+        <li class="tile">
+          <input
+            type="checkbox"
+            name="car-category"
+            id="hatchback"
+            value="Hatchback"
+          />
+          <label for="">
+            <img
+              src="{% static './images/assets/payment-method-image/mastercard.png' %}"
+              width="100%"
+              height="100%"
+              alt="payment-visa"
+            />
+          </label>
+        </li>
+        <li class="tile">
+          <input
+            type="checkbox"
+            name="car-category"
+            id="hatchback"
+            value="Hatchback"
+          />
+          <label for="">
+            <img
+              src="{% static './images/assets/payment-method-image/discover.png' %}"
+              width="100%"
+              height="100%"
+              alt="payment-visa"
+            />
+          </label>
+        </li>
+  
+        <li class="tile">
+          <input
+            type="checkbox"
+            name="car-category"
+            id="hatchback"
+            value="Hatchback"
+          />
+          <label for="">
+            <img
+              src="{% static './images/assets/payment-method-image/amex.png' %}"
+              width="100%"
+              height="100%"
+              alt="payment-visa"
+            />
+          </label>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="payment-main-form">
+      <h4>Card Information</h4>
+      <form id="payment-form">
+        <div class="form-group">
+          <p>Card number</p>
+          <input
+            type="number"
+            id="card-number"
+            placeholder="0987 4534 3233 5555"
+            required
+          />
+        </div>
+        <div class="group-container">
+          <div class="form-group">
+            <p>Expiry date</p>
+            <input type="date" id="expiry-date" placeholder="MM/YY" required />
+          </div>
+          <div class="form-group">
+            <p>CVV</p>
+            <input type="text" id="cvv" placeholder="CVV" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <p>Email</p>
+          <input
+            type="email"
+            id="email"
+            placeholder="example@email.com"
+            required
+          />
+        </div>
+        <button type="submit">
+          <a class="account__btn">Pay Now</a>
+        </button>
+      </form>
+    </div>
+  
+    <div class="payment-order">
+      <h4>Order Description</h4>
+      <div class="order__detail">
+        <div class="order__img">
+          <img src="{% static './images/assets/lexus.jpg' %}" alt="">
+        </div>
+        <input type="text" value="Muhammad zuanin">
+        <input type="date" name="" id="" value="20-09-2016" readonly>
+        <input type="date" name="" id="" value="20-09-2016" readonly>
+        <input type="tel" name="" id="" maxlength="13" value="+9323322321393" readonly>
+        <input type="text" name="" id="" value="Gulshan-e-iqbal Block 13" readonly>
+        <!-- <p>Rs. 10000</p> -->
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-------- Single Car View Section -------->
 <div class="container car__detail__main">
+
   <div class="car-images">
     <img id="mainImage" src="{{ car_images.0 }}" alt="Main Image" class="main-image" />
 
@@ -114,24 +259,24 @@
         {% csrf_token %}
         <h4>Book Now</h4>
         <p>Pick up date</p>
-        <input type="date" name="pickdate" id="" required>
+        <input type="date" name="pickdate" id="pickdate">
         <p>Drop Off date</p>
-        <input type="date" name="dropdate" id="" required>
+        <input type="date" name="dropdate" id="dropdate">
         <p>Address</p>
-        <input type="text" placeholder="Address" name="address" required>
+        <input type="text" placeholder="Address" name="address" id="address">
         <p>Phone Number</p>
 
         <div class="phone-div" style="display: flex; column-gap: 1rem;">
-          <select name="countrycode" class="country-select" required>
+          <select name="countrycode" class="country-select">
             <option value="+92" class="flag-option">
               +92
             </option>
           </select>
           <input style="width: 70%; text-align: center;" type="tel" name="phonenumber" maxlength="10"
-            placeholder="XXXXXXXXXX" pattern="\d{10}" required>
+            placeholder="XXXXXXXXXX" pattern="\d{10}" id="number">
         </div>
 
-        <button type="submit">
+        <button type="submit" id="btn">
           <span class="top"></span>
           <a class="secondary__btn">Rent Now</a>
           <span class="bottom"></span>

@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% load static %}
+{% extends 'base.html' %} 
+
+{% load static %}
 
 <!--------------------------------------- CSS Styling Link -------------------------------------->
 {% block cssLink %}
@@ -42,22 +44,16 @@
 <!-------- Contact Section -------->
 
 <div class="contact__main__header">
-  <h1>Contact Us</h1>
-  <div id="popup" class="popup hidden2">
-    <div class="popup-content">
-      <p class="tick-mark">✔</p>
-      <p>Email Sent Successfully!</p>
-    </div>
-  </div>  
+  <h1>Contact Us</h1> 
 </div>
 
 <div class="main__contact__container container">
   <div class="contact__rentaly">
     <h2>Do you have any question?</h2>
     <div class="contact__info">
-      <input class="user_name" type="text" placeholder="Your Name" id="name" required>
-      <input class="user_email" type="email" placeholder="Your Email" id="email" required>
-      <input class="ph_no" type="number" placeholder="Your Phone" id="phonenumber" required>
+      <input class="user_name" type="text" placeholder="Your Name" id="name" >
+      <input class="user_email" type="email" placeholder="Your Email" id="email" >
+      <input class="ph_no" type="tel" placeholder="Your Phone" id="phonenumber" maxlength="10">
     </div>
     <textarea class="message" name id placeholder="Your Message" required></textarea>
 
