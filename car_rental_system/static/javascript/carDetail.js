@@ -15,3 +15,8 @@ car_image_set.forEach(link => {
     });
 });
 
+const closeBtn = document.querySelector(".close-btn");
+
+closeBtn.addEventListener("click", () => {
+    document.querySelector(".payment-form").style.display = "none";
+});

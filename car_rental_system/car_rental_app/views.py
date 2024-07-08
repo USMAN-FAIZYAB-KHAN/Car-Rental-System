@@ -5,6 +5,7 @@ from django.contrib.auth import login as django_login, authenticate
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus
 from django.db.models import Q
+from datetime import datetime
 
 User = get_user_model()
 
@@ -91,12 +92,36 @@ def carDetail(request, car_id):
     images = car.images.all()
 
     if request.method == 'POST':
-        pickup_date = request.POST['pickdate']
-        drop_date = request.POST['dropdate']
-        address = request.POST['address']
-        phone_number = request.POST['phonenumber']
+        form_type = request.POST['form_type']
 
-    return render(request, 'carDetail.html', {"user": request.user, "car": car, "car_images": images})
+        if form_type == "booking":
+            pickup_date = request.POST['pickdate']
+            drop_date = request.POST['dropdate']
+            address = request.POST['address']
+            phone_number = request.POST['phonenumber']
+
+            request.session['booking_details'] = {'pickup_date': pickup_date, 'drop_date': drop_date, 'address': address, 'phone_number': phone_number}
+
+            return render(request, 'carDetail.html', {"user": request.user, "car": car, "car_images": images, "display_form": True})
+
+        elif form_type == "payment":
+            cardholder = request.POST['cardholder']
+            card_number = request.POST['cardnumber']
+            expiry_date = request.POST['expirydate']
+            cvv = request.POST['cvv']
+            booking_details = request.session.get('booking_details')
+            booking_date = datetime.now()
+            drop_date = datetime.strptime(booking_details['drop_date'], '%Y-%m-%d')
+            pickup_date = datetime.strptime(booking_details['pickup_date'], '%Y-%m-%d')
+            no_of_days = (drop_date - pickup_date).days
+            total_cost = no_of_days * car.price_per_day
+            status = RentalStatus.objects.get(name='Scheduled')
+            rental = Rental(user=request.user, car=car, booking_date=booking_date, pickup_date=pickup_date, drop_date=drop_date, total_cost=total_cost, status=status)
+            rental.save()
+            request.session.pop('booking_details')
+            return redirect('userdashboard')
+
+    return render(request, 'carDetail.html', {"user": request.user, "car": car, "car_images": images, "display_form": False})
 
 def userDashboard(request):
     return render(request, 'userdashboard.html')

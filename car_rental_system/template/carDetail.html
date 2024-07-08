@@ -110,6 +110,7 @@
       <form method="post" role="form" action="{% url 'detail' car.car_id %}" class="booking__box">
         {% csrf_token %}
         <h4>Book Now</h4>
+        <input type="hidden" name="form_type" value="booking">
         <p>Pick up date</p>
         <input type="date" name="pickdate" id="" required>
         <p>Drop Off date</p>
@@ -139,5 +140,33 @@
 </div>
 </div>
 
-{% endblock %}
+<style>
+  .close-btn {
+    cursor: pointer;
+  }
+</style>
 
+
+
+<div class="payment-form" style="display: {% if not display_form %}none{% else %}block{% endif %}; background-color: rgb(98, 233, 121); text-align: center; padding: 2rem; width: 60%; height: 60%; z-index:2; margin: auto; position: fixed; top:0; bottom: 0; left: 0; right: 0;">
+  <i class="close-btn fa-solid fa-xmark" style="color: #d80e0e; position: absolute; right: 0.5rem; top: 0.5rem;"></i>
+  <form action="{% url 'detail' car.car_id %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="form_type" value="payment">
+    <p>Cardholder</p>
+    <input type="text" name="cardholder" id="cardholder" required>
+    <p>Card Number</p>
+    <input type="text" name="cardnumber" id="cardnumber" required>
+    <p>Expiry Date</p>
+    <input type="text" name="expirydate" id="expirydate" required>
+    <p>CVV</p>
+    <input type="text" name="cvv" id="cvv" required>
+    <button type="submit">
+      <span class="top"></span>
+      <a class="secondary__btn">Pay Now</a>
+      <span class="bottom"></span>
+    </button>
+  </form>
+</div>
+
+{% endblock %}
