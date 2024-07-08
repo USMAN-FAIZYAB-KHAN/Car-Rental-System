@@ -1,53 +1,64 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% load static %}
 
 <!--------------------------------------- CSS Styling Link -------------------------------------->
-
 {% block cssLink %}
 <link rel="stylesheet" href="{% static 'css/userdashboard.css' %}" />
 
 {% endblock %}
 
 <!--------------------------------------- Title --------------------------------------->
-
-{% block title %}  {% endblock %}
+{% block title %} {% endblock %}
 
 <!--------------------------------------- Javascript Link -------------------------------------->
-
 {% block javascript %}
 <script src="../static/javascript/dashboard.js" defer></script>
 {% endblock %}
 
+<!--------------------------------------- Body -------------------------------------->
 {% block body %}
 
- <div class="profile__main__header">
-    <h1>Dashboard</h1>
-  </div>
-  
 
-<section style="background: #F5F8FA; padding: 90px 0 90px 0;
-    position: relative;">
-    <div class="main__user__dashboard container">
-        <div class="profile__dashboard">
-          <div class="profile__view">
-            <img src="{% static './images/assets/profile.jpg' %}" alt="" />
-            <h4>Monica Lucas</h4>
-            <p>monica@rentaly.com</p>
-          </div>
-          
-            <ul class="select__view">
-                <li class="dashboard_links buttonActive"><i class="fa-solid fa-house-chimney"></i><a href="#">Dashboard</a></li>
-                <li class="dashboard_links"><i class="fa-solid fa-user"></i><a href="#">My Profile</a></li>
-                <li class="dashboard_links" ><i class="fa-solid fa-calendar-days"></i><a href="#">My Order</a></li>
-                <li class="dashboard_links"><i class="fa-solid fa-car"></i><a href="#">My Favorite Car</a></li>
-                <li class="dashboard_links"><i class="fa-solid fa-right-from-bracket"></i><a href="#">Sign Out</a></li>
-            </ul>
-            
-          
-        </div>
-        <div class="rentaly__dashboard"></div>
+<!---------------------- User Dash Board  ---------------------->
+
+<!-------- User Dash Board Header -------->
+
+<div class="profile__main__header">
+  <h1>Dashboard</h1>
+</div>
+
+<section
+  style="background: #f5f8fa; padding: 90px 0 90px 0; position: relative"
+>
+  <div class="main__user__dashboard container">
+    <div class="profile__dashboard">
+      <div class="profile__view">
+        <img src="{% static './images/assets/profile.jpg' %}" alt="" />
+        <h4>Monica Lucas</h4>
+        <p>monica@rentaly.com</p>
+      </div>
+
+      <ul class="select__view">
+        <li class="dashboard_links buttonActive">
+          <i class="fa-solid fa-house-chimney"></i><a href="#">Dashboard</a>
+        </li>
+        <li class="dashboard_links">
+          <i class="fa-solid fa-user"></i><a href="#">My Profile</a>
+        </li>
+        <li class="dashboard_links">
+          <i class="fa-solid fa-calendar-days"></i><a href="#">My Order</a>
+        </li>
+        <li class="dashboard_links">
+          <i class="fa-solid fa-car"></i><a href="#">My Favorite Car</a>
+        </li>
+        <li class="dashboard_links">
+          <i class="fa-solid fa-right-from-bracket"></i><a href="#">Sign Out</a>
+        </li>
+      </ul>
     </div>
+    <div class="rentaly__dashboard"></div>
+  </div>
 </section>
 
 {% endblock %}

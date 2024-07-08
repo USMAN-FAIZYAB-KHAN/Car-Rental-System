@@ -1,21 +1,22 @@
 {% extends 'base.html' %} {% load static %}
 
 <!--------------------------------------- CSS Styling Link -------------------------------------->
-
 {% block cssLink %}
 <link rel="stylesheet" href="../static/css/home.css" />
 {% endblock %}
 
 <!--------------------------------------- Title --------------------------------------->
-
 {% block title %}{% endblock %}
-<!--------------------------------------- Javascript Link -------------------------------------->
 
+<!--------------------------------------- Javascript Link -------------------------------------->
 {% block javascript %}
 <script src="../static/javascript/index.js" defer></script>
-{% endblock %} {% block body %}
+{% endblock %}
 
-<!---------------------- HOME ---------------------->
+<!--------------------------------------- Body -------------------------------------->
+{% block body %}
+
+<!---------------------- Home ---------------------->
 
 <!-------- Home Main  -------->
 
@@ -102,6 +103,7 @@
 <!---------------------- Vehicle Fleet ---------------------->
 
 <div class="feature__heading" style="margin-top: 7rem">
+  <span class="upper__styling">Enjoy Your Ride</span>
   <h2>
     Our <span class="styling__content"> Vehicle Fleet</span>
     <span class="underline__style"></span>
@@ -215,6 +217,7 @@
 
 <div class="main__feature__home container">
   <div class="feature__heading">
+    <span class="upper__styling">Why Choose Us</span>
     <h2>
       Our <span class="styling__content"> Features</span>
       <span class="underline__style"></span>
@@ -291,8 +294,9 @@
 
   <div class="latest__feature__home container">
     <div class="feature__heading">
+      <span class="upper__styling">Latest From Us</span>
       <h2>
-        Latest <span class="styling__content"> News</span>
+        News & <span class="styling__content"> Promo</span>
         <span class="underline__style"></span>
       </h2>
       <p style="color: #121212">
@@ -400,8 +404,9 @@
 
   <div class="question__container">
     <div class="question__heading">
+      <span class="upper__styling">Do You Have</span>
       <h2>
-        Have Any <span class="styling__content"> Questions?</span>
+        Any <span class="styling__content"> Questions?</span>
         <span class="underline__style"></span>
       </h2>
     </div>
