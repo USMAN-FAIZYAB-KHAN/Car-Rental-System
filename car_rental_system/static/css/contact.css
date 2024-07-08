@@ -123,7 +123,17 @@
     min-height: 250px;
 }
 
-.contact__offices p i {
+.contact__offices div{
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
+}
+
+.contact__offices div p{
+    width: 80%;
+}
+
+.contact__offices i {
     font-size: 2rem;
     height: 40px;
     width: 40px;
