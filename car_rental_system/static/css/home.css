@@ -3,7 +3,6 @@
 @import url('./base.css');
 @import url('./utilityClasses.css');
 
-
 /* ==================== Home Main =================== */
 
 .hero__home {
@@ -289,9 +288,10 @@ button#prev {
     transition: all 1s;
 }
 
+
 .show {
     opacity: 1;
-    transform: translateX(0%);
+    transform: translateY(0%);
 }
 .show-down {
     opacity: 1;

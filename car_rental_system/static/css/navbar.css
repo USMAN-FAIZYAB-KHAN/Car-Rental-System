@@ -36,7 +36,7 @@
 
 .active{
     color: var(--font--primary--color);
-    transition: all 0.1s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .account__btns {
@@ -140,4 +140,18 @@
     right: -38%;
     border-radius: 30%;
     border-bottom-left-radius: 50%;
+}
+
+/* ==================== NAVBAR ANIMATION =================== */
+
+.hidden-up{
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 1s;
+}
+
+
+.show {
+    opacity: 1;
+    transform: translateY(0%);
 }

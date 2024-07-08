@@ -77,7 +77,7 @@
 
 .contact__rentaly input[type="text"],
 .contact__rentaly input[type="email"],
-.contact__rentaly input[type="number"],
+.contact__rentaly input[type="tel"],
 .contact__rentaly textarea {
     padding: 0.8rem;
     font-size: 1.8rem;
@@ -132,14 +132,14 @@
 
 .contact__rentaly input[type="text"]:focus:invalid,
 .contact__rentaly input[type="email"]:focus:invalid,
-.contact__rentaly input[type="number"]:focus:invalid,
+.contact__rentaly input[type="tel"]:focus:invalid,
 .contact__rentaly textarea:focus:invalid {
     border: 2px solid rgba(120, 202, 92, 0.6);
 }
 
 .contact__rentaly input[type="text"]:focus:valid,
 .contact__rentaly input[type="email"]:focus:valid,
-.contact__rentaly input[type="number"]:focus:valid,
+.contact__rentaly input[type="tel"]:focus:valid,
 .contact__rentaly textarea:focus:valid {
     border: 2px solid rgba(120, 202, 92, 0.2);
     background: rgba(23, 149, 16, 0.1);
