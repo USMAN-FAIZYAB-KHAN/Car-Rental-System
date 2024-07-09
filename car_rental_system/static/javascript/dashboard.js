@@ -268,10 +268,10 @@ document.addEventListener("DOMContentLoaded",() => {
     dash_links.forEach((val)=>{
         if (val.classList.contains("buttonActive")){
             let target = document.querySelector(".buttonActive")
-            if (target.lastChild.innerHTML == "Dashboard") {
-                view_dashboard("Dashboard");
-            } else if (target.lastChild.innerHTML == "My Order") {
-                view_order("Orders");
+            if (target.children[1].innerHTML == "Dashboard") {
+                // view_dashboard("Dashboard");
+            } else if (target.children[1].innerHTML == "My Order") {
+                // view_order("Orders");
             }
         };    
     });

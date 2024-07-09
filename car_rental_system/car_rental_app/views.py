@@ -85,16 +85,19 @@ def carList(request):
 
     return render(request, 'carList.html', {"user": request.user, "cars": cars})
 
+
 def carDetail(request, car_id):
 
     car = Car.objects.get(car_id=car_id)
     images = car.images.all()
 
     if request.method == 'POST':
-        pickup_date = request.POST['pickdate']
-        drop_date = request.POST['dropdate']
-        address = request.POST['address']
-        phone_number = request.POST['phonenumber']
+        if request.User.is_authenticated():
+            print('ok')
+            # drop_date = request.POST['dropdate']
+            # address = request.POST['address']
+            # phone_number = request.POST['phonenumber']
+
 
     return render(request, 'carDetail.html', {"user": request.user, "car": car, "car_images": images})
 
