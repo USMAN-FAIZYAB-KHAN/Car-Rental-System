@@ -1,8 +1,35 @@
-
+function getCSRFToken() {
+    return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+}
+  
+const csrftoken = getCSRFToken();
 
 const view_dashboard = (element) => {
     
     document.querySelector('.profile__main__header h1').innerHTML = element;
+
+    let upcoming_orders = 0;
+    let coupons = 0;
+    let total_orders = 0;
+    let cancel_orders = 0;
+    let cars_rented = 0;
+
+    fetch("/userDashboard", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrftoken
+        },
+        body: JSON.stringify({"dashboard": "dashboard"})
+    })
+    .then(response => response.json())
+    .then(data => {
+        upcoming_orders = data.upcoming_orders;
+        total_orders = data.completed_orders;
+        cancel_orders = data.cancelled_orders;
+        cars_rented = data.cars_rented;
+    })
+
 
     let div = document.querySelector(".rentaly__dashboard");
     div.innerHTML = " ";
@@ -12,24 +39,24 @@ const view_dashboard = (element) => {
     box1.innerHTML = `
                  <div class="rentaly__spec1fication__box">
                     <i class="fa-regular fa-calendar-check"></i>
-                    <h1>03</h1>
+                    <h1>${upcoming_orders}</h1>
                     <p>Upcoming Orders</p>
                 </div>
                 <div class="rentaly__spec1fication__box">
+                <i class="fa-regular fa-calendar-days"></i>
+                <h1>${total_orders}</h1>
+                <p>Total Order</p>
+                </div>
+                <div class="rentaly__spec1fication__box">
+                <i class="fa-regular fa-calendar-xmark"></i>
+                <h1>${cancel_orders}</h1>
+                <p>Cancel Orders</p>
+                </div>
+                <div class="rentaly__spec1fication__box">
                     <i class="fa-solid fa-tags"></i>
-                    <h1>12</h1>
-                    <p>Coupons</p>
-                </div>
-                <div class="rentaly__spec1fication__box">
-                    <i class="fa-regular fa-calendar-days"></i>
-                    <h1>58</h1>
-                    <p>Total Order</p>
-                </div>
-                <div class="rentaly__spec1fication__box">
-                    <i class="fa-regular fa-calendar-xmark"></i>
-                    <h1>04</h1>
-                    <p>Cancel Orders</p>
-                </div>` 
+                    <h1>${cars_rented}</h1>
+                    <p>Cars Rented</p>
+                </div>`
     div.appendChild(box1);
 
     let box2 = document.createElement("div");
@@ -98,7 +125,7 @@ const view_dashboard = (element) => {
 };
 
 const view_order = (element) => {
-
+    
     document.querySelector('.profile__main__header h1').innerHTML = element;
 
     let div = document.querySelector(".rentaly__dashboard");
@@ -242,6 +269,26 @@ const view_order = (element) => {
 };
 
 const dash_links = document.querySelectorAll(".dashboard_links");
+const user_signout = document.querySelector("#user-signout");
+user_signout.addEventListener("click", (e) => {
+    console.log(user_signout)
+    e.preventDefault();
+
+    fetch("/logout", {
+        method: "GET",    
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.status)
+        if (data.status){
+            console.log("ok")
+            sessionStorage.setItem("logout", "true")
+            window.location.href = "/";
+        }
+    })
+
+
+});
 
 dash_links.forEach((link) => {
     link.addEventListener("click", (e) => {
@@ -268,9 +315,9 @@ document.addEventListener("DOMContentLoaded",() => {
     dash_links.forEach((val)=>{
         if (val.classList.contains("buttonActive")){
             let target = document.querySelector(".buttonActive")
-            if (target.lastChild.innerHTML == "Dashboard") {
+            if (target.childNodes[2].innerHTML == "Dashboard") {
                 view_dashboard("Dashboard");
-            } else if (target.lastChild.innerHTML == "My Order") {
+            } else if (target.childNodes[2].innerHTML == "My Order") {
                 view_order("Orders");
             }
         };    

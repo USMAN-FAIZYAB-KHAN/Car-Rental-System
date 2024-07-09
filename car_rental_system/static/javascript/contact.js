@@ -126,6 +126,7 @@ hiddenElements.forEach((el) => observer.observe(el));
 
 // showToast Function ( Display Different Thoast according to the input field )
 
+
 const showToast = (message, type) => {
   let border = document.querySelector("#toast-border");
   border.classList.remove("toastBoderAnimation");
@@ -148,7 +149,6 @@ const showToast = (message, type) => {
     toast_notification.querySelector('.toast__link i').classList.remove('fa-check');
     toast_notification.querySelector('.toast__link i').classList.add('fa-xmark');
   }
-
   toast_notification.classList.add('show');
 
   setTimeout(() => {

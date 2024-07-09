@@ -19,18 +19,6 @@
 <!--------------------------------------- Body --------------------------------------->
 {% block body %}
 
-<!-------- Toast Notification -------->
-
-<div class="toast" id="toast_notification">
-  <div class="toast__link">
-    <i class="fa-solid fa-xmark"></i>
-  </div>
-  <div class="toast__message">
-    <h4 style="color: #121212">Empty</h4>
-    <p>Fill out all the input field</p>
-  </div>
-  <span id="toast-border"></span>
-</div>
 
 <!---------------------- Payment ---------------------->
 <div class="main-payment">
@@ -116,12 +104,20 @@
       <h4>Card Information</h4>
       <div id="payment-form">
         <div class="form-group">
+          <p>Card Holder</p>
+          <input
+            type="text"
+            id="card-holder"
+            placeholder="Card Holder"
+            name="card-holder"
+          />
+        </div>
+        <div class="form-group">
           <p>Card number</p>
           <input
             type="number"
             id="card-number"
             placeholder="0987 4534 3233 5555"
-            required
             maxlength="16"
             name="account-name"
           />
@@ -129,24 +125,14 @@
         <div class="group-container">
           <div class="form-group">
             <p>Expiry date</p>
-            <input type="date" id="expiry-date" placeholder="MM/YY" name="expiry-date" required />
-          </div>
+            <input type="text" id="expiry-date" placeholder="MM/YY" name="expiry-date" required pattern="\d{2}/\d{2}" />
+          </div>          
           <div class="form-group">
             <p>CVV</p>
             <input type="text" id="cvv" placeholder="CVV" name="cvv" required />
           </div>
         </div>
-        <div class="form-group">
-          <p>Email</p>
-          <input
-            type="email"
-            id="email"
-            placeholder="example@email.com"
-            name="email"
-            required
-          />
-        </div>
-        <button type="submit">
+        <button type="submit" id="payment-btn">
           <a class="account__btn">Pay Now</a>
         </button>
       </div>
@@ -250,7 +236,7 @@
         <p>Daily rate</p>
         <h1 id="daily_rate">10000 <span style="color: #1ECB15; font-size: 3rem;">RS</span></h1>
       </div>
-      <form method="post" role="form" action="{% url 'detail' car.car_id %}" class="booking__box">
+      <form method="post" role="form" action="" class="booking__box">
         {% csrf_token %}
         <h4>Book Now</h4>
         <input type="hidden" name="form_type" value="booking">
@@ -281,35 +267,6 @@
     </div>
   </div>
 </div>
-</div>
-
-<style>
-  .close-btn {
-    cursor: pointer;
-  }
-</style>
-
-
-
-<div class="payment-form" style="display: {% if not display_form %}none{% else %}block{% endif %}; background-color: rgb(98, 233, 121); text-align: center; padding: 2rem; width: 60%; height: 60%; z-index:2; margin: auto; position: fixed; top:0; bottom: 0; left: 0; right: 0;">
-  <i class="close-btn fa-solid fa-xmark" style="color: #d80e0e; position: absolute; right: 0.5rem; top: 0.5rem;"></i>
-  <form action="{% url 'detail' car.car_id %}" method="post">
-    {% csrf_token %}
-    <input type="hidden" name="form_type" value="payment">
-    <p>Cardholder</p>
-    <input type="text" name="cardholder" id="cardholder" required>
-    <p>Card Number</p>
-    <input type="text" name="cardnumber" id="cardnumber" required>
-    <p>Expiry Date</p>
-    <input type="text" name="expirydate" id="expirydate" required>
-    <p>CVV</p>
-    <input type="text" name="cvv" id="cvv" required>
-    <button type="submit">
-      <span class="top"></span>
-      <a class="secondary__btn">Pay Now</a>
-      <span class="bottom"></span>
-    </button>
-  </form>
 </div>
 
 {% endblock %}
