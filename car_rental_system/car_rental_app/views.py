@@ -100,6 +100,8 @@ def carDetail(request, car_id):
 
 def userDashboard(request):
     return render(request, 'userdashboard.html')
+def page404(request):
+    return render(request, '404.html')
 
 
 def signup(request):
