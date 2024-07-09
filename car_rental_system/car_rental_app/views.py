@@ -5,7 +5,7 @@ import json
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login as django_login, authenticate, logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus, Payment
+from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus, Payment, Review
 from django.db.models import Q
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
@@ -97,14 +97,6 @@ def carDetail(request, car_id):
     images = car.images.all()
 
     if request.method == 'POST':
-<<<<<<< HEAD
-        if request.User.is_authenticated():
-            print('ok')
-            # drop_date = request.POST['dropdate']
-            # address = request.POST['address']
-            # phone_number = request.POST['phonenumber']
-
-=======
         if not request.user.is_authenticated:
             message = {'error': 'You need to login to book a car'}
             return JsonResponse(message)
@@ -115,7 +107,6 @@ def carDetail(request, car_id):
             drop_date = datetime.strptime(data['dropDate'], '%Y-%m-%d')
             no_of_days = (drop_date - pickup_date).days
             total_price = no_of_days * car.price_per_day
->>>>>>> 1a335a50778f5f53030727efef35f2898eafd213
 
             user = request.user
 
@@ -186,7 +177,33 @@ def signup(request):
 
 def logout_user(request):
     
+
     if request.method == "GET":
+
         logout(request)
         message = {'status': 'success'}
         return JsonResponse(message)
+
+def review_dashboard(request):
+    Review = Review.objects.all()
+
+    if request.method == "POST":
+        review = json.loads(request.body)
+        review_message = review['message']
+        review_rating = int(review['rating'])
+        review_date = datetime.now()
+
+
+        
+        car_id = review['car_id']
+        car = Car.objects.get(car_id=car_id)
+        user = request.user
+
+
+        Review.objects.create(comment=review_message, rating=review_rating, review_date=review_date)
+
+
+        message = {'status': 'success'}
+        return JsonResponse(message)
+
+    return render(request, 'reviewdashboard.html')

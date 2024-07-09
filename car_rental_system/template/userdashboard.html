@@ -1,6 +1,4 @@
-{% extends 'base.html' %}
-
-{% load static %}
+{% extends 'base.html' %} {% load static %}
 
 <!--------------------------------------- CSS Styling Link -------------------------------------->
 {% block cssLink %}
@@ -12,15 +10,42 @@
 {% block title %} {% endblock %}
 
 <!--------------------------------------- Javascript Link -------------------------------------->
-{% block javascript %}
+<!-- {% block javascript %}
 <script src="{% static 'javascript/dashboard.js' %}" defer></script>
-{% endblock %}
+{% endblock %} -->
 
 <!--------------------------------------- Body -------------------------------------->
 {% block body %}
 
-
 <!---------------------- User Dash Board  ---------------------->
+
+<div class="main-review">
+  
+  <form class="review-container" method="post" role="form" action="">
+    {% csrf_token %}
+    <div class="r_cont">
+      <p class="">Rating Star</p>
+      <span></span>
+    </div>
+
+    <div class="rating__star">
+      <i class="fa-solid fa-star"></i> 
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          
+    </div>
+
+    <div class="r_cont">
+      <p class="">Write a message?</p>
+      <span class="imp"></span>
+    </div>
+    <textarea name="" id="" placeholder="Your Message" maxlength="50"></textarea>
+
+
+  </form>
+</div>
 
 <!-------- User Dash Board Header -------->
 
@@ -53,12 +78,18 @@
           <i class="fa-solid fa-car"></i><a href="#">My Favorite Car</a>
         </li>
         <li class="dashboard_links">
-          <i class="fa-solid fa-right-from-bracket"></i><a href="#" id="user-signout">Sign Out</a>
+          <i class="fa-solid fa-right-from-bracket"></i
+          ><a href="#" id="user-signout">Sign Out</a>
         </li>
       </ul>
     </div>
-    <div class="rentaly__dashboard"></div>
+    
+    <div class="rentaly__dashboard">
+
+    </div>
   </div>
 </section>
+
+
 
 {% endblock %}
