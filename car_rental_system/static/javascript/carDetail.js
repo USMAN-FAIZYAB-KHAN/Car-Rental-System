@@ -1,20 +1,26 @@
+function getCSRFToken() {
+  return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+}
+
+const csrftoken = getCSRFToken();
+
 
 // <------------------------------ Crarousel Image Funtionality ------------------------------>
 
 const car_image_set = document.querySelectorAll(".car__thumnail__image");
 
-car_image_set.forEach(link => {  
-    link.addEventListener("click", (e) => {
-        let src_target = e.target.src;
-        let mainImage = document.getElementById("mainImage");
+car_image_set.forEach(link => {
+  link.addEventListener("click", (e) => {
+    let src_target = e.target.src;
+    let mainImage = document.getElementById("mainImage");
 
-        mainImage.classList.remove("slide-in"); 
+    mainImage.classList.remove("slide-in");
 
-        setTimeout(() => {
-            mainImage.src = src_target;
-            mainImage.classList.add("slide-in"); 
-        }, 10);
-    });
+    setTimeout(() => {
+      mainImage.src = src_target;
+      mainImage.classList.add("slide-in");
+    }, 10);
+  });
 });
 // <------------------------------ Toast Notification ------------------------------>
 
@@ -81,13 +87,18 @@ const isValidEmail = (email) => {
   return emailRegex.test(email);
 };
 
+var pickDate;
+var dropDate;
+var number;
+var address;
+
 checkButton.addEventListener("click", (e) => {
   e.preventDefault();
 
-  let pickDate = document.querySelector("#pickdate").value;
-  let dropDate = document.querySelector("#dropdate").value;
-  let number = document.querySelector("#number").value;
-  let address = document.querySelector("#address").value;
+  pickDate = document.querySelector("#pickdate").value;
+  dropDate = document.querySelector("#dropdate").value;
+  number = document.querySelector("#number").value;
+  address = document.querySelector("#address").value;
 
   // Check if booking date is always less than pickup date
   if (new Date(dropDate) <= new Date(pickDate)) {
@@ -102,20 +113,51 @@ checkButton.addEventListener("click", (e) => {
   } else {
     // Clear the input fields
     if (payment) {
-      payment.style.display = "flex"; // Use "flex" to match your CSS
       document.querySelector("#pickdate").value = "";
       document.querySelector("#dropdate").value = "";
       document.querySelector("#number").value = "";
       document.querySelector("#address").value = "";
-      display_order_detail(pickDate, dropDate, number, address);
+
+      // Get car id from the url
+      const url = window.location.href;
+      const car_id = 1;
+      console.log(car_id);
+
+
+      fetch(`/carDetail/${car_id}/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrftoken
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          console.log(data);
+          showToast(data.error, "Error");
+        } else if (data.success) {
+          console.log("Else");
+          payment.style.display = "flex"; // Use "flex" to match your CSS
+          display_order_detail(pickDate, dropDate);
+        }
+      })
+      .catch(error => {
+        showToast("An error occurred while booking the car.", "Error");
+        console.error("Error:", error);
+      });
+
+
     }
   }
 });
 
-const display_order_detail = (pickdate, dropdate, number, address) => {
+const display_order_detail = (pickdate, dropdate) => {
   let payment_detail = document.querySelector(".order__detail");
   let mainImage = document.getElementById("mainImage").src;
   let rate = document.querySelector("#daily_rate").innerHTML.slice(0, 4);
+  let days = Math.ceil((new Date(dropdate) - new Date(pickdate)) / (1000 * 60 * 60 * 24));
+
   console.log(rate);
 
   payment_detail.innerHTML = `
@@ -126,11 +168,11 @@ const display_order_detail = (pickdate, dropdate, number, address) => {
       <p style="font-weight: 500; color: #1ECB15;">Daily Price</p>
       <p style="color:#121212;">Rs. ${rate}</p>
     </div>
-    <input type="text" value="Muhammad zuanin" readonly>
-    <input type="date" name="" id="" value="${pickdate}" readonly>
-    <input type="date" name="" id="" value="${dropdate}" readonly>
-    <input type="tel" name="" id="" maxlength="13" value="+92 ${number}" readonly>
-    <input type="text" name="" id="" value="${address}" readonly>
+    <input type="text" name="" id="" value="Pickup Date: ${pickdate}" readonly>
+    <input type="text" name="" id="" value="Drop Date: ${dropdate}" readonly>
+    <input type="text" name="" id="" value="Days: ${days}" readonly>
+    <input type="text" name="" id="" value="Total Cost: ${days * rate} Rs" readonly>
+
   `;
 };
 
@@ -141,7 +183,8 @@ payNowButton.addEventListener("click", (e) => {
   const cardNumber = document.querySelector("#card-number").value;
   const expiryDate = document.querySelector("#expiry-date").value;
   const cvv = document.querySelector("#cvv").value;
-  const email = document.querySelector("#email").value;
+  const cardHolder = document.querySelector("#card-holder").value;
+
   const selectedPaymentMethod = Array.from(payment_method_checkouts).some(pm => pm.checked);
 
   if (!selectedPaymentMethod) {
@@ -156,12 +199,43 @@ payNowButton.addEventListener("click", (e) => {
     showToast("CVV is required", "Error");
   } else if (cvv.length !== 3 || isNaN(cvv)) {
     showToast("CVV must be 3 digits", "Error");
-  } else if (email === "") {
-    showToast("Email is required", "Error");
-  } else if (!isValidEmail(email)) {
-    showToast("Invalid email address", "Error");
-  } else {
+  } else if (cardHolder === "") {
+    showToast("Cardholder name is required", "Error");
+  }else{
+
+    submitPayment(selectedPaymentMethod, cardNumber, expiryDate, cvv, cardHolder, pickDate, dropDate, number, address);
   }
-  
+
+
 });
+
+const submitPayment = (paymentMethod, cardNumber, expiryDate, cvv, cardHolder, pickDate, dropDate, phoneNo, address) => {
+  const data = {
+    paymentMethod,
+    cardNumber,
+    expiryDate,
+    cvv,
+    cardHolder,
+    pickDate,
+    dropDate,
+    phoneNo,
+    address
+  };
+
+  fetch('/carDetail/1/', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken
+    },
+    body: JSON.stringify(data)
+  })
+  .then(
+    payment.style.display = "none"
+  )
+  .catch(error => {
+    showToast("An error occurred while processing your payment.", "Error");
+    console.error("Error:", error);
+  });
+}
 
