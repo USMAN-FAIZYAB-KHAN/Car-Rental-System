@@ -120,9 +120,9 @@ checkButton.addEventListener("click", (e) => {
 
       // Get car id from the url
       const url = window.location.href;
-      const car_id = 1;
-      console.log(car_id);
-
+      const regex = /\/carDetail\/(\d+)\//;
+      const match = url.match(regex);
+      const car_id = match[1];
 
       fetch(`/carDetail/${car_id}/`, {
         method: "POST",
@@ -130,14 +130,13 @@ checkButton.addEventListener("click", (e) => {
           "Content-Type": "application/json",
           "X-CSRFToken": csrftoken
         },
+        body: JSON.stringify({ 'booking': true })
       })
       .then(response => response.json())
       .then(data => {
         if (data.error) {
-          console.log(data);
           showToast(data.error, "Error");
         } else if (data.success) {
-          console.log("Else");
           payment.style.display = "flex"; // Use "flex" to match your CSS
           display_order_detail(pickDate, dropDate);
         }
@@ -157,8 +156,6 @@ const display_order_detail = (pickdate, dropdate) => {
   let mainImage = document.getElementById("mainImage").src;
   let rate = document.querySelector("#daily_rate").innerHTML.slice(0, 4);
   let days = Math.ceil((new Date(dropdate) - new Date(pickdate)) / (1000 * 60 * 60 * 24));
-
-  console.log(rate);
 
   payment_detail.innerHTML = `
     <div class="order__img">
@@ -211,6 +208,7 @@ payNowButton.addEventListener("click", (e) => {
 
 const submitPayment = (paymentMethod, cardNumber, expiryDate, cvv, cardHolder, pickDate, dropDate, phoneNo, address) => {
   const data = {
+    "payment": true,
     paymentMethod,
     cardNumber,
     expiryDate,
@@ -231,8 +229,18 @@ const submitPayment = (paymentMethod, cardNumber, expiryDate, cvv, cardHolder, p
     body: JSON.stringify(data)
   })
   .then(
-    payment.style.display = "none"
-  )
+    response => response.json()
+  ).then(data => {
+    if (data.error) {
+      showToast(data.error, "Error");
+    } else if (data.success) {
+      payment.style.display = "none";
+      showToast(data.success, "Success");
+      setTimeout(() => {
+        window.location.href = "/userDashboard";
+      }, 3000);
+    }
+  })
   .catch(error => {
     showToast("An error occurred while processing your payment.", "Error");
     console.error("Error:", error);

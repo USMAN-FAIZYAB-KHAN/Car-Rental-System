@@ -9,6 +9,7 @@ from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus, P
 from django.db.models import Q
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
 
 User = get_user_model()
 
@@ -28,11 +29,10 @@ def about(request):
     completed_orders_count = Rental.objects.filter(status__name='Completed').count()
     customers_count = User.objects.filter(user_type__type_name='Customer').count()
     total_vehicles_count = Car.objects.count()
-    
+
     return render(request, 'about.html', {"user": request.user, "completed_orders_count": completed_orders_count, "customers_count": customers_count, "total_vehicles_count": total_vehicles_count})
 
 def contact(request):
-    print(request.path)
     return render(request, 'contact.html', {"user": request.user})
 
 def login(request):
@@ -74,7 +74,7 @@ def carList(request):
             filter_conditions |= Q(variant__model__category__name=category)
         cars_list = cars_list.filter(filter_conditions)    
 
-    p = Paginator(cars_list, 1)
+    p = Paginator(cars_list, 5)
     # get the page number from the request
     page_number = request.GET.get('page')
 
@@ -90,59 +90,71 @@ def carList(request):
 
     return render(request, 'carList.html', {"user": request.user, "cars": cars})
 
+
+
 def carDetail(request, car_id):
 
     car = Car.objects.get(car_id=car_id)
     images = car.images.all()
 
     if request.method == 'POST':
-        if not request.user.is_authenticated:
-            message = {'error': 'You need to login to book a car'}
-            return JsonResponse(message)
-        elif request.body:
-            data = json.loads(request.body)
+        body = json.loads(request.body)
+
+        if body.get('booking'):
+            if not request.user.is_authenticated:
+                message = {'error': 'You need to login to book a car'}
+                return JsonResponse(message)
+            else:
+                fname = request.user.first_name
+                lname = request.user.last_name
+                username = fname + " " + lname
+                message = {'success': 'success', 'username': username}
+                return JsonResponse(message)
+        
+        elif body.get('payment'):
             booking_date = datetime.now()
-            pickup_date = datetime.strptime(data['pickDate'], '%Y-%m-%d')
-            drop_date = datetime.strptime(data['dropDate'], '%Y-%m-%d')
+            pickup_date = datetime.strptime(body['pickDate'], '%Y-%m-%d')
+
+            if pickup_date.date() < booking_date.date():
+                message = {'error': 'Invalid pickup date.'}
+                return JsonResponse(message)
+
+            drop_date = datetime.strptime(body['dropDate'], '%Y-%m-%d')
             no_of_days = (drop_date - pickup_date).days
             total_price = no_of_days * car.price_per_day
 
             user = request.user
-
-            user.address = data['address']
+            user.address = body['address']
+            user.phone = body['phoneNo']
+            user.save()
 
             rental = Rental.objects.create(user=user, car=car, booking_date=booking_date, pickup_date=pickup_date, drop_date=drop_date, total_cost=total_price, status=RentalStatus.objects.get(name='Scheduled'))
             payment = Payment.objects.create(rental=rental, payment_type='Advance', payment_method='Online', payment_date=booking_date, amount=total_price)
 
-            user.save()
-            rental.save()
-            payment.save()
-            return redirect('userdashboard')
-        else:
-            fname = request.user.first_name
-            lname = request.user.last_name
-            username = fname + " " + lname
-            message = {'success': 'success', 'username': username}
-            return JsonResponse(message)
-        
-       
-            
-
-    return render(request, 'carDetail.html', {"user": request.user, "car": car, "car_images": images, "display_form": False})
+            return JsonResponse({'success': 'Payment successful.'})
+                   
+    return render(request, 'carDetail.html', {"user": request.user, "car": car, "car_images": images})
 
 @login_required
 def userDashboard(request):
 
-    scheduled_orders = Rental.objects.filter(user=request.user, status__name='Scheduled')
+    recent_orders = Rental.objects.filter(user=request.user).order_by('-booking_date')[:5]
+    upcoming_orders_count = Rental.objects.filter(user=request.user, status__name='Scheduled').count()
+    completed_orders_count = Rental.objects.filter(user=request.user, status__name='Completed').count()
+    cancelled_orders_count = Rental.objects.filter(user=request.user, status__name='Cancelled').count()
+    cars_rented = Rental.objects.filter(user=request.user).values('car').distinct().count()
+
+    return render(request, 'userdashboard.html', {"user": request.user, 'upcoming_orders': f'{upcoming_orders_count:02}', 'completed_orders': f'{completed_orders_count:02}', 'cancelled_orders': f'{cancelled_orders_count:02}', 'cars_rented': f'{cars_rented:02}', 'recent_orders': recent_orders})
+
+
+@login_required
+def orders(request):
+
+    upcoming_orders = Rental.objects.filter(user=request.user, status__name='Scheduled')
     completed_orders = Rental.objects.filter(user=request.user, status__name='Completed')
     cancelled_orders = Rental.objects.filter(user=request.user, status__name='Cancelled')
-    cars_rented = Rental.objects.filter(user=request.user).values('car__variant__variant_name').distinct().count()
-    return render(request, 'userdashboard.html')
 
-    if request.method == 'POST':
-        data = {'upcoming_orders': scheduled_orders.count(), 'completed_orders': completed_orders.count(), 'cancelled_orders': cancelled_orders.count(), 'cars_rented': cars_rented}
-        return JsonResponse(data)
-
+    return render(request, 'orders.html', {"user": request.user, 'upcoming_orders': upcoming_orders, 'completed_orders': completed_orders, 'cancelled_orders': cancelled_orders})
 
 
 def signup(request):

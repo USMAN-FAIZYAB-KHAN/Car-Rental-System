@@ -10,5 +10,7 @@ urlpatterns = [
     path('carDetail/<int:car_id>/',views.carDetail,name='detail'),
     path('signup',views.signup,name='signup'),
     path('userDashboard', views.userDashboard,name='userdashboard'),
+    path('userDashboard/orders',views.orders,name='my_orders'),
     path('logout',views.logout_user,name='logout'),
+
 ]
