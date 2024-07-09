@@ -5,6 +5,8 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
 
     <!--------------------------------------- Fontawesome Link -------------------------------------->
     <script
@@ -33,6 +35,19 @@
 
 <!--------------------------------------- Body --------------------------------------->
 <body>
+
+     <!-------- Toast Notification -------->
+
+    <div class="toast" id="toast_notification">
+      <div class="toast__link">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="toast__message">
+        <h4 style="color: #121212">Empty</h4>
+        <p>Fill out all the input field</p>
+      </div>
+      <span id="toast-border"></span>
+    </div>
   
     <!-------- Scrolling Up -------->
 
@@ -42,16 +57,7 @@
         alt="Scroll Up"
     /></a>
 
-   <!-- ------ Thoast Notification ------
-  <div class="toast" id="toast_notification">
-    <div class="toast__link">
-      <i class="fa-solid fa-check"></i>
-    </div>
-    <div class="toast__message">
-      <h4 style="color: #121212;">Success</h4>
-      <p>Your changed have been saved</p>
-    </div>
-  </div> -->
+
   
 
   <div class="main__home">
@@ -82,7 +88,7 @@
             class="nav__link {% if request.path == '/about' %} active {% endif %}"
             >About</a
           >
-          <a href="#" class="nav__link {% if request.path == '/userdashboard' %} active {% endif %}">Dashboard</a>
+          <a href="{% url 'userdashboard' %}" class="nav__link {% if request.path == '/userdashboard' %} active {% endif %}">Dashboard</a>
           <a
             href="{% url 'contact' %}"
             class="nav__link {% if request.path == '/contact' %} active {% endif %}"

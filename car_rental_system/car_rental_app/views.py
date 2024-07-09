@@ -1,30 +1,35 @@
 
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
+import json
 from django.contrib.auth import get_user_model
-from django.contrib.auth import login as django_login, authenticate
+from django.contrib.auth import login as django_login, authenticate, logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus
+from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus, Payment
 from django.db.models import Q
+from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
 User = get_user_model()
 
-# Create your views here.
-def home(request):
-    
-    car = Car.objects.all()
-    car.order_by('variant__model__year')
+
+def home(request): 
+    cars = Car.objects.all()
+    completed_orders_count = Rental.objects.filter(status__name='Completed').count()
+    customers_count = User.objects.filter(user_type__type_name='Customer').count()
+    total_vehicles_count = Car.objects.count()
 
     if request.user.is_authenticated:
-        return render(request, 'home.html', {"user": request.user})
-    return render(request, 'home.html', {'car': car})
+        return render(request, 'home.html', {"user": request.user, 'cars': cars, 'completed_orders_count': completed_orders_count, 'customers_count': customers_count, 'total_vehicles_count': total_vehicles_count}) 
+    
+    return render(request, 'home.html', {'cars': cars, 'completed_orders_count': completed_orders_count, 'customers_count': customers_count, 'total_vehicles_count': total_vehicles_count})
 
 def about(request):
     completed_orders_count = Rental.objects.filter(status__name='Completed').count()
     customers_count = User.objects.filter(user_type__type_name='Customer').count()
-    free_vehicles_count = Car.objects.filter(availability=True).count()
     total_vehicles_count = Car.objects.count()
     
-    return render(request, 'about.html', {"user": request.user, "completed_orders_count": completed_orders_count, "customers_count": customers_count, "free_vehicles_count": free_vehicles_count, "total_vehicles_count": total_vehicles_count})
+    return render(request, 'about.html', {"user": request.user, "completed_orders_count": completed_orders_count, "customers_count": customers_count, "total_vehicles_count": total_vehicles_count})
 
 def contact(request):
     print(request.path)
@@ -91,26 +96,65 @@ def carDetail(request, car_id):
     images = car.images.all()
 
     if request.method == 'POST':
-        pickup_date = request.POST['pickdate']
-        drop_date = request.POST['dropdate']
-        address = request.POST['address']
-        phone_number = request.POST['phonenumber']
+        if not request.user.is_authenticated:
+            message = {'error': 'You need to login to book a car'}
+            return JsonResponse(message)
+        elif request.body:
+            data = json.loads(request.body)
+            booking_date = datetime.now()
+            pickup_date = datetime.strptime(data['pickDate'], '%Y-%m-%d')
+            drop_date = datetime.strptime(data['dropDate'], '%Y-%m-%d')
+            no_of_days = (drop_date - pickup_date).days
+            total_price = no_of_days * car.price_per_day
 
-    return render(request, 'carDetail.html', {"user": request.user, "car": car, "car_images": images})
+            user = request.user
 
+            user.address = data['address']
+
+            rental = Rental.objects.create(user=user, car=car, booking_date=booking_date, pickup_date=pickup_date, drop_date=drop_date, total_cost=total_price, status=RentalStatus.objects.get(name='Scheduled'))
+            payment = Payment.objects.create(rental=rental, payment_type='Advance', payment_method='Online', payment_date=booking_date, amount=total_price)
+
+            user.save()
+            rental.save()
+            payment.save()
+            return redirect('userdashboard')
+        else:
+            fname = request.user.first_name
+            lname = request.user.last_name
+            username = fname + " " + lname
+            message = {'success': 'success', 'username': username}
+            return JsonResponse(message)
+        
+       
+            
+
+    return render(request, 'carDetail.html', {"user": request.user, "car": car, "car_images": images, "display_form": False})
+
+@login_required
 def userDashboard(request):
+
+    scheduled_orders = Rental.objects.filter(user=request.user, status__name='Scheduled')
+    completed_orders = Rental.objects.filter(user=request.user, status__name='Completed')
+    cancelled_orders = Rental.objects.filter(user=request.user, status__name='Cancelled')
+    cars_rented = Rental.objects.filter(user=request.user).values('car__variant__variant_name').distinct().count()
     return render(request, 'userdashboard.html')
 def page404(request):
     return render(request, '404.html')
 
+    if request.method == 'POST':
+        data = {'upcoming_orders': scheduled_orders.count(), 'completed_orders': completed_orders.count(), 'cancelled_orders': cancelled_orders.count(), 'cars_rented': cars_rented}
+        return JsonResponse(data)
+
+
 
 def signup(request):
     if request.method == 'POST':
+        
         firstname = request.POST['first_name']
         lastname = request.POST['last_name']
         email = request.POST['email']
         password = request.POST['password']
-
+        print(firstname, lastname, email, password)
         if User.objects.filter(email=email).exists():
             return render(request, 'signup.html', {'error': 'Email already exists'})
         
@@ -130,3 +174,11 @@ def signup(request):
         return redirect('home')
 
     return render(request, 'signup.html')
+
+
+def logout_user(request):
+    
+    if request.method == "GET":
+        logout(request)
+        message = {'status': 'success'}
+        return JsonResponse(message)

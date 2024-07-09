@@ -176,3 +176,53 @@ hiddenElementsLeft.forEach((el) => observerLeft.observe(el));
 
 const hiddenElementsRight = document.querySelectorAll('.hidden-right');
 hiddenElementsRight.forEach((el) => observerRight.observe(el));
+
+
+
+// <------------------------------ Thoast Notification ------------------------------>
+
+// showToast Function ( Display Different Thoast according to the input field )
+
+const toast_notification = document.querySelector("#toast_notification");   //   thoastNotification Container
+
+const showToast = (message, type) => {
+  let border = document.querySelector("#toast-border");
+  border.classList.remove("toastBoderAnimation");
+
+  toast_notification.classList.remove("toastanimate", "toastanimateout");
+  void toast_notification.offsetWidth;
+
+  border.classList.add("toastBoderAnimation");
+
+  toast_notification.classList.add("toastanimate");
+
+  // Update the toast message and icon
+  toast_notification.querySelector('.toast__message h4').innerText = type;
+  toast_notification.querySelector('.toast__message p').innerText = message;
+
+  
+    toast_notification.querySelector('.toast__link i').classList.remove('fa-xmark');
+    toast_notification.querySelector('.toast__link i').classList.add('fa-check');
+  
+  toast_notification.classList.add('show');
+
+  setTimeout(() => {
+    toast_notification.classList.remove("toastanimate");
+    toast_notification.classList.add("toastanimateout");
+    setTimeout(() => {
+      toast_notification.classList.remove("toastanimateout");
+      toast_notification.classList.remove('show');
+    }, 300);
+  }, 2300);
+};
+
+
+const checklogout = ()=>{
+  check = sessionStorage.getItem("logout");
+  if (check === "true"){
+    showToast("You have been logged out", "Success")
+    sessionStorage.removeItem("logout");
+  }
+};
+
+checklogout();
