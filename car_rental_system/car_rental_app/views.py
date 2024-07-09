@@ -5,7 +5,7 @@ import json
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login as django_login, authenticate, logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus, Payment
+from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus, Payment, Review
 from django.db.models import Q
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
@@ -89,7 +89,6 @@ def carList(request):
         cars = p.get_page(p.num_pages)
 
     return render(request, 'carList.html', {"user": request.user, "cars": cars})
-
 
 
 def carDetail(request, car_id):
@@ -188,7 +187,33 @@ def signup(request):
 
 def logout_user(request):
     
+
     if request.method == "GET":
+
         logout(request)
         message = {'status': 'success'}
         return JsonResponse(message)
+
+def review_dashboard(request):
+    Review = Review.objects.all()
+
+    if request.method == "POST":
+        review = json.loads(request.body)
+        review_message = review['message']
+        review_rating = int(review['rating'])
+        review_date = datetime.now()
+
+
+        
+        car_id = review['car_id']
+        car = Car.objects.get(car_id=car_id)
+        user = request.user
+
+
+        Review.objects.create(comment=review_message, rating=review_rating, review_date=review_date)
+
+
+        message = {'status': 'success'}
+        return JsonResponse(message)
+
+    return render(request, 'reviewdashboard.html')

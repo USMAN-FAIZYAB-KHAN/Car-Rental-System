@@ -1,3 +1,30 @@
+const cars = [
+    {
+        "car_name": "Toyota Camry",
+        "car_image": "https://example.com/images/toyota_camry.jpg"
+    },
+    {
+        "car_name": "Honda Accord",
+        "car_image": "https://example.com/images/honda_accord.jpg"
+    },
+    {
+        "car_name": "Ford Mustang",
+        "car_image": "https://example.com/images/ford_mustang.jpg"
+    },
+    {
+        "car_name": "Chevrolet Malibu",
+        "car_image": "https://example.com/images/chevrolet_malibu.jpg"
+    },
+    {
+        "car_name": "BMW 3 Series",
+        "car_image": "https://example.com/images/bmw_3_series.jpg"
+    }
+]
+
+
+
+
+
 function getCSRFToken() {
     return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 }
@@ -261,7 +288,29 @@ const view_order = (element) => {
     div.appendChild(box3);
     
 };
+const view_review = (element) => {
+    document.querySelector('.profile__main__header h1').innerHTML = element;
+    let div = document.querySelector(".rentaly__dashboard");
+    div.innerHTML = " ";
+    let box1 = document.createElement("div");
+    box1.classList.add('rentaly__dashboard__innerbox3');
 
+    cars.forEach(car => {
+        
+        box1.innerHTML += `
+            <div class="review__box" >
+                <div class="review__car__image">
+                    <img src="${car.car_image}" alt="${car.car_name}" />
+                </div>
+                <p>${car.car_name}</p>
+                <button class="button">
+                    <a href="#" class="review__btn">Review</a>
+                </button>
+            </div>
+        `;
+        div.appendChild(box1); // Append each car review box to the dashboard
+    });
+}
 const dash_links = document.querySelectorAll(".dashboard_links");
 const user_signout = document.querySelector("#user-signout");
 user_signout.addEventListener("click", (e) => {
@@ -273,9 +322,8 @@ user_signout.addEventListener("click", (e) => {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data.status)
+        
         if (data.status){
-            console.log("ok")
             sessionStorage.setItem("logout", "true")
             window.location.href = "/";
         }
@@ -294,6 +342,9 @@ dash_links.forEach((link) => {
         } else if (target.innerHTML == "My Order") {
             remove_active(target);
             view_order("Orders");
+        }else if (target.innerHTML == "Reviews") {
+            remove_active(target);
+            view_review("Reviews");
         }
     });
 });
@@ -313,7 +364,10 @@ document.addEventListener("DOMContentLoaded",() => {
                 view_dashboard("Dashboard");
             } else if (target.childNodes[2].innerHTML == "My Order") {
                 view_order("Orders");
-            }
+            }else if (target.childNodes[2].innerHTML == "Reviews") {
+                view_review("Reviews");
+            }   
         };    
     });
 });
+
