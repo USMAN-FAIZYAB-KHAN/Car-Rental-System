@@ -121,12 +121,12 @@ const nextBtn = document.getElementById("next");
 const prevBtn = document.getElementById("prev");
 
 const slideNext = () => {
-  currentIndex = (currentIndex + 3) % vehicle_fleets.length;
+  currentIndex = (currentIndex + 3) % 9;
   vehicle_fleet_Container.style.transform = `translateX(-${currentIndex * (100 / 3)}%)`;
 };
 
 const slidePrev = () => {
-  currentIndex = (currentIndex - 3 + vehicle_fleets.length) % vehicle_fleets.length;
+  currentIndex = (currentIndex - 3 +9) % 9;
   vehicle_fleet_Container.style.transform = `translateX(-${currentIndex * (100 / 3)}%)`;
 };
 

@@ -88,7 +88,7 @@
             class="nav__link {% if request.path == '/about' %} active {% endif %}"
             >About</a
           >
-          <a href="{% url 'userdashboard' %}" class="nav__link {% if request.path == '/userdashboard' %} active {% endif %}">Dashboard</a>
+          <a href="{% url 'userdashboard' %}" class="nav__link {% if request.path == '/userDashboard' or request.path == '/userDashboard/reviews' or request.path == '/userDashboard/orders' %} active {% endif %}">Dashboard</a>
           <a
             href="{% url 'contact' %}"
             class="nav__link {% if request.path == '/contact' %} active {% endif %}"

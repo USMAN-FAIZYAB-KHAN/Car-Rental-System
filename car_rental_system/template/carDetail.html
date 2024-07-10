@@ -151,11 +151,11 @@
   <div class="car-images">
     <img id="mainImage" src="{{ car_images.0 }}" alt="Main Image" class="main-image" />
 
-    <div class="lines">
+    <!-- <div class="lines">
       <div class="line" onclick="changeImage('https://www.w3schools.com/howto/img_forest.jpg', this)"></div>
       <div class="line" onclick="changeImage('https://www.w3schools.com/howto/img_snow.jpg', this)"></div>
       <div class="line" onclick="changeImage('https://www.w3schools.com/howto/img_mountains.jpg', this)"></div>
-    </div>
+    </div> -->
 
     <div class="thumbnail-container">
       {% for image in car_images %}
@@ -234,7 +234,7 @@
     <div class="detail__right__box">
       <div class="price__box">
         <p>Daily rate</p>
-        <h1 id="daily_rate">10000 <span style="color: #1ECB15; font-size: 3rem;">RS</span></h1>
+        <h1 id="daily_rate">{{car.price_per_day}} <span style="color: #1ECB15; font-size: 3rem;">RS</span></h1>
       </div>
       <form method="post" role="form" action="" class="booking__box">
         {% csrf_token %}

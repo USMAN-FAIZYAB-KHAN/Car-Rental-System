@@ -2,7 +2,7 @@
 
 <!--------------------------------------- CSS Styling Link -------------------------------------->
 {% block cssLink %}
-<link rel="stylesheet" href="{% static 'css/userdashboard.css' %}" />
+<link rel="stylesheet" href="{% static './css/userdashboard.css' %}" />
 
 {% endblock %}
 
@@ -11,7 +11,8 @@
 
 <!--------------------------------------- Javascript Link -------------------------------------->
 {% block javascript %}
-<script src="{% static 'javascript/logout.js' %}" defer></script>
+<script src="{% static './javascript/reviewdashboard.js' %}" defer></script>
+<script src="{% static './javascript/logout.js' %}" defer></script>
 {% endblock %}
 
 <!--------------------------------------- Body -------------------------------------->
@@ -20,37 +21,39 @@
 <!---------------------- User Dash Board  ---------------------->
 
 <div class="main-review">
-  
   <form class="review-container" method="post" role="form" action="">
     {% csrf_token %}
+    <i class="fa-solid fa-xmark" id="review-cross"></i>
     <div class="r_cont">
       <p class="">Rating Star</p>
       <span></span>
     </div>
 
-    <div class="rating__star">
-      <i class="fa-solid fa-star"></i> 
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-          
+    <div class="rating_star">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <input type="hidden" value="" name="rating" id="hidden-input">
     </div>
 
     <div class="r_cont">
       <p class="">Write a message?</p>
       <span class="imp"></span>
     </div>
-    <textarea name="" id="" placeholder="Your Message" maxlength="50"></textarea>
+    <textarea name="reviewmessage" placeholder="Your Message" maxlength="50" id="message"></textarea>
 
-
+    <button type="submit">
+      <a class="review__btn2">Submit</a>
+    </button>
   </form>
 </div>
 
 <!-------- User Dash Board Header -------->
 
 <div class="profile__main__header">
-  <h1>Dashboard</h1>
+  <h1>Reviews</h1>
 </div>
 
 <section style="background: #f5f8fa; padding: 90px 0 90px 0; position: relative">
@@ -63,10 +66,10 @@
       </div>
 
       <ul class="select__view">
-        <li class="dashboard_links buttonActive">
+        <li class="dashboard_links">
           <i class="fa-solid fa-house-chimney"></i><a href="{% url 'userdashboard' %}">Dashboard</a>
         </li>
-        <li class="dashboard_links">
+        <li class="dashboard_links buttonActive">
           <i class="fa-solid fa-user"></i><a href="{% url 'reviews' %}">Reviews</a>
         </li>
         <li class="dashboard_links">
@@ -76,36 +79,13 @@
           <i class="fa-solid fa-car"></i><a href="#">My Favorite Car</a>
         </li>
         <li class="dashboard_links">
-          <i class="fa-solid fa-right-from-bracket"></i
-          ><a id="user-signout">Sign Out</a>
+          <i class="fa-solid fa-right-from-bracket"></i><a id="user-signout">Sign Out</a>
         </li>
       </ul>
     </div>
     <div class="rentaly__dashboard">
-      <div class="rentaly__dashboard__innerbox1">
-        <div class="rentaly__spec1fication__box">
-          <i class="fa-regular fa-calendar-check"></i>
-          <h1>{{ completed_orders }}</h1>
-          <p>Completed Orders</p>
-        </div>
-        <div class="rentaly__spec1fication__box">
-          <i class="fa-regular fa-calendar-days"></i>
-          <h1>{{ upcoming_orders }}</h1>
-          <p>Upcoming Orders</p>
-        </div>
-        <div class="rentaly__spec1fication__box">
-          <i class="fa-regular fa-calendar-xmark"></i>
-          <h1>{{ cancelled_orders }}</h1>
-          <p>Cancel Orders</p>
-        </div>
-        <div class="rentaly__spec1fication__box">
-          <i class="fa-solid fa-tags"></i>
-          <h1>{{ cars_rented }}</h1>
-          <p>Cars Rented</p>
-        </div>
-      </div>
       <div class="rentaly__dashboard__innerbox2">
-        <h4>My Recent Orders</h4>
+        <h4>Completed Orders</h4>
         <table>
           <thead>
             <tr>
@@ -114,15 +94,16 @@
               <th>Booking date</th>
               <th>Pick Up Date</th>
               <th>Return Date</th>
-              <th>Status</th>
+              <th>Reviews</th>
             </tr>
           </thead>
           <tbody>
-            {% for rental in recent_orders %}
+            {% for rental in rentals %}
             <tr>
-              <td><span class="order__id">#{{ rental.id }}</span></td>
+              <td><span class="order__id" data-rental-id="{{ rental.id }}">#{{ rental.id }}</span></td>
               <td>
-                <p>{{ rental.car.variant.model.manufacturer }} {{ rental.car.variant.model.name }} {{rental.car.variant.variant_name }}</p>
+                <p>{{ rental.car.variant.model.manufacturer }} {{ rental.car.variant.model.name }}
+                  {{rental.car.variant.variant_name }}</p>
               </td>
               <td>
                 <p>{{ rental.booking_date }}</p>
@@ -133,10 +114,13 @@
               <td>
                 <p>{{ rental.drop_date }}</p>
               </td>
-              <td> <span class="status" style="border: 1px solid #404040; border-radius: 10px;">{{ rental.status.name }}</span></td>
+              <td>
+                <button class="status completed button">
+                  <a class="review__btn">Review</a>
+                </button>
+              </td>
             </tr>
             {% endfor %}
-
           </tbody>
         </table>
       </div>
