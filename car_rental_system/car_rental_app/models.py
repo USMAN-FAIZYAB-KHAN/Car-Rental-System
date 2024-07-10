@@ -115,7 +115,7 @@ class Rental(models.Model):
             unique_together = ('car', 'pickup_date')
 
     def __str__(self):
-        return f"Car: {self.car.license_number}, Pickup Date: {self.pickup_date}"
+        return f"Car: {self.car.variant.model.manufacturer + ' ' + self.car.variant.model.name + ' ' + str(self.car.variant.model.year) + ' ' + self.car.variant.variant_name}, Pickup Date: {self.pickup_date}, Username: {self.user.first_name + ' ' + self.user.last_name}"
 
 
 class Payment(models.Model):

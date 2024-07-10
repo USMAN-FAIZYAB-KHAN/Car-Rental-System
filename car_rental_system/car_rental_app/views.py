@@ -5,7 +5,7 @@ import json
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login as django_login, authenticate, logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus, Payment, Review
+from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus, Payment, Review, UserType
 from django.db.models import Q
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
@@ -45,6 +45,7 @@ def login(request):
         if user:
             django_login(request, user)
             return redirect('home')
+    
         
         return render(request, 'login.html', {'error': 'Invalid Credentials'})
             
@@ -177,12 +178,13 @@ def signup(request):
         lastname = request.POST['last_name']
         email = request.POST['email']
         password = request.POST['password']
-        print(firstname, lastname, email, password)
+        
         if User.objects.filter(email=email).exists():
             return render(request, 'signup.html', {'error': 'Email already exists'})
         
         # Create the user
-        user = User.objects.create_user(email=email, password=password, first_name=firstname, last_name=lastname)
+        user_type = UserType.objects.get(type_name='Customer')
+        user = User.objects.create_user(email=email, password=password, first_name=firstname, last_name=lastname, user_type=user_type)
         user.save()
             
         # Authenticate and login the user
@@ -209,7 +211,7 @@ def logout_user(request):
         return JsonResponse(message)
 
 def review_dashboard(request):
-    rentals = Rental.objects.filter(user=request.user)
+    rentals = Rental.objects.filter(user=request.user, status__name='Completed')
     
     rentals_without_reviews = []
 
