@@ -12,6 +12,7 @@
 <!--------------------------------------- Javascript Link -------------------------------------->
 {% block javascript %}
 <script src="{% static './javascript/reviewdashboard.js' %}" defer></script>
+<script src="{% static './javascript/logout.js' %}" defer></script>
 {% endblock %}
 
 <!--------------------------------------- Body -------------------------------------->
@@ -34,19 +35,14 @@
       <i class="fa-regular fa-star"></i>
       <i class="fa-regular fa-star"></i>
       <i class="fa-regular fa-star"></i>
-      <input type="hidden" value="" name="rating" id="hidden-input" >
+      <input type="hidden" value="" name="rating" id="hidden-input">
     </div>
 
     <div class="r_cont">
       <p class="">Write a message?</p>
       <span class="imp"></span>
     </div>
-    <textarea
-      name="reviewmessage"
-      placeholder="Your Message"
-      maxlength="50"
-      id="message"
-    ></textarea>
+    <textarea name="reviewmessage" placeholder="Your Message" maxlength="50" id="message"></textarea>
 
     <button type="submit">
       <a class="review__btn2">Submit</a>
@@ -60,39 +56,30 @@
   <h1>Reviews</h1>
 </div>
 
-<section
-  style="background: #f5f8fa; padding: 90px 0 90px 0; position: relative"
->
+<section style="background: #f5f8fa; padding: 90px 0 90px 0; position: relative">
   <div class="main__user__dashboard container">
     <div class="profile__dashboard">
       <div class="profile__view">
-        <img src="{% static './images/assets/profile.jpg' %}" alt="" />
-        <h4>Monica Lucas</h4>
-        <p>monica@rentaly.com</p>
+        <img src="{% static './images/assets/1-green.svg' %}" alt="" />
+        <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+        <p>{{ user.email }}</p>
       </div>
 
       <ul class="select__view">
-        <li
-          class="dashboard_links {% if request.path == '/userdashboard' %} buttonActive {% endif %}"
-        >
-          <i class="fa-solid fa-house-chimney"></i
-          ><a href="{% url 'userdashboard' %}">Dashboard</a>
+        <li class="dashboard_links">
+          <i class="fa-solid fa-house-chimney"></i><a href="{% url 'userdashboard' %}">Dashboard</a>
         </li>
-        <li
-          class="dashboard_links {% if request.path == '/reviewdashboard' %} buttonActive {% endif %}"
-        >
-          <i class="fa-solid fa-user"></i
-          ><a href="{% url 'reviewdashboard' %}">Reviews</a>
+        <li class="dashboard_links buttonActive">
+          <i class="fa-solid fa-user"></i><a href="{% url 'reviews' %}">Reviews</a>
         </li>
         <li class="dashboard_links">
-          <i class="fa-solid fa-calendar-days"></i><a href="#">My Order</a>
+          <i class="fa-solid fa-calendar-days"></i><a href="{% url 'my_orders' %}">My Order</a>
         </li>
         <li class="dashboard_links">
           <i class="fa-solid fa-car"></i><a href="#">My Favorite Car</a>
         </li>
         <li class="dashboard_links">
-          <i class="fa-solid fa-right-from-bracket"></i
-          ><a href="#" id="user-signout">Sign Out</a>
+          <i class="fa-solid fa-right-from-bracket"></i><a id="user-signout">Sign Out</a>
         </li>
       </ul>
     </div>
@@ -111,42 +98,29 @@
             </tr>
           </thead>
           <tbody>
+            {% for rental in rentals %}
             <tr>
-              <td><span class="order__id">#01236</span></td>
-              <td><p>Jeep Renegade</p></td>
-              <td><p>March 10, 2023</p></td>
-              <td><p>March 2, 2023</p></td>
-              <td><p>March 10, 2023</p></td>
+              <td><span class="order__id" data-rental-id="{{ rental.id }}">#{{ rental.id }}</span></td>
+              <td>
+                <p>{{ rental.car.variant.model.manufacturer }} {{ rental.car.variant.model.name }}
+                  {{rental.car.variant.variant_name }}</p>
+              </td>
+              <td>
+                <p>{{ rental.booking_date }}</p>
+              </td>
+              <td>
+                <p>{{ rental.pickup_date }}</p>
+              </td>
+              <td>
+                <p>{{ rental.drop_date }}</p>
+              </td>
               <td>
                 <button class="status completed button">
                   <a class="review__btn">Review</a>
                 </button>
               </td>
             </tr>
-            <tr>
-              <td><span class="order__id">#01263</span></td>
-              <td><p>Mini Cooper</p></td>
-              <td><p>March 10, 2023</p></td>
-              <td><p>March 8, 2023</p></td>
-              <td><p>March 10, 2023</p></td>
-              <td>
-                <button class="status completed button">
-                  <a class="review__btn">Review</a>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td><span class="order__id">#01245</span></td>
-              <td><p>Ferrari Enzo</p></td>
-              <td><p>March 10, 2023</p></td>
-              <td><p>March 6, 2023</p></td>
-              <td><p>March 10, 2023</p></td>
-              <td>
-                <button class="status completed button">
-                  <a class="review__btn">Review</a>
-                </button>
-              </td>
-            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>

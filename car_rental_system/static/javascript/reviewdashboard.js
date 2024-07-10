@@ -94,10 +94,12 @@ function getCSRFToken() {
     } else {
       const data = {
         rating: selectedRating,
-        message: message
+        message: message,
+        rental_id: sessionStorage.getItem("rental_id"),
       };
+
   
-      fetch("/reviewdashboard", {
+      fetch("/userDashboard/reviews", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -113,7 +115,11 @@ function getCSRFToken() {
             document.querySelector("#message").value = ""; // Clear the message input
             selectedRating = 0; // Reset the rating
             input.value = ""; // Clear the hidden input value
+            sessionStorage.removeItem("rental_id");
             updateStarStyles(); // Update the star styles to reflect the reset rating
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
           }
         })
         .catch((error) => {
@@ -130,6 +136,8 @@ function getCSRFToken() {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       review.style.display = "flex";
+      let rental_id = e.target.parentElement.parentElement.parentElement.children[0].children[0].getAttribute('data-rental-id');
+      sessionStorage.setItem("rental_id", rental_id);
     });
   });
   

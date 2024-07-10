@@ -13,7 +13,7 @@
 
 <!--------------------------------------- Javascript Link -------------------------------------->
 {% block javascript %}
-<script src="{% static 'javascript/dashboard.js' %}" defer></script>
+<script src="{% static 'javascript/logout.js' %}" defer></script>
 {% endblock %}
 
 <!--------------------------------------- Body -------------------------------------->
@@ -38,20 +38,20 @@
             </div>
 
             <ul class="select__view">
+                <li class="dashboard_links">
+                    <i class="fa-solid fa-house-chimney"></i><a href="{% url 'userdashboard' %}">Dashboard</a>
+                </li>
+                <li class="dashboard_links">
+                    <i class="fa-solid fa-user"></i><a href="{% url 'reviews' %}">Reviews</a>
+                </li>
                 <li class="dashboard_links buttonActive">
-                    <i class="fa-solid fa-house-chimney"></i><a href="#">Dashboard</a>
-                </li>
-                <li class="dashboard_links">
-                    <i class="fa-solid fa-user"></i><a href="#">My Profile</a>
-                </li>
-                <li class="dashboard_links">
-                    <i class="fa-solid fa-calendar-days"></i><a href="#">My Order</a>
+                    <i class="fa-solid fa-calendar-days"></i><a href="{% url 'my_orders' %}">My Order</a>
                 </li>
                 <li class="dashboard_links">
                     <i class="fa-solid fa-car"></i><a href="#">My Favorite Car</a>
                 </li>
                 <li class="dashboard_links">
-                    <i class="fa-solid fa-right-from-bracket"></i><a href="#" id="user-signout">Sign Out</a>
+                    <i class="fa-solid fa-right-from-bracket"></i><a id="user-signout">Sign Out</a>
                 </li>
             </ul>
         </div>
@@ -74,7 +74,8 @@
                         <tr>
                             <td><span class="order__id">#{{ rental.id }}</span></td>
                             <td>
-                                <p>{{ rental.car.variant.model.manufacturer }} {{ rental.car.variant.model.name }} {{rental.car.variant.variant_name }}</p>
+                                <p>{{ rental.car.variant.model.manufacturer }} {{ rental.car.variant.model.name }}
+                                    {{rental.car.variant.variant_name }}</p>
                             </td>
                             <td>
                                 <p>{{ rental.booking_date }}</p>
@@ -109,7 +110,8 @@
                         <tr>
                             <td><span class="order__id">#{{ rental.id }}</span></td>
                             <td>
-                                <p>{{ rental.car.variant.model.manufacturer }} {{ rental.car.variant.model.name }} {{rental.car.variant.variant_name }}</p>
+                                <p>{{ rental.car.variant.model.manufacturer }} {{ rental.car.variant.model.name }}
+                                    {{rental.car.variant.variant_name }}</p>
                             </td>
                             <td>
                                 <p>{{ rental.booking_date }}</p>
@@ -144,7 +146,8 @@
                         <tr>
                             <td><span class="order__id">#{{ rental.id }}</span></td>
                             <td>
-                                <p>{{ rental.car.variant.model.manufacturer }} {{ rental.car.variant.model.name }} {{rental.car.variant.variant_name }}</p>
+                                <p>{{ rental.car.variant.model.manufacturer }} {{ rental.car.variant.model.name }}
+                                    {{rental.car.variant.variant_name }}</p>
                             </td>
                             <td>
                                 <p>{{ rental.booking_date }}</p>

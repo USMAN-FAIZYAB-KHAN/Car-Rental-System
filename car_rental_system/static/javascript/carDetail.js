@@ -60,15 +60,20 @@ const showToast = (message, type) => {
   void toast_notification.offsetWidth;
 
   border.classList.add("toastBoderAnimation");
+
   toast_notification.classList.add("toastanimate");
 
   // Update the toast message and icon
   toast_notification.querySelector('.toast__message h4').innerText = type;
   toast_notification.querySelector('.toast__message p').innerText = message;
 
-  toast_notification.querySelector('.toast__link i').classList.remove('fa-check');
-  toast_notification.querySelector('.toast__link i').classList.add('fa-xmark');
-
+  if (type === 'Success') {
+    toast_notification.querySelector('.toast__link i').classList.remove('fa-xmark');
+    toast_notification.querySelector('.toast__link i').classList.add('fa-check');
+  } else {
+    toast_notification.querySelector('.toast__link i').classList.remove('fa-check');
+    toast_notification.querySelector('.toast__link i').classList.add('fa-xmark');
+  }
   toast_notification.classList.add('show');
 
   setTimeout(() => {
@@ -106,11 +111,20 @@ checkButton.addEventListener("click", (e) => {
     return;
   }
 
+  else if (new Date(pickDate) <= new Date()) {
+    showToast("Pick date must be later than today", "Error");
+    return;
+  }
+
   if (pickDate === "" || dropDate === "" || number === "" || address === "") {
     showToast("Fill out all the input fields", "Error");
-  } else if (number.length !== 10 || isNaN(number)) {
+  }
+
+  else if (number.length !== 10 || isNaN(number)) {
     showToast("Phone number must be 10 digits.", "Error");
-  } else {
+  }
+
+  else {
     // Clear the input fields
     if (payment) {
       document.querySelector("#pickdate").value = "";
@@ -130,21 +144,20 @@ checkButton.addEventListener("click", (e) => {
           "Content-Type": "application/json",
           "X-CSRFToken": csrftoken
         },
-        body: JSON.stringify({ 'booking': true })
+        body: JSON.stringify({ 'booking': true, 'pickDate': pickDate, 'dropDate': dropDate })
       })
-      .then(response => response.json())
-      .then(data => {
-        if (data.error) {
-          showToast(data.error, "Error");
-        } else if (data.success) {
-          payment.style.display = "flex"; // Use "flex" to match your CSS
-          display_order_detail(pickDate, dropDate);
-        }
-      })
-      .catch(error => {
-        showToast("An error occurred while booking the car.", "Error");
-        console.error("Error:", error);
-      });
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            showToast(data.error, "Error");
+          } else if (data.success) {
+            payment.style.display = "flex"; // Use "flex" to match your CSS
+            display_order_detail(pickDate, dropDate);
+          }
+        })
+        .catch(error => {
+          showToast("An error occurred while booking the car.", "Error");
+        });
 
 
     }
@@ -198,7 +211,7 @@ payNowButton.addEventListener("click", (e) => {
     showToast("CVV must be 3 digits", "Error");
   } else if (cardHolder === "") {
     showToast("Cardholder name is required", "Error");
-  }else{
+  } else {
 
     submitPayment(selectedPaymentMethod, cardNumber, expiryDate, cvv, cardHolder, pickDate, dropDate, number, address);
   }
@@ -220,7 +233,14 @@ const submitPayment = (paymentMethod, cardNumber, expiryDate, cvv, cardHolder, p
     address
   };
 
-  fetch('/carDetail/1/', {
+
+  // Get car id from the url
+  const url = window.location.href;
+  const regex = /\/carDetail\/(\d+)\//;
+  const match = url.match(regex);
+  const car_id = match[1];
+
+  fetch(`/carDetail/${car_id}/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -228,22 +248,22 @@ const submitPayment = (paymentMethod, cardNumber, expiryDate, cvv, cardHolder, p
     },
     body: JSON.stringify(data)
   })
-  .then(
-    response => response.json()
-  ).then(data => {
-    if (data.error) {
-      showToast(data.error, "Error");
-    } else if (data.success) {
-      payment.style.display = "none";
-      showToast(data.success, "Success");
-      setTimeout(() => {
-        window.location.href = "/userDashboard";
-      }, 3000);
-    }
-  })
-  .catch(error => {
-    showToast("An error occurred while processing your payment.", "Error");
-    console.error("Error:", error);
-  });
+    .then(
+      response => response.json()
+    ).then(data => {
+      if (data.error) {
+        showToast(data.error, "Error");
+      } else if (data.success) {
+        payment.style.display = "none";
+        showToast(data.success, "Success");
+        setTimeout(() => {
+          window.location.href = "/userDashboard";
+        }, 3000);
+      }
+    })
+    .catch(error => {
+      showToast("An error occurred while processing your payment.", "Error");
+      console.error("Error:", error);
+    });
 }
 

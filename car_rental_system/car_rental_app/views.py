@@ -74,7 +74,7 @@ def carList(request):
             filter_conditions |= Q(variant__model__category__name=category)
         cars_list = cars_list.filter(filter_conditions)    
 
-    p = Paginator(cars_list, 5)
+    p = Paginator(cars_list, 4)
     # get the page number from the request
     page_number = request.GET.get('page')
 
@@ -103,21 +103,32 @@ def carDetail(request, car_id):
             if not request.user.is_authenticated:
                 message = {'error': 'You need to login to book a car'}
                 return JsonResponse(message)
+            
             else:
-                fname = request.user.first_name
-                lname = request.user.last_name
-                username = fname + " " + lname
-                message = {'success': 'success', 'username': username}
+                pickup_date = datetime.strptime(body['pickDate'], '%Y-%m-%d')
+                drop_date = datetime.strptime(body['dropDate'], '%Y-%m-%d')
+                
+                rentals = Rental.objects.filter(car=car, pickup_date__lte=drop_date, drop_date__gte=pickup_date)
+                if rentals.exists():
+                    message = {'error': 'Car is already booked for the selected dates.'}
+                    return JsonResponse(message)
+            
+                rentals = Rental.objects.filter(car=car)
+                for rental in rentals:
+                    if pickup_date == rental.pickup_date:
+                        message = {'error': 'Car is already booked.'}
+                        return JsonResponse(message)
+                
+                message = {'success': 'success'}
                 return JsonResponse(message)
+
+                fname = request.user.first_name
+                # lname = request.user.last_name
+                # username = fname + " " + lname
         
         elif body.get('payment'):
             booking_date = datetime.now()
             pickup_date = datetime.strptime(body['pickDate'], '%Y-%m-%d')
-
-            if pickup_date.date() < booking_date.date():
-                message = {'error': 'Invalid pickup date.'}
-                return JsonResponse(message)
-
             drop_date = datetime.strptime(body['dropDate'], '%Y-%m-%d')
             no_of_days = (drop_date - pickup_date).days
             total_price = no_of_days * car.price_per_day
@@ -126,6 +137,9 @@ def carDetail(request, car_id):
             user.address = body['address']
             user.phone = body['phoneNo']
             user.save()
+
+            car.availability = False
+            car.save()
 
             rental = Rental.objects.create(user=user, car=car, booking_date=booking_date, pickup_date=pickup_date, drop_date=drop_date, total_cost=total_price, status=RentalStatus.objects.get(name='Scheduled'))
             payment = Payment.objects.create(rental=rental, payment_type='Advance', payment_method='Online', payment_date=booking_date, amount=total_price)
@@ -195,25 +209,27 @@ def logout_user(request):
         return JsonResponse(message)
 
 def review_dashboard(request):
-    Review = Review.objects.all()
+    rentals = Rental.objects.filter(user=request.user)
+    
+    rentals_without_reviews = []
+
+    for rental in rentals:
+        if not Review.objects.filter(rental=rental).exists():
+            rentals_without_reviews.append(rental)
+
 
     if request.method == "POST":
         review = json.loads(request.body)
         review_message = review['message']
         review_rating = int(review['rating'])
         review_date = datetime.now()
+        rental_id = int(review['rental_id'])
+        print(review_message, review_rating, review_date, rental_id)
 
-
-        
-        car_id = review['car_id']
-        car = Car.objects.get(car_id=car_id)
-        user = request.user
-
-
-        Review.objects.create(comment=review_message, rating=review_rating, review_date=review_date)
-
+        rental = Rental.objects.get(id=rental_id)
+        Review.objects.create(rental=rental, comment=review_message, rating=review_rating, review_date=review_date)
 
         message = {'status': 'success'}
         return JsonResponse(message)
 
-    return render(request, 'reviewdashboard.html')
+    return render(request, 'reviewdashboard.html', {"user": request.user, 'rentals': rentals_without_reviews})

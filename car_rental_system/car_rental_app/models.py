@@ -28,7 +28,6 @@ class User(AbstractUser):
 class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    description = models.TextField()
 
     def __str__(self):
         return self.name
@@ -36,7 +35,6 @@ class Category(models.Model):
 class Transmission(models.Model):
     transmission_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    description = models.TextField(null=True)
 
     def __str__(self):
         return self.name
@@ -45,21 +43,11 @@ class Transmission(models.Model):
 class FuelType(models.Model):
     fuel_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
     
-    
-class FuelType(models.Model):
-    fuel_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50)
-    description = models.TextField(null=True, blank=True)
 
-    def __str__(self):
-        return self.name
-    
-    
 class CarModel(models.Model):
     model_id = models.AutoField(primary_key=True)
     manufacturer = models.CharField(max_length=50)
@@ -99,11 +87,10 @@ class Car(models.Model):
     color = models.CharField(max_length=50)
     price_per_day = models.IntegerField()
     license_number = models.CharField(max_length=15)
-    main_image = models.ForeignKey(CarImage, related_name="main_image", on_delete=models.SET_NULL, null=True)
-    availability = models.BooleanField()
+    main_image = models.ForeignKey(CarImage, related_name="main_image", on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return self.license_number
+        return self.variant.model.manufacturer + ' ' + self.variant.model.name + ' ' + str(self.variant.model.year) + ' ' + self.variant.variant_name
     
 
 class RentalStatus(models.Model):
@@ -143,9 +130,7 @@ class Payment(models.Model):
     
 
 class Review(models.Model):
-    rental = models.OneToOneField(Rental, on_delete=models.CASCADE)
-    # one to one relationship with rental table, so that a review can be given only once for a rental
-    # it is like a foreign key, but with unique constraint
+    rental = models.OneToOneField(Rental,related_name="review", on_delete=models.CASCADE)
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
     review_date = models.DateField()
     comment = models.TextField()
