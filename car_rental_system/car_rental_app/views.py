@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import json
@@ -130,7 +129,7 @@ def carDetail(request, car_id):
 
     return render(request, 'carDetail.html', {"user": request.user, "car": car, "car_images": images, "display_form": False})
 
-@login_required
+# @userDashboard
 def userDashboard(request):
 
     scheduled_orders = Rental.objects.filter(user=request.user, status__name='Scheduled')
@@ -138,13 +137,15 @@ def userDashboard(request):
     cancelled_orders = Rental.objects.filter(user=request.user, status__name='Cancelled')
     cars_rented = Rental.objects.filter(user=request.user).values('car__variant__variant_name').distinct().count()
     return render(request, 'userdashboard.html')
-def page404(request):
-    return render(request, '404.html')
+
+
 
     if request.method == 'POST':
         data = {'upcoming_orders': scheduled_orders.count(), 'completed_orders': completed_orders.count(), 'cancelled_orders': cancelled_orders.count(), 'cars_rented': cars_rented}
         return JsonResponse(data)
 
+def page404(request):
+    return render(request, '404.html')
 
 
 def signup(request):
