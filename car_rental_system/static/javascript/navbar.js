@@ -1,7 +1,16 @@
+function getCSRFToken() {    // Generate CSRF token 
+  return document
+    .querySelector('meta[name="csrf-token"]')
+    .getAttribute("content");
+}
+
+const csrftoken = getCSRFToken();
+
+
+//----------------------------------------- Nav Bar Hori Selector--------------------------------------//
 const navLinks = document.querySelectorAll(".nav__link");
 const movingSelector = document.querySelector(".hori-selector");
 const navbar = document.querySelector(".nav__items");
-
 
 const moveSelector = (target) => {
   let rect = target.getBoundingClientRect();
@@ -12,13 +21,11 @@ const moveSelector = (target) => {
   let height = rect.height;
   let width = rect.width;
 
-    movingSelector.style.top = `${top}px`;
-    movingSelector.style.left = `${left}px`;
-    movingSelector.style.height = `${height}px`;
-    movingSelector.style.width = `${width}px`;
-
+  movingSelector.style.top = `${top}px`;
+  movingSelector.style.left = `${left}px`;
+  movingSelector.style.height = `${height}px`;
+  movingSelector.style.width = `${width}px`;
 };
-
 
 document.addEventListener('DOMContentLoaded',()=>{
   navLinks.forEach((navLink) => {
@@ -30,24 +37,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
 });
 
-
-
-// const toast_notification = document.querySelector("#toast_notification");
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   setTimeout(() => {
-//     toast_notification.classList.add("toastanimate");
-
-//     // Remove the class after the ::after animation completes (assuming 2s animation and 1.5s delay)
-//     setTimeout(() => {
-//       toast_notification.classList.remove("toastanimate");
-//       toast_notification.classList.add("toastanimateout");
-//     }, 3000); // 3500ms = 1.5s delay + 2s animation
-//   }, 10);
-// });
-
+//----------------------------------------- Scroll Up Button --------------------------------------//
 let scrollHome = document.querySelector(".scroll-up");
-
 const scroll = () => {
   let windowHeight = window.innerHeight;
   if (window.scrollY >= windowHeight) { // Show button when scrolled down the height of one page
@@ -58,7 +49,6 @@ const scroll = () => {
 };
 
 window.addEventListener('scroll', scroll);
-
 scrollHome.addEventListener('click', (e) => {
   e.preventDefault();
   window.scrollTo({
@@ -70,12 +60,9 @@ scrollHome.addEventListener('click', (e) => {
 
 
 //-----------------------------------------ANIMATION--------------------------------------//
-
-
-
+const hiddenElements3 = document.querySelectorAll('.hidden-up')
 const observer = new IntersectionObserver((entries)=> {
   entries.forEach((entry) => {
-      console.log(entry)
       if (entry.isIntersecting){
           entry.target.classList.add('show')       
       }else {
@@ -83,8 +70,4 @@ const observer = new IntersectionObserver((entries)=> {
       }
   })
 })
-
-
-
-const hiddenElements3 = document.querySelectorAll('.hidden-up')
 hiddenElements3.forEach((el) => observer.observe(el))

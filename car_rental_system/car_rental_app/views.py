@@ -35,19 +35,21 @@ def contact(request):
     return render(request, 'contact.html', {"user": request.user})
 
 def login(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
 
+    if request.method == 'POST':
+        body = json.loads(request.body)
+        email = body['email']
+        password = body['password']
         user = authenticate(request, username=email, password=password)
 
         if user:
             django_login(request, user)
-            return redirect('home')
-    
-        
-        return render(request, 'login.html', {'error': 'Invalid Credentials'})
+            message = {'status' : 'Success'}
+            return JsonResponse(message)
             
+        else:
+            message = {'status' : 'Error'}
+            return JsonResponse(message)
     elif request.user.is_authenticated:
         return redirect('home')
     
@@ -172,14 +174,17 @@ def orders(request):
 
 def signup(request):
     if request.method == 'POST':
-        
-        firstname = request.POST['first_name']
-        lastname = request.POST['last_name']
-        email = request.POST['email']
-        password = request.POST['password']
+        body = json.loads(request.body)
+        firstname = body['first_name']
+        lastname = body['last_name']
+        email = body['email']
+        password = body['password']
         
         if User.objects.filter(email=email).exists():
-            return render(request, 'signup.html', {'error': 'Email already exists'})
+            print("auth error")
+            message = {"status" : "Email Error"}
+            return JsonResponse(message)
+            # return render(request, 'signup.html', {'error': 'Email already exists'})
         
         # Create the user
         user_type = UserType.objects.get(type_name='Customer')
@@ -190,10 +195,12 @@ def signup(request):
         user = authenticate(request, username=email, password=password)
         if user is not None:
             django_login(request, user)
-            return redirect('home')
+            message = {'status' : 'Auth Success'}
+            return JsonResponse(message)
         else:
-            return render(request, 'signup.html', {'error': 'Authentication failed'})
-        
+            message = {'status' : 'Auth Error'}
+            return JsonResponse(message)
+
     elif request.user.is_authenticated:
         return redirect('home')
 

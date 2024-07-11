@@ -1,10 +1,3 @@
-function getCSRFToken() {
-  return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-}
-
-const csrftoken = getCSRFToken();
-
-
 // <------------------------------ Crarousel Image Funtionality ------------------------------>
 
 const car_image_set = document.querySelectorAll(".car__thumnail__image");

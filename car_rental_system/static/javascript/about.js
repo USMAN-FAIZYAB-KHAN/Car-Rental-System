@@ -1,3 +1,4 @@
+
 function countUp(counter, targetNumber, duration) {
     let startNumber = 0;
     const increment = targetNumber / (duration / 10);
@@ -25,7 +26,6 @@ for (let i = 0; i < counters.length; i++) {
 
 const observer = new IntersectionObserver((entries)=> {
     entries.forEach((entry) => {
-        console.log(entry)
         if (entry.isIntersecting){
             entry.target.classList.add('show')       
         }else {
@@ -35,7 +35,6 @@ const observer = new IntersectionObserver((entries)=> {
 })
 const observer2 = new IntersectionObserver((entries)=> {
     entries.forEach((entry) => {
-        console.log(entry)
         if (entry.isIntersecting){
             entry.target.classList.add('show')       
         }else {
@@ -45,7 +44,6 @@ const observer2 = new IntersectionObserver((entries)=> {
 })
 const observer3 = new IntersectionObserver((entries)=> {
     entries.forEach((entry) => {
-        console.log(entry)
         if (entry.isIntersecting){
             entry.target.classList.add('show-down')       
         }else {

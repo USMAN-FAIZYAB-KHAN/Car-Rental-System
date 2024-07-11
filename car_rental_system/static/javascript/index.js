@@ -1,3 +1,4 @@
+
 const arrows = document.querySelectorAll(".questionArrow");
 const removeEvent = ()=>{
 
@@ -31,6 +32,8 @@ arrows.forEach((arrow) => {
     });
 });
 
+
+//-------------------------------------- Make Counter For Organization Detail ------------------------------------------------//
 function countUp(counter, targetNumber, duration) {
   let startNumber = 0;
   const increment = targetNumber / (duration / 10);
@@ -44,7 +47,6 @@ function countUp(counter, targetNumber, duration) {
           counter.innerText = targetNumber;
       }
   }
-
   updateCounter();
 }
 
@@ -56,8 +58,6 @@ for (let i = 0; i < counters.length; i++) {
 
 
 //-------------------------------------- Vehicle Fleet ------------------------------------------------//
-
-
 const vehicle_fleets = [
   {
     car_name: "Jeep Renegade",
@@ -224,5 +224,4 @@ const checklogout = ()=>{
     sessionStorage.removeItem("logout");
   }
 };
-
 checklogout();

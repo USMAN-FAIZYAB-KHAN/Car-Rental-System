@@ -16,27 +16,32 @@
 <!--------------------------------------- Body -------------------------------------->
 {% block body %}
 
+<!-------- Toast Notification -------->
+
+<div class="toast" id="toast_notification">
+  <div class="toast__link">
+    <i class="fa-solid fa-xmark"></i>
+  </div>
+  <div class="toast__message">
+    <h4 style="color: #121212">Empty</h4>
+    <p>Fill out all the input field</p>
+  </div>
+  <span id="toast-border"></span>
+</div>
+
 <div class="main__wrapper">
   <div class="wrapper active" id="log">
-    <form method="post" action="{% url 'login' %}" role="form">
+    <form role="form" method="post" >
       {% csrf_token %}
-
-      <!-- {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %} -->
       <h2>Login</h2>
 
       <div class="inputbox">
         <input
           type="email"
           placeholder="Email"
-          required
           style="background: transparent"
           name="email"
+          id="email"
         />
         <i class="fa-solid fa-user"></i>
       </div>
@@ -45,9 +50,9 @@
         <input
           type="password"
           placeholder="Password"
-          required
           style="background: transparent"
           name="password"
+          id="pswd"
         />
         <i class="fa-solid fa-lock"></i>
       </div>
