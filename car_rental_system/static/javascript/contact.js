@@ -1,5 +1,3 @@
-// <------------------------------ Testimonial ------------------------------>
-
 // Define the array of testimonials with their details
 const testimonials = [              
   {

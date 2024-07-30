@@ -1,3 +1,10 @@
+function getCSRFToken() {    // Generate CSRF token 
+  return document
+    .querySelector('meta[name="csrf-token"]')
+    .getAttribute("content");
+}
+
+const csrftoken = getCSRFToken();
 const input = document.querySelector("#hidden-input");
 const review_cross = document.querySelector("#review-cross");
 const review = document.querySelector(".main-review");
@@ -90,7 +97,7 @@ const check_input = (e) => {
       rental_id: sessionStorage.getItem("rental_id"),
     };
 
-    fetch("/userDashboard/reviews", {
+    fetch("/reviews", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
