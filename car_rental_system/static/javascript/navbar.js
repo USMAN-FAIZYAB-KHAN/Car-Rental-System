@@ -6,7 +6,6 @@ function getCSRFToken() {    // Generate CSRF token
 
 const csrftoken = getCSRFToken();
 
-
 //----------------------------------------- Nav Bar Hori Selector--------------------------------------//
 const navLinks = document.querySelectorAll(".nav__link");
 const movingSelector = document.querySelector(".hori-selector");
@@ -60,8 +59,8 @@ scrollHome.addEventListener('click', (e) => {
 
 
 //-----------------------------------------ANIMATION--------------------------------------//
-const hiddenElements3 = document.querySelectorAll('.hidden-up')
-const observer = new IntersectionObserver((entries)=> {
+const hiddenElements_navbar = document.querySelectorAll('.hidden-up')
+const observer_navber = new IntersectionObserver((entries)=> {
   entries.forEach((entry) => {
       if (entry.isIntersecting){
           entry.target.classList.add('show')       
@@ -70,4 +69,4 @@ const observer = new IntersectionObserver((entries)=> {
       }
   })
 })
-hiddenElements3.forEach((el) => observer.observe(el))
+hiddenElements_navbar.forEach((el) => observer_navber.observe(el))

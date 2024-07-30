@@ -108,7 +108,7 @@ testimonialContainer.style.transform = "translateX(-100%)";
 testimonialContainer.style.transition = "none";
 
 // Intersection Observer to handle element visibility
-const observer = new IntersectionObserver((entries) => {
+const observer_contact = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add("show");
@@ -119,8 +119,8 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 // Observe elements with the class "hidden"
-const hiddenElements = document.querySelectorAll(".hidden");
-hiddenElements.forEach((el) => observer.observe(el));
+const hiddenElements_contact = document.querySelectorAll(".hidden");
+hiddenElements_contact.forEach((el) => observer_contact.observe(el));
 
 // <------------------------------ Thoast Notification ------------------------------>
 

@@ -77,6 +77,7 @@ ul {
     background-color: var(--button--primary--bg--color);
     color: var(--font--white--color);
     transition: all 0.5s ease-in-out;
+    cursor: pointer;
 }
 
 .primary__btn {
@@ -86,6 +87,7 @@ ul {
     border-radius: 5px;
     color: var(--font--white--color);
     transition: all 0.5s ease-in-out;
+    cursor: pointer;
 }
 
 .primary__btn::before,

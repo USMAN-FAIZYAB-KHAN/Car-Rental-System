@@ -2,7 +2,7 @@
 
 <!--------------------------------------- CSS Styling Link -------------------------------------->
 {% block cssLink %}
-<link rel="stylesheet" href="../static/css/home.css" />
+<link rel="stylesheet" href="{% static './css/home.css' %}" />
 {% endblock %}
 
 <!--------------------------------------- Title --------------------------------------->
@@ -10,7 +10,7 @@
 
 <!--------------------------------------- Javascript Link -------------------------------------->
 {% block javascript %}
-<script src="../static/javascript/index.js" defer></script>
+<script src="{% static './javascript/index.js' %}" defer></script>
 {% endblock %}
 
 <!--------------------------------------- Body -------------------------------------->

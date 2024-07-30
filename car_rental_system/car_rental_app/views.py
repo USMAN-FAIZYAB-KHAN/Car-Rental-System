@@ -1,17 +1,16 @@
-from django.shortcuts import render, redirect
-from django.http import JsonResponse
-import json
-from django.contrib.auth import get_user_model
+from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus, Payment, Review, UserType
 from django.contrib.auth import login as django_login, authenticate, logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus, Payment, Review, UserType
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.contrib.auth import get_user_model
+from django.http import JsonResponse
+from django.core import serializers
 from django.db.models import Q
 from datetime import datetime
-from django.contrib.auth.decorators import login_required
-from django.core import serializers
+import json
 
 User = get_user_model()
-
 
 def home(request): 
     cars = Car.objects.all()
@@ -35,7 +34,6 @@ def contact(request):
     return render(request, 'contact.html', {"user": request.user})
 
 def login(request):
-
     if request.method == 'POST':
         body = json.loads(request.body)
         email = body['email']
@@ -150,7 +148,7 @@ def carDetail(request, car_id):
                    
     return render(request, 'carDetail.html', {"user": request.user, "car": car, "car_images": images})
 
-# @userDashboard
+@login_required
 def userDashboard(request):
 
     recent_orders = Rental.objects.filter(user=request.user).order_by('-booking_date')[:5]
@@ -161,8 +159,6 @@ def userDashboard(request):
 
     return render(request, 'userdashboard.html', {"user": request.user, 'upcoming_orders': f'{upcoming_orders_count:02}', 'completed_orders': f'{completed_orders_count:02}', 'cancelled_orders': f'{cancelled_orders_count:02}', 'cars_rented': f'{cars_rented:02}', 'recent_orders': recent_orders})
 
-
-@login_required
 def orders(request):
 
     upcoming_orders = Rental.objects.filter(user=request.user, status__name='Scheduled')
@@ -217,6 +213,7 @@ def logout_user(request):
         return JsonResponse(message)
 
 def review_dashboard(request):
+
     rentals = Rental.objects.filter(user=request.user, status__name='Completed')
     
     rentals_without_reviews = []
@@ -232,7 +229,6 @@ def review_dashboard(request):
         review_rating = int(review['rating'])
         review_date = datetime.now()
         rental_id = int(review['rental_id'])
-        print(review_message, review_rating, review_date, rental_id)
 
         rental = Rental.objects.get(id=rental_id)
         Review.objects.create(rental=rental, comment=review_message, rating=review_rating, review_date=review_date)
@@ -241,3 +237,6 @@ def review_dashboard(request):
         return JsonResponse(message)
 
     return render(request, 'reviewdashboard.html', {"user": request.user, 'rentals': rentals_without_reviews})
+
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)

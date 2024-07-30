@@ -12,8 +12,7 @@ urlpatterns = [
     path('userDashboard', views.userDashboard,name='userdashboard'),
     path('userDashboard/orders',views.orders,name='my_orders'),
     path('logout',views.logout_user,name='logout'),
-    path('userDashboard/reviews',views.review_dashboard , name='reviews'),
-    
+    path('userDashboard/reviews',views.review_dashboard , name='reviews'),    
 ]
 
 

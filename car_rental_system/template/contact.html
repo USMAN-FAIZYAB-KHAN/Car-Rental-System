@@ -4,12 +4,12 @@
 
 <!--------------------------------------- CSS Styling Link -------------------------------------->
 {% block cssLink %}
-<link rel="stylesheet" href="../static/css/contact.css" />
+<link rel="stylesheet" href="{% static './css/contact.css' %}" />
 {% endblock %}
 
 <!--------------------------------------- Javascript Link -------------------------------------->
 {% block javascript %}
-<script src="../static/javascript/contact.js" defer></script>
+<script src="{% static './javascript/contact.js' %}" defer></script>
 <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
 </script>

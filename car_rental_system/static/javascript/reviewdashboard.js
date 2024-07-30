@@ -90,7 +90,7 @@ const check_input = (e) => {
       rental_id: sessionStorage.getItem("rental_id"),
     };
 
-    fetch("/userDashboard/reviews", {
+    fetch("/reviews", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

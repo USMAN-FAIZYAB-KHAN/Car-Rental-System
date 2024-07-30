@@ -1,4 +1,3 @@
-
 function countUp(counter, targetNumber, duration) {
     let startNumber = 0;
     const increment = targetNumber / (duration / 10);
@@ -11,10 +10,10 @@ function countUp(counter, targetNumber, duration) {
         } else {
             counter.innerText = targetNumber;
         }
-    }
-
+    };
     updateCounter();
 }
+console.log("ojweij")
 
 const counters = document.getElementsByClassName("counter");
 for (let i = 0; i < counters.length; i++) {
@@ -22,9 +21,7 @@ for (let i = 0; i < counters.length; i++) {
     countUp(counters[i], targetNumber, 2000);
 }
 
-
-
-const observer = new IntersectionObserver((entries)=> {
+const observer_about = new IntersectionObserver((entries)=> {
     entries.forEach((entry) => {
         if (entry.isIntersecting){
             entry.target.classList.add('show')       
@@ -33,7 +30,7 @@ const observer = new IntersectionObserver((entries)=> {
         }
     })
 })
-const observer2 = new IntersectionObserver((entries)=> {
+const observer_about_2 = new IntersectionObserver((entries)=> {
     entries.forEach((entry) => {
         if (entry.isIntersecting){
             entry.target.classList.add('show')       
@@ -42,7 +39,7 @@ const observer2 = new IntersectionObserver((entries)=> {
         }
     })
 })
-const observer3 = new IntersectionObserver((entries)=> {
+const observer_about_3 = new IntersectionObserver((entries)=> {
     entries.forEach((entry) => {
         if (entry.isIntersecting){
             entry.target.classList.add('show-down')       
@@ -53,17 +50,12 @@ const observer3 = new IntersectionObserver((entries)=> {
 })
 
 
-
-
-const hiddenElements = document.querySelectorAll('.hidden-left')
-hiddenElements.forEach((el) => observer.observe(el))
-const hiddenElements2 = document.querySelectorAll('.hidden-right')
-hiddenElements2.forEach((el) => observer2.observe(el))
-const hiddenElements3 = document.querySelectorAll('.hidden-down')
-hiddenElements3.forEach((el) => observer3.observe(el))
-
-
-
+const hiddenElements_about = document.querySelectorAll('.hidden-left')
+hiddenElements_about.forEach((el) => observer_about.observe(el))
+const hiddenElements_about_2 = document.querySelectorAll('.hidden-right')
+hiddenElements_about_2.forEach((el) => observer_about_2.observe(el))
+const hiddenElements_about_3 = document.querySelectorAll('.hidden-down')
+hiddenElements_about_3.forEach((el) => observer_about_3.observe(el))
 
 const content__about = [
     {

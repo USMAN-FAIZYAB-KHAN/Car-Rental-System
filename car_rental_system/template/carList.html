@@ -4,16 +4,12 @@
 
 <!--------------------------------------- CSS Styling Link -------------------------------------->
 {% block cssLink %}
-<link rel="stylesheet" href="../static/css/carList.css" />
+<link rel="stylesheet" href="{% static 'css/carList.css' %}" />
 {% endblock %}
 
 <!--------------------------------------- Javascript Link -------------------------------------->
 {% block javascript %}
-<script src="../static/javascript/carlist.js" defer></script>
-<script
-  src="https://kit.fontawesome.com/5783f5ea8c.js"
-  crossorigin="anonymous"
-></script>
+<script src="{% static './javascript/carlist.js' %}" defer></script>
 {% endblock %}
 
 <!--------------------------------------- Title-------------------------------------->
