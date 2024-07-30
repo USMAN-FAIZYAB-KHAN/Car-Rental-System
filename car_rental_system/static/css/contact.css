@@ -345,7 +345,7 @@ button#prev {
     top: 88%;
     color: #1ECB15;
 }
-
+/* 
 .hidden{
     opacity: 0;
     transform: translateY(10%);
@@ -355,7 +355,7 @@ button#prev {
 .show{
     opacity: 1;
     transform: translateY(0%);
-}
+} */
 
 /* Popup Styles */
 .popup {

@@ -38,6 +38,10 @@ def login(request):
         body = json.loads(request.body)
         email = body['email']
         password = body['password']
+
+        print(email)
+        print(password)
+
         user = authenticate(request, username=email, password=password)
 
         if user:
