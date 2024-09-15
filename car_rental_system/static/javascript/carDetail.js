@@ -256,7 +256,6 @@ const submitPayment = (paymentMethod, cardNumber, expiryDate, cvv, cardHolder, p
     })
     .catch(error => {
       showToast("An error occurred while processing your payment.", "Error");
-      console.error("Error:", error);
     });
 }
 

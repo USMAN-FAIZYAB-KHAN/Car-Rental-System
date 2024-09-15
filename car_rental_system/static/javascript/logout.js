@@ -1,7 +1,6 @@
 
 const user_signout = document.querySelector("#user-signout");
 user_signout.addEventListener("click", (e) => {
-    console.log(user_signout)
     e.preventDefault();
     fetch("/logout", {
         method: "GET",    
