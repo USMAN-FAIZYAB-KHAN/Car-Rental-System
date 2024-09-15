@@ -1,14 +1,7 @@
-function getCSRFToken() {    // Generate CSRF token 
-  return document
-    .querySelector('meta[name="csrf-token"]')
-    .getAttribute("content");
-}
-const csrftoken = getCSRFToken();
 
-// <------------------------------ Crarousel Image Funtionality ------------------------------>
+// <------------------------------ Carousel Image Funtionality ------------------------------>
 
 const car_image_set = document.querySelectorAll(".car__thumnail__image");
-
 car_image_set.forEach(link => {
   link.addEventListener("click", (e) => {
     let src_target = e.target.src;

@@ -19,7 +19,7 @@
 
     /* ======== Navbar Colors =======  */
 
-    --navbar--bg--color: #a5a5a5;
+    --navbar--bg--color: #5e5d5d;
 
     /* ======== Html Tag Colors =======  */
 
@@ -93,3 +93,12 @@ body {
     overflow-x: hidden;
 }
 
+body::-webkit-scrollbar {
+    width: 8px;
+    background-color: var(--navbar--bg--color);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--font--primary--color);
+    border-radius: 5px;
+}

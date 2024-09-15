@@ -58,70 +58,14 @@ for (let i = 0; i < counters.length; i++) {
 
 
 //-------------------------------------- Vehicle Fleet ------------------------------------------------//
-const vehicle_fleets = [
-  {
-    car_name: "Jeep Renegade",
-    car_type: "Sedan",
-    car_image: "../static/images/assets/lexus.jpg",
-    car_seats: "4",
-    car_idk: "2",
-    car_doors: "4",
-    car_price: "$6183",
-  },
-  {
-    car_name: "Ford Mustang",
-    car_type: "Sports Car",
-    car_image: "../static/images/assets/lexus.jpg",
-    car_seats: "2",
-    car_idk: "3",
-    car_doors: "2",
-    car_price: "$7500",
-  },
-  {
-    car_name: "Toyota Camry",
-    car_type: "Sedan",
-    car_image: "../static/images/assets/lexus.jpg",
-    car_seats: "5",
-    car_idk: "2",
-    car_doors: "4",
-    car_price: "$4500",
-  },
-  {
-    car_name: "Honda CR-V",
-    car_type: "SUV",
-    car_image: "../static/images/assets/lexus.jpg",
-    car_seats: "5",
-    car_idk: "4",
-    car_doors: "4",
-    car_price: "$5500",
-  },
-  {
-    car_name: "Chevrolet Malibu",
-    car_type: "Sedan",
-    car_image: "../static/images/assets/lexus.jpg",
-    car_seats: "5",
-    car_idk: "2",
-    car_doors: "4",
-    car_price: "$4600",
-  },
-  {
-    car_name: "BMW X5",
-    car_type: "SUV",
-    car_image: "../static/images/assets/lexus.jpg",
-    car_seats: "5",
-    car_idk: "4",
-    car_doors: "4",
-    car_price: "$7000",
-  },
-];
-
 let currentIndex = 0;
+let vehicle_fleets = document.querySelectorAll(".fleet__box").length;
 const vehicle_fleet_Container = document.querySelector(".main__fleet__box");
 const nextBtn = document.getElementById("next");
 const prevBtn = document.getElementById("prev");
 
 const slideNext = () => {
-  currentIndex = (currentIndex + 3) % 9;
+  currentIndex = (currentIndex + 3) % vehicle_fleets;
   vehicle_fleet_Container.style.transform = `translateX(-${currentIndex * (100 / 3)}%)`;
 };
 
@@ -130,8 +74,14 @@ const slidePrev = () => {
   vehicle_fleet_Container.style.transform = `translateX(-${currentIndex * (100 / 3)}%)`;
 };
 
-nextBtn.addEventListener("click", slideNext);
-prevBtn.addEventListener("click", slidePrev);
+if (vehicle_fleets>3){
+  nextBtn.addEventListener("click", slideNext);
+  prevBtn.addEventListener("click", slidePrev);
+}else{
+  nextBtn.style.display="none";
+  prevBtn.style.display="none";
+}
+
 
 //-------------------------------------- Animation ------------------------------------------------//
 const observerDown = new IntersectionObserver((entries) => {

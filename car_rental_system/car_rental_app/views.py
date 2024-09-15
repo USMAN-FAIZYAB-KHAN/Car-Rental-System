@@ -1,4 +1,4 @@
-from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus, Payment, Review, UserType
+from .models import Car, CarImage, CarVariant, CarModel, Rental, RentalStatus, Payment, Review, UserType, User
 from django.contrib.auth import login as django_login, authenticate, logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
@@ -13,12 +13,14 @@ import json
 User = get_user_model()
 
 def home(request): 
+    user = User.objects.filter(user_type__type_name='Customer')
+
     cars = Car.objects.all()
     completed_orders_count = Rental.objects.filter(status__name='Completed').count()
     customers_count = User.objects.filter(user_type__type_name='Customer').count()
     total_vehicles_count = Car.objects.count()
 
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and request.user in user:
         return render(request, 'home.html', {"user": request.user, 'cars': cars, 'completed_orders_count': completed_orders_count, 'customers_count': customers_count, 'total_vehicles_count': total_vehicles_count}) 
     
     return render(request, 'home.html', {'cars': cars, 'completed_orders_count': completed_orders_count, 'customers_count': customers_count, 'total_vehicles_count': total_vehicles_count})
@@ -38,9 +40,6 @@ def login(request):
         body = json.loads(request.body)
         email = body['email']
         password = body['password']
-
-        print(email)
-        print(password)
 
         user = authenticate(request, username=email, password=password)
 
@@ -79,6 +78,7 @@ def carList(request):
         cars_list = cars_list.filter(filter_conditions)    
 
     p = Paginator(cars_list, 4)
+
     # get the page number from the request
     page_number = request.GET.get('page')
 
@@ -127,9 +127,7 @@ def carDetail(request, car_id):
                 return JsonResponse(message)
 
                 fname = request.user.first_name
-                # lname = request.user.last_name
-                # username = fname + " " + lname
-        
+
         elif body.get('payment'):
             booking_date = datetime.now()
             pickup_date = datetime.strptime(body['pickDate'], '%Y-%m-%d')
@@ -181,10 +179,8 @@ def signup(request):
         password = body['password']
         
         if User.objects.filter(email=email).exists():
-            print("auth error")
             message = {"status" : "Email Error"}
             return JsonResponse(message)
-            # return render(request, 'signup.html', {'error': 'Email already exists'})
         
         # Create the user
         user_type = UserType.objects.get(type_name='Customer')
@@ -219,7 +215,6 @@ def logout_user(request):
 def review_dashboard(request):
 
     rentals = Rental.objects.filter(user=request.user, status__name='Completed')
-    
     rentals_without_reviews = []
 
     for rental in rentals:
@@ -242,5 +237,17 @@ def review_dashboard(request):
 
     return render(request, 'reviewdashboard.html', {"user": request.user, 'rentals': rentals_without_reviews})
 
-def custom_404(request, exception):
-    return render(request, '404.html', status=404)
+# from django.conf.urls import handler404, handler500
+
+
+# # Custom 500 Error Handler
+# def custom_500(request):
+#     return render(request, '500.html', status=500)
+
+# # Custom 404 Error Handler
+# def custom_404(request, exception):
+#     return render(request, '404.html', status=404)
+
+# handler500 = custom_500
+# handler404 = custom_404
+

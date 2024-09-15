@@ -1,6 +1,6 @@
 const rangeInput = document.querySelectorAll(".range-input input"),
-    priceInput = document.querySelectorAll(".price-input input"),
-    range = document.querySelector(".slider .progress");
+      priceInput = document.querySelectorAll(".price-input input"),
+      range = document.querySelector(".slider .progress");
 
 minPrice = sessionStorage.getItem("minPrice");
 maxPrice = sessionStorage.getItem("maxPrice");

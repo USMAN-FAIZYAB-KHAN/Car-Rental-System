@@ -13,8 +13,6 @@ function countUp(counter, targetNumber, duration) {
     };
     updateCounter();
 }
-console.log("ojweij")
-
 const counters = document.getElementsByClassName("counter");
 for (let i = 0; i < counters.length; i++) {
     const targetNumber = counters[i].innerText;

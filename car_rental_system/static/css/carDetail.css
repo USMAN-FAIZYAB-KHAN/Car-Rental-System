@@ -14,14 +14,15 @@
     align-items: center;
     row-gap: 1rem;
     overflow: hidden;
-}
-
-#mainImage {
+  }
+  
+  #mainImage {
     width: 100%;
     height: 400px;
     object-fit: cover;
     border-radius: 10px;
     transition: all 0.5s ease-in-out;
+    margin-bottom: 1rem;
 }
 
 

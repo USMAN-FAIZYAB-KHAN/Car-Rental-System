@@ -24,7 +24,7 @@
     row-gap: 6rem;
     flex-wrap: wrap;
 }
-/* 
+
 .hidden-left{
     opacity: 0;
     transform: translateX(-30%);
@@ -32,8 +32,8 @@
 }
 .hidden-right{
     opacity: 0;
-    transform: translateX(30%); */
-    /* transition: all 1s;
+    transform: translateX(30%); 
+    transition: all 1s;
 }
 .hidden-down{
     opacity: 0;
@@ -48,7 +48,7 @@
 .show-down {
     opacity: 1;
     transform: translateX(0%);
-} */
+}
 
 .about__content{
     margin-top: 9rem;
